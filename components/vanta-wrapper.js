@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import Head from 'next/head';
+import styles from '../styles/Vanta.module.css'
 
 export default function VantaWrapper({ children }) {
   const vantaWrapperId = "vanta-background-div";
   useEffect(() => {
-    document.getElementById(vantaWrapperId).style.position = "fixed";
-    document.getElementById(vantaWrapperId).style.height = "100vh";
-    document.getElementById(vantaWrapperId).style.width = "100vw";
+    // document.getElementById(vantaWrapperId).style.position = "fixed";
+    // document.getElementById(vantaWrapperId).style.height = "100vh";
+    // document.getElementById(vantaWrapperId).style.width = "100vw";
     VANTA.NET({
       el: `#${vantaWrapperId}`,
       mouseControls: true,
@@ -28,7 +29,7 @@ export default function VantaWrapper({ children }) {
         <script type="text/javascript" src="three.r119.min.js"></script>
         <script type="text/javascript" src="vanta.net.min.js"></script>
       </Head>
-      <div id={vantaWrapperId}>{children}</div>
+      <div id={vantaWrapperId} className={styles.vanta}>{children}</div>
     </>
   );
 }
