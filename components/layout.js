@@ -1,5 +1,13 @@
 import Head from "next/head";
-import { AppShell, Card, Header, MantineProvider } from "@mantine/core";
+import {
+  AppShell,
+  Drawer,
+  Col,
+  Card,
+  Header,
+  MantineProvider,
+} from "@mantine/core";
+import NavHeader from './header';
 import VantaWrapper from "./vanta-wrapper";
 
 export default function Layout({ children }) {
@@ -16,6 +24,7 @@ export default function Layout({ children }) {
             header={
               <Header height={60} padding="xs">
                 {/* Header content */}
+                <NavHeader />
               </Header>
             }
           >
@@ -23,6 +32,7 @@ export default function Layout({ children }) {
               <Card>{children}</Card>
             </main>
           </AppShell>
+          <Drawer position="right" size="xl" />
         </MantineProvider>
       </VantaWrapper>
     </>
