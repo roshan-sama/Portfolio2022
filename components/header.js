@@ -37,7 +37,7 @@ export default function Header() {
           />
         </MediaQuery>
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Group>{Navs}</Group>
+          <Group key="mainNavGroup">{Navs}</Group>
         </MediaQuery>
         {/* <SidebarRight /> */}
         <Card
@@ -69,7 +69,7 @@ export default function Header() {
                   marginTop: "10px",
                 }}
               >
-                <Group direction="column" style={{ marginLeft: "10px" }}>
+                <Group key={"burgerGroup"} direction="column" style={{ marginLeft: "10px" }}>
                   {Navs.map((nav) => nav)}
                 </Group>
               </Paper>
@@ -85,8 +85,8 @@ const Navs = [
   <Link key={"hellolink"} href="/hello">
     <Button sx={(theme) => ({ marginRight: "2rem" })}>Career</Button>
   </Link>,
-  <Text sx={(theme) => ({ marginRight: "2rem" })}>Career</Text>,
-  <Text sx={(theme) => ({ marginRight: "2rem" })}>Career</Text>,
+  <Text key={"hellolink2"} sx={(theme) => ({ marginRight: "2rem" })}>Career</Text>,
+  <Text key={"hellolink3"} sx={(theme) => ({ marginRight: "2rem" })}>Career</Text>,
 ];
 // function NavLinks() {
 //   return (
