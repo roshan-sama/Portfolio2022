@@ -2,15 +2,21 @@ import Head from "next/head";
 import {
   AppShell,
   Drawer,
-  Col,
-  Card,
   Header,
   MantineProvider,
 } from "@mantine/core";
+import { useLocalStorageValue } from '@mantine/hooks';
 import NavHeader from "./header";
 import VantaWrapper from "./vanta-wrapper";
 
 export default function Layout({ children }) {
+  type ColorScheme = 'dark' | 'light';
+
+  const [value, setValue] = useLocalStorageValue<ColorScheme>({
+    key: 'color-scheme',
+    defaultValue: 'light',
+  });
+  
   return (
     <>
       <Head>
@@ -33,7 +39,6 @@ export default function Layout({ children }) {
           >
             {children}
           </AppShell>
-          <Drawer position="right" size="xl" />
         </MantineProvider>
       </VantaWrapper>
     </>
