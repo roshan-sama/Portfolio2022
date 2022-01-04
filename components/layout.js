@@ -7,7 +7,7 @@ import {
   Header,
   MantineProvider,
 } from "@mantine/core";
-import NavHeader from './header';
+import NavHeader from "./header";
 import VantaWrapper from "./vanta-wrapper";
 
 export default function Layout({ children }) {
@@ -20,7 +20,10 @@ export default function Layout({ children }) {
       <VantaWrapper>
         <MantineProvider theme={{ colorScheme: "dark" }}>
           <AppShell
-            padding="md"
+            padding="md"   
+            styles={(theme) => ({
+              main: { height: "100vh" },
+            })}         
             header={
               <Header height={60} padding="xs">
                 {/* Header content */}
@@ -28,9 +31,7 @@ export default function Layout({ children }) {
               </Header>
             }
           >
-            <main>
-              <Card>{children}</Card>
-            </main>
+            {children}
           </AppShell>
           <Drawer position="right" size="xl" />
         </MantineProvider>
