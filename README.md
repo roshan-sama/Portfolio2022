@@ -1,3 +1,16 @@
+## Portfolio info
+
+App stores information about career and projects. Allows filtering of projects and work experience
+based on tags like "devops" or "fullstack". This allows for the generation of a variety of portfolios
+using any number of combinations. E.g.: Unity 3D + Epic EHR, which will generate a page that lists the 
+projects and experiences that are tagged with those skills
+
+## Mantine info
+
+https://mantine.dev/
+
+## Nextjs info
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
