@@ -21,6 +21,8 @@ export default function Layout({ children }) {
       <Head>
         <title>Roshan&apos;s portfolio</title>
         <link rel="icon" href="/favicon.ico" />
+        <script defer type="text/javascript" src="three.r119.min.js"></script>
+        <script defer type="text/javascript" src="vanta.net.min.js"></script>
       </Head>
       <VantaWrapper>
         <MantineProvider theme={{ colorScheme: "dark" }}>

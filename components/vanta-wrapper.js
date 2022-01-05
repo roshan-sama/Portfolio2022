@@ -31,10 +31,6 @@ export default function VantaWrapper({ children }) {
 
   return (
     <>
-      <Head>
-        <script key="t_scp" async type="text/javascript" src="three.r119.min.js"></script>
-        <script key="v_scp" async type="text/javascript" src="vanta.net.min.js"></script>
-      </Head>
       {!reduceMotion && (
         <div id={vantaWrapperId} className={styles.backgroundfill}>
           {children}
