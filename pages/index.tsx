@@ -8,7 +8,7 @@ export default function Home() {
       <Grid justify="center" align="start" style={{ height: "inherit" }}>
         <Grid.Col span={12} sm={8} lg={6}>
           <Grid justify="center">
-            <Grid.Col span={6}>
+            <Grid.Col span={12} sm={6}>
               <Card style={{ margin: "0.5rem" }}>
                 <Blockquote cite="Steve Wozniak">
                   Never trust a computer you can&apos;t throw out a window.

@@ -8,14 +8,15 @@ import { useLocalStorageValue } from '@mantine/hooks';
 import NavHeader from "./header";
 import VantaWrapper from "./vanta-wrapper";
 
+export type ColorScheme = 'dark' | 'light';
+
 export default function Layout({ children }) {
-  type ColorScheme = 'dark' | 'light';
 
   const [value, setValue] = useLocalStorageValue<ColorScheme>({
     key: 'color-scheme',
-    defaultValue: 'light',
+    defaultValue: 'dark',
   });
-  
+  // TODO add https://icons.modulz.app/
   return (
     <>
       <Head>
@@ -25,7 +26,7 @@ export default function Layout({ children }) {
         <script defer type="text/javascript" src="vanta.net.min.js"></script>
       </Head>
       <VantaWrapper>
-        <MantineProvider theme={{ colorScheme: "dark" }}>
+        <MantineProvider theme={{ colorScheme: value }}>
           <AppShell
             padding="md"   
             styles={(theme) => ({
@@ -34,7 +35,7 @@ export default function Layout({ children }) {
             header={
               <Header height={60} padding="xs">
                 {/* Header content */}
-                <NavHeader />
+                <NavHeader setValue={setValue}/>
               </Header>
             }
           >

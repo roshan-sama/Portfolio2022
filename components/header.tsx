@@ -13,8 +13,13 @@ import {
   Badge,
   Box,
 } from "@mantine/core";
+import { ColorScheme } from "./layout";
 
-export default function Header() {
+const Header: React.FC<{
+  setValue: (
+    val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
+  ) => void;
+}> = ({ setValue }) => {
   const [opened, setOpened] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
 
@@ -69,7 +74,11 @@ export default function Header() {
         >
           {/* TODO: Change to badge with right section */}
           {/* TODO: Display either light or dark mode toggles based on state */}
-          <Avatar color="black" radius="xl">
+          <Avatar
+            color="black"
+            radius="xl"
+            onClick={() => setValue((prev) => getOppositeColorScheme(prev))}
+          >
             <svg
               width="15"
               height="15"
@@ -123,7 +132,11 @@ export default function Header() {
       )}
     </>
   );
-}
+};
+
+const getOppositeColorScheme = (start: ColorScheme): ColorScheme => {
+  return start === "light" ? "dark" : "light";
+};
 
 const Navs = [
   <Link key={0} href="/hello" passHref>
@@ -142,3 +155,5 @@ const Navs = [
     </Text>
   </Link>,
 ];
+
+export default Header;
