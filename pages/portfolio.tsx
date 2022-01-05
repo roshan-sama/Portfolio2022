@@ -30,7 +30,7 @@ export default function Portfolio() {
   const { name } = router.query;
 
   return (
-    <Container fluid={true} style={{ height: "inherit", marginTop: "-60px" }}>
+    <Container fluid={true} style={{ height: "inherit" }}>
       <Grid justify="center" align="center" style={{ height: "inherit" }}>
         <Grid.Col span={12} sm={8} lg={6}>
           <Paper padding="sm">
