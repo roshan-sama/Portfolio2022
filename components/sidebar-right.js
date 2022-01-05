@@ -14,7 +14,7 @@ export default function SidebarRight() {
       padding="xl"
       size="xl"
     >
-        <Image className={styles.image} layout="responsive" src={DallasImg} />
+        {/* <Image className={styles.image} layout="responsive" src={DallasImg} /> */}
     </Drawer>
   );
 }
