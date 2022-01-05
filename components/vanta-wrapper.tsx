@@ -13,6 +13,7 @@ export default function VantaWrapper({ children }) {
   useEffect(() => {
     if (reduceMotion === false) {
       if (!vantaSet) {
+        //@ts-ignore
         VANTA.NET({
           el: `#${vantaWrapperId}`,
           mouseControls: true,

@@ -11,7 +11,7 @@ export default function Home() {
             <Grid.Col span={6}>
               <Card style={{ margin: "0.5rem" }}>
                 <Blockquote cite="Steve Wozniak">
-                  Never trust a computer you can't throw out a window.
+                  Never trust a computer you can&apos;t throw out a window.
                 </Blockquote>
               </Card>
             </Grid.Col>
