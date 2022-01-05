@@ -5,7 +5,6 @@ import {
   Text,
   Burger,
   DEFAULT_THEME,
-  Card,
   Paper,
   Collapse,
   Group,
@@ -13,7 +12,6 @@ import {
   Avatar,
   Box
 } from "@mantine/core";
-import SidebarRight from "./sidebar-right";
 
 export default function Header() {
   const [opened, setOpened] = useState(false);
