@@ -5,23 +5,13 @@ import CareerItem from "../components/Career/career-item";
 export default function Home() {
   return (
     <Container fluid={true} style={{ height: "inherit" }}>
-      <Grid justify="center" align="center" style={{ height: "inherit" }}>
-        {/* TODO: Make that number 60 a constant defined in a different file. Its the same size as the header height */}
-        <Grid.Col span={12} sm={8} lg={6} style={{ marginTop: -60 }}>
-          <Grid>
-            <Grid.Col span={6} >
-              <Card >
-                <Blockquote>
-                  The harder you work for something, the greater you'll feel
-                  when you achieve it
-                </Blockquote>
-              </Card>
-            </Grid.Col>
-            <Grid.Col span={6} offset={6}>
-              <Card style={{ margin: "3rem" }}>
-                <Blockquote>
-                  Especially if its troubleshooting a generic error
-                  message for two hours
+      <Grid justify="center" align="start" style={{ height: "inherit" }}>
+        <Grid.Col span={12} sm={8} lg={6}>
+          <Grid justify="center">
+            <Grid.Col span={6}>
+              <Card style={{ margin: "0.5rem" }}>
+                <Blockquote cite="Steve Wozniak">
+                  Never trust a computer you can't throw out a window.
                 </Blockquote>
               </Card>
             </Grid.Col>
