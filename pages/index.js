@@ -11,7 +11,7 @@ export default function Home() {
             <CareerItem
               career={{
                 id: "1",
-                companyName: "Epic",
+                companyid: "1",
                 imgUrl: "img/epiclogo.jpg",
                 description: "some desc",
                 startDate: new Date(),
