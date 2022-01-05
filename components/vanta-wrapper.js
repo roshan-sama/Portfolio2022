@@ -9,35 +9,31 @@ export default function VantaWrapper({ children }) {
   const reduceMotion = useReducedMotion();
   const vantaWrapperId = "vanta-background-div";
 
-  const initVanta = async () => {
-    VANTA.NET({
-      el: `#${vantaWrapperId}`,
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      speed: 1,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0xffb84e,
-      backgroundColor: 0xd0025,
-      points: 12.0,
-      spacing: 17.0,
-    });
-  };
-
   useEffect(() => {
     if (reduceMotion === false) {
-      initVanta()
+      VANTA.NET({
+        el: `#${vantaWrapperId}`,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.0,
+        minWidth: 200.0,
+        speed: 1,
+        scale: 1.0,
+        scaleMobile: 1.0,
+        color: 0xffb84e,
+        backgroundColor: 0xd0025,
+        points: 12.0,
+        spacing: 17.0,
+      });
     }
   }, [reduceMotion]);
 
   return (
     <>
       <Head>
-        <script defer type="text/javascript" src="three.r119.min.js"></script>
-        <script defer type="text/javascript" src="vanta.net.min.js"></script>
+        <script key="t_scp" async type="text/javascript" src="three.r119.min.js"></script>
+        <script key="v_scp" async type="text/javascript" src="vanta.net.min.js"></script>
       </Head>
       {!reduceMotion && (
         <div id={vantaWrapperId} className={styles.backgroundfill}>
