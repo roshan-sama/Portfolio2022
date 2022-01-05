@@ -10,12 +10,23 @@ import {
   Group,
   Button,
   Avatar,
-  Box
+  Badge,
+  Box,
 } from "@mantine/core";
 
 export default function Header() {
   const [opened, setOpened] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
+
+  const avatar = (
+    <Avatar
+      alt="Roshan's profile picture"
+      size={32}
+      radius="xl"
+      style={{ marginRight: 5 }}
+      src="img/roshan_avatar.jpg"
+    />
+  );
 
   return (
     <>
@@ -26,6 +37,15 @@ export default function Header() {
           height: "100%",
         }}
       >
+        {/* <Badge
+          style={{ paddingLeft: 0, textTransform: "initial" }}
+          size="xl"
+          color="yellow"
+          leftSection={avatar}
+
+        >
+          Roshan
+        </Badge> */}
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
           <Burger
             opened={opened}
@@ -36,8 +56,10 @@ export default function Header() {
             title={title}
           />
         </MediaQuery>
+        <div style={{ marginRight: "20px" }}>{avatar}</div>
+
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Group key="mainNavGroup">{Navs}</Group>
+          <Group>{Navs}</Group>
         </MediaQuery>
         {/* <SidebarRight /> */}
         <Box
@@ -90,9 +112,9 @@ export default function Header() {
                 <Group
                   key={"burgerGroup"}
                   direction="column"
-                  style={{ marginLeft: "10px" }}
+                  style={{ marginLeft: "10px", zIndex: 100 }}
                 >
-                  {Navs.map((nav) => nav)}
+                  {Navs}
                 </Group>
               </Paper>
             </div>
@@ -104,22 +126,19 @@ export default function Header() {
 }
 
 const Navs = [
-  <Link key={"hellolink"} href="/hello" passHref>
-    <Button sx={(theme) => ({ marginRight: "2rem" })}>Career</Button>
+  <Link key={0} href="/hello" passHref>
+    <Text sx={(theme) => ({ marginRight: "20px", cursor: "pointer" })}>
+      Career
+    </Text>
   </Link>,
-  <Text key={"hellolink2"} sx={(theme) => ({ marginRight: "2rem" })}>
-    Career
-  </Text>,
-  <Text key={"hellolink3"} sx={(theme) => ({ marginRight: "2rem" })}>
-    Career
-  </Text>,
+  <Link key={1} href="/resume.pdf" passHref>
+    <Text sx={(theme) => ({ marginRight: "20px", cursor: "pointer" })}>
+      Resume
+    </Text>
+  </Link>,
+  <Link key={2} href="/portfolio" passHref>
+    <Text sx={(theme) => ({ marginRight: "20px", cursor: "pointer" })}>
+      Portfolios
+    </Text>
+  </Link>,
 ];
-// function NavLinks() {
-//   return (
-//     <>
-
-//       <Text sx={(theme) => ({ marginRight: "2rem" })}>Career</Text>
-//       <Text sx={(theme) => ({ marginRight: "2rem" })}>Career</Text>
-//     </>
-//   );
-// }
