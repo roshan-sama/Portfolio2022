@@ -7,8 +7,7 @@ import {
 import { useLocalStorageValue } from '@mantine/hooks';
 import NavHeader from "./header";
 import VantaWrapper from "./vanta-wrapper";
-
-export type ColorScheme = 'dark' | 'light';
+import { ColorScheme } from "../types";
 
 export default function Layout({ children }) {
 
@@ -16,7 +15,7 @@ export default function Layout({ children }) {
     key: 'color-scheme',
     defaultValue: 'dark',
   });
-  // TODO add https://icons.modulz.app/
+  
   return (
     <>
       <Head>
@@ -35,7 +34,7 @@ export default function Layout({ children }) {
             header={
               <Header height={60} padding="xs">
                 {/* Header content */}
-                <NavHeader setValue={setValue}/>
+                <NavHeader value={value} setValue={setValue}/>
               </Header>
             }
           >
