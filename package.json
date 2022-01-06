@@ -1,7 +1,12 @@
 {
-  "name": "nextjs",
+  "name": "portfolio",
   "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Roshan Manuel",
+    "email": "manuelroshan@gmail.com",
+    "url": "https://roshan.page/"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,6 +17,7 @@
     "@mantine/core": "^3.5.0",
     "@mantine/hooks": "^3.5.0",
     "@mantine/next": "^3.5.0",
+    "@radix-ui/react-icons": "^1.0.3",
     "next": "12.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
