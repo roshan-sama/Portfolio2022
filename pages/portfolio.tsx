@@ -8,7 +8,7 @@ import {
   Paper,
 } from "@mantine/core";
 import Layout from "../components/layout";
-import CareerItem from "../components/Career/career-item";
+import CareerItem from "../components/career-item/career-item";
 import { useRouter } from "next/router";
 
 const idToNameMap = {
