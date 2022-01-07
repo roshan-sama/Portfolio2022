@@ -1,5 +1,6 @@
-interface Company{
+interface Company{    
     id: string,
+    hidden?: boolean,
     name: string,
     description: string,
     imgUrl: string,
