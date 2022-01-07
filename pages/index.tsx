@@ -1,6 +1,6 @@
 import { Card, Center, Grid, Container, Blockquote } from "@mantine/core";
 import Layout from "../components/layout";
-import CareerItem from "../components/Career/career-item";
+import CareerItem from "../components/career-item/career-item";
 
 export default function Home() {
   return (
