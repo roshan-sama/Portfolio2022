@@ -1,6 +1,7 @@
 import { Card, Center, Grid, Container, Blockquote } from "@mantine/core";
 import Layout from "../components/layout";
 import CareerItem from "../components/career-item/career-item";
+import CompaniesTable from "../components/Company/companies-table";
 
 export default function Home() {
   return (
@@ -16,17 +17,7 @@ export default function Home() {
               </Card>
             </Grid.Col>
           </Grid>
-          <Card>
-            <CareerItem
-              career={{
-                id: "1",
-                companyid: "1",
-                imgUrl: "img/epiclogo.jpg",
-                description: "some desc",
-                startDate: new Date(),
-              }}
-            />
-          </Card>
+          <CompaniesTable />
         </Grid.Col>
       </Grid>
     </Container>
