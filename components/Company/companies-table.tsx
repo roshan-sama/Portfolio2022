@@ -10,7 +10,6 @@ const CompaniesTable = () => {
     <tr key={company.id} className={styles.tablerow}>
       <td>{company.imgUrl && <Avatar src={company.imgUrl} />}</td>
       <td>{company.name}</td>
-      <td>{company.name}</td>
     </tr>
   ));
 
