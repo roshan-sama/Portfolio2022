@@ -52,12 +52,12 @@ const AboutMe = () => {
         <br />
       </Text>
       <Text>
-        I'm a biomedical enginnering graduate interested in all things
+        I&apos;m a biomedical enginnering graduate interested in all things
         technology
         <br />
       </Text>
       <Text>
-        I'm also a self-taught software developer that specializes in Fullstack
+        I&apos;m also a self-taught software developer that specializes in Fullstack
         web and devops tools
       </Text>
     </Card>
