@@ -8,6 +8,7 @@ import { useLocalStorageValue } from '@mantine/hooks';
 import NavHeader from "./header";
 import VantaWrapper from "./vanta-wrapper";
 import { ColorScheme } from "../types";
+import { useEffect, useState } from "react";
 
 export default function Layout({ children }) {
   
@@ -15,7 +16,16 @@ export default function Layout({ children }) {
     key: 'color-scheme',
     defaultValue: 'dark',
   });
-  
+  const [wrapperKey, setWrapperKey] = useState("pre")
+
+  useEffect(() => {
+    
+    setWrapperKey("post")
+    setTimeout(() => {
+      document.documentElement.classList.add('first-render-complete')
+    })
+  }, [])
+
   return (
     <>
       <Head>
@@ -23,7 +33,7 @@ export default function Layout({ children }) {
         <script defer type="text/javascript" src="three.r119.min.js"></script>
         <script defer type="text/javascript" src="vanta.net.min.js"></script>
       </Head>
-      <VantaWrapper>
+      <VantaWrapper key={wrapperKey}>
         <MantineProvider theme={{ colorScheme: value }}>
           <AppShell
             padding="md"   
