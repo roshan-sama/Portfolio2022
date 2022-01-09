@@ -1,5 +1,5 @@
 .spinForward {
-  animation: rotate 0.5s ease-in;
+  animation: rotate 0.5s cubic-bezier(.75, 0, 0, 1);
 }
 .rotateHalf {
   animation: rotateHalf 0.5s ease-out;
