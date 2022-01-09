@@ -1,3 +1,15 @@
 .tablerow{
     height: 4rem;
 }
+
+.iconcolumn{
+    width: 44px;
+}
+
+.namecolumn{
+    width: 22rem;
+}
+
+.rolecolumn{
+    width: 2000px;
+}
