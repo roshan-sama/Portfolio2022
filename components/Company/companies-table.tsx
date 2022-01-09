@@ -1,4 +1,4 @@
-import { Table, Avatar, Card } from "@mantine/core";
+import { Table, Avatar, Card, Title } from "@mantine/core";
 import Companies from "./companies";
 import Company from "./company-type";
 import styles from "../../styles/table.module.css";
@@ -12,7 +12,7 @@ const CompaniesTable = () => {
     <tr key={company.id} className={styles.tablerow}>
       <td className={styles.iconcolumn}>
         {company.imgUrl && (
-          <Avatar alt={company.name + " logo"} src={company.imgUrl} />
+          <Avatar size="lg" alt={company.name + " logo"} src={company.imgUrl} />
         )}
       </td>
       <td className={styles.namecolumn}>{company.name}</td>
@@ -30,14 +30,16 @@ const CompaniesTable = () => {
         // "&:hover": {
         //   backgroundColor: theme.colors.gray[1],
         // },
-        marginTop: "10vh",
+        marginTop: "5vh",
       })}
     >
+      <Title order={2}>My Career</Title>
+      <br />
       <Table>
         <thead>
           <tr>
             <th className={styles.iconcolumn}></th>
-            <th className={styles.namecolumn}>Name</th>
+            <th className={styles.namecolumn}>Company</th>
             <th className={styles.rolecolumn}>Role(s)</th>
             <th></th>
           </tr>
@@ -73,14 +75,27 @@ const FromToColumn: React.FC<{ startDate: Date; endDate?: Date }> = ({
 }) => {
   return (
     <i>
-      From {new Date(startDate).getMonth()}, {new Date(startDate).getFullYear()}{" "}
+      {monthNumToStr[startDate.getMonth()]}, {new Date(startDate).getFullYear()}{" "}
       to{" "}
       {endDate
-        ? `${new Date(endDate).getMonth()}, ${new Date(endDate).getFullYear()}`
+        ? `${monthNumToStr[endDate.getMonth()]}, ${new Date(endDate).getFullYear()}`
         : "Present"}
     </i>
   );
 };
-const monthNumToStr = {};
+const monthNumToStr = {
+  0: "Jan",
+  1: "Feb",
+  2: "Mar",
+  3: "Apr",
+  4: "May",
+  5: "Jun",
+  6: "Jul",
+  7: "Aug",
+  8: "Sep",
+  9: "Oct",
+  10: "Nov",
+  11: "Dec",
+};
 
 export default CompaniesTable;
