@@ -22,7 +22,7 @@ const companies: Company[] = [
     name: "Synergy BIS",
     description:
       "Founded in 2005, Synergy Business Innovation & Solutions, Inc. (Synergy) is an Information Technology (IT) firm specializing in Agile Development, System Integration, Business Process Reengineering, Cyber Security, and Mobile Solutions.",
-    imgUrl: "img/synergy_logo.png",
+    imgUrl: "img/synergy_logo.jpg",
     siteUrl: "https://www.synergybis.com/"
   },
 ];
