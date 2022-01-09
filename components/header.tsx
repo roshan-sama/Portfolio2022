@@ -89,15 +89,17 @@ const Header: React.FC<{
           </Button>
           <div
             onClick={() => {
+              if(animating){
+                return;
+              }
               setAnimating(true);
               setTimeout(() => {
                 setAnimating(false);
                 setValue((prev) => getOppositeColorScheme(prev));
               }, 500);
             }}
-            style={{ cursor: "pointer" }}
           >
-            <div className={animating ? styles.spinForward : styles.rotateHalf}>
+            <div style={{cursor: "pointer"}} className={animating ? styles.spinForward : styles.rotateHalf}>
               <ActionIcon
                 variant="transparent"
                 sx={(theme) =>
