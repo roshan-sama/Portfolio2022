@@ -15,8 +15,8 @@ import {
   Box,
 } from "@mantine/core";
 import { GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useLocalStorageValue } from "@mantine/hooks";
 import { ColorScheme } from "../types";
+import styles from "../styles/animation.module.css";
 
 const Header: React.FC<{
   value: ColorScheme;
@@ -25,6 +25,7 @@ const Header: React.FC<{
   ) => void;
 }> = ({ value, setValue }) => {
   const [opened, setOpened] = useState(false);
+  const [animating, setAnimating] = useState(false);
   const title = opened ? "Close navigation" : "Open navigation";
 
   const avatar = (
@@ -46,15 +47,6 @@ const Header: React.FC<{
           height: "100%",
         }}
       >
-        {/* <Badge
-          style={{ paddingLeft: 0, textTransform: "initial" }}
-          size="xl"
-          color="yellow"
-          leftSection={avatar}
-
-        >
-          Roshan
-        </Badge> */}
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
           <Burger
             opened={opened}
@@ -95,28 +87,36 @@ const Header: React.FC<{
           >
             Linkedin
           </Button>
-          <Box
-            onClick={() => setValue((prev) => getOppositeColorScheme(prev))}
+          <div
+            onClick={() => {
+              setAnimating(true);
+              setTimeout(() => {
+                setAnimating(false);
+                setValue((prev) => getOppositeColorScheme(prev));
+              }, 500);
+            }}
             style={{ cursor: "pointer" }}
           >
-            <ActionIcon
-              variant="transparent"
-              sx={(theme) =>
-                value === "dark"
-                  ? {
-                      color: theme.colors.dark[5],
-                      backgroundColor: theme.colors.yellow[5],
-                    }
-                  : {
-                      color: theme.colors.blue[2],
-                      backgroundColor: theme.colors.dark[9],
-                    }
-              }
-              size="lg"
-            >
-              {value === "dark" ? <SunIcon /> : <MoonIcon />}
-            </ActionIcon>
-          </Box>
+            <div className={animating ? styles.spinForward : styles.rotateHalf}>
+              <ActionIcon
+                variant="transparent"
+                sx={(theme) =>
+                  value === "dark"
+                    ? {
+                        color: theme.colors.dark[5],
+                        backgroundColor: theme.colors.yellow[5],
+                      }
+                    : {
+                        color: theme.colors.blue[2],
+                        backgroundColor: theme.colors.dark[9],
+                      }
+                }
+                size="lg"
+              >
+                {value === "dark" ? <SunIcon /> : <MoonIcon />}
+              </ActionIcon>
+            </div>
+          </div>
         </Group>
       </div>
       {opened && (
