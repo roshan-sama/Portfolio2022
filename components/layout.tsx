@@ -2,7 +2,7 @@ import Head from "next/head";
 import {
   AppShell,
   Header,
-  MantineProvider,
+  MantineProvider
 } from "@mantine/core";
 import { useLocalStorageValue } from '@mantine/hooks';
 import NavHeader from "./header";
@@ -15,7 +15,7 @@ export default function Layout({ children }) {
     key: 'color-scheme',
     defaultValue: 'dark',
   });
-  
+
   return (
     <>
       <Head>
