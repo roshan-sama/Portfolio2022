@@ -11,14 +11,15 @@ import {
   Button,
   Avatar,
   Badge,
+  ActionIcon,
   Box,
 } from "@mantine/core";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useLocalStorageValue } from "@mantine/hooks";
 import { ColorScheme } from "../types";
 
 const Header: React.FC<{
-  value: ColorScheme,
+  value: ColorScheme;
   setValue: (
     val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
   ) => void;
@@ -70,20 +71,53 @@ const Header: React.FC<{
           <Group>{Navs}</Group>
         </MediaQuery>
         {/* <SidebarRight /> */}
-        <Box
-          sx={(theme) => ({
-            marginLeft: "auto",
-          })}
-        >
-          <Avatar
-            color={value === "dark" ? "yellow" : "white"}
+        <Group style={{ marginLeft: "auto" }}>
+          <Button
+            component="a"
+            href="https://github.com/Roesh"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="gradient"
+            gradient={{ from: "indigo", to: "grape", deg: 105 }}
             radius="xl"
-            style={{cursor: "pointer"}}
-            onClick={() => setValue((prev) => getOppositeColorScheme(prev))}
+            leftIcon={<GitHubLogoIcon width={18} height={18} />}
           >
-            {value === "dark" ? <SunIcon /> : <MoonIcon/>}            
-          </Avatar>
-        </Box>
+            Github
+          </Button>
+          <Button
+            component="a"
+            href="https://www.linkedin.com/in/roshan-m-780824a9/"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="gradient"
+            gradient={{ from: "teal", to: "blue", deg: 105 }}
+            radius="xl"
+          >
+            Linkedin
+          </Button>
+          <Box
+            onClick={() => setValue((prev) => getOppositeColorScheme(prev))}
+            style={{ cursor: "pointer" }}
+          >
+            <ActionIcon
+              variant="transparent"
+              sx={(theme) =>
+                value === "dark"
+                  ? {
+                      color: theme.colors.dark[5],
+                      backgroundColor: theme.colors.yellow[5],
+                    }
+                  : {
+                      color: theme.colors.blue[2],
+                      backgroundColor: theme.colors.dark[9],
+                    }
+              }
+              size="lg"
+            >
+              {value === "dark" ? <SunIcon /> : <MoonIcon />}
+            </ActionIcon>
+          </Box>
+        </Group>
       </div>
       {opened && (
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
