@@ -1,0 +1,21 @@
+.spinForward {
+  animation: rotate 0.5s ease-in;
+}
+.rotateHalf {
+  animation: rotateHalf 0.5s ease-out;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes rotateHalf {
+  0% {
+    transform: rotateY(-90deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
