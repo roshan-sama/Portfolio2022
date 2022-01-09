@@ -1,6 +1,6 @@
 interface CareerItemType {
   id: string;
-  companyid: string;
+  companyId: string;
   description: string;
   startDate: Date;
   endDate?: Date;
