@@ -8,7 +8,7 @@ const CareerItem: React.FC<{ career: Career }> = ({ career }) => {
       <Grid.Col key={1} span={4}>
         <Group>
           <>{career.imgUrl && <Avatar src={career.imgUrl} />}</>
-          <b>{career.companyid}</b>
+          <b>{career.companyId}</b>
         </Group>
       </Grid.Col>
       <Grid.Col key={2} span={4}>
