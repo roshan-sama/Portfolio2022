@@ -46,6 +46,14 @@ const CareerItems: CareerItemType[] = [
     startDate: new Date(2021, 0),
     roleName: "Freelance Developer",
   },
+  {
+    id: "id_citem_epicsup",
+    companyId: "id_comp_epic",
+    description: "",
+    startDate: new Date(2018, 8),
+    endDate: new Date(2020, 0),
+    roleName: "Technical Services Specialist",
+  },
 ];
 
 export default CareerItems;
