@@ -16,7 +16,9 @@ const CompaniesTable = () => {
         )}
       </td>
       <td className={styles.namecolumn}>{company.name}</td>
-      <CareerItemsColumn companyId={company.id} />
+      <td colSpan={2} className={styles.roledurcolumn}>
+        <CareerItemsColumn companyId={company.id} />
+      </td>
       <td></td>
     </tr>
   ));
@@ -56,24 +58,18 @@ const CareerItemsColumn: React.FC<{ companyId }> = ({ companyId }) => {
   );
 
   return (
-    <>
-      <td className={styles.rolecolumn}>
+    <Table striped highlightOnHover>
+      <tbody>
         {careerItems.map((item) => (
-          <span key={item.id}>
-            {item.roleName} 
-            <br />
-          </span>
+          <tr key={item.id}>
+            <td className={styles.rolecolumn}>{item.roleName}</td>
+            <td className={styles.durationcolumn}>
+              <FromToColumn startDate={item.startDate} endDate={item.endDate} />
+            </td>
+          </tr>
         ))}
-      </td>
-      <td className={styles.durationcolumn}>
-        {careerItems.map((item) => (
-          <span key={item.id}>
-            <FromToColumn startDate={item.startDate} endDate={item.endDate} />
-            <br />
-          </span>
-        ))}
-      </td>
-    </>
+      </tbody>
+    </Table>
   );
 };
 
