@@ -19,7 +19,6 @@ const CompaniesTable = () => {
       <td colSpan={2} className={styles.roledurcolumn}>
         <CareerItemsColumn companyId={company.id} />
       </td>
-      <td></td>
     </tr>
   ));
 
@@ -42,7 +41,6 @@ const CompaniesTable = () => {
             <th className={styles.namecolumn}>Company</th>
             <th className={styles.rolecolumn}>Role</th>
             <th className={styles.durationcolumn}>Duration</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
