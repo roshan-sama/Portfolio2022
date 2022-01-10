@@ -10,20 +10,20 @@ const companies: Company[] = [
     siteUrl: "https://www.synergybis.com/"
   },
   {
+    id: "id_comp_gwidow",
+    name: "Gold Widow LLC",
+    description:
+    "Gold Widow LLC offers web development consulting services",
+    imgUrl: "img/gwidow_logo.png",
+    siteUrl: "https://goldwidow.io/"
+  },
+  {
     id: "id_comp_angelic",
     name: "Angelic Shipping",
     description:
       "Angelic Solution Spot Inc. is a global freight haulage company with headquarters at Capitol Heights, Maryland USA",
     imgUrl: "img/angelic_logo.png",
     siteUrl: "https://angelicshipping.com/"
-  },
-  {
-    id: "id_comp_gwidow",
-    name: "Gold Widow LLC",
-    description:
-      "Gold Widow LLC offers web development consulting services",
-    imgUrl: "img/gwidow_logo.png",
-    siteUrl: "https://goldwidow.io/"
   },
   {
     id: "id_comp_epic",
