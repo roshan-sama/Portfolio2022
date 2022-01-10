@@ -16,9 +16,7 @@ const CompaniesTable = () => {
         )}
       </td>
       <td className={styles.namecolumn}>{company.name}</td>
-      <td className={styles.rolecolumn}>
-        <CareerItemsColumn companyId={company.id} />
-      </td>
+      <CareerItemsColumn companyId={company.id} />
       <td></td>
     </tr>
   ));
@@ -40,7 +38,8 @@ const CompaniesTable = () => {
           <tr>
             <th className={styles.iconcolumn}></th>
             <th className={styles.namecolumn}>Company</th>
-            <th className={styles.rolecolumn}>Role(s)</th>
+            <th className={styles.rolecolumn}>Role</th>
+            <th className={styles.durationcolumn}>Duration</th>
             <th></th>
           </tr>
         </thead>
@@ -58,13 +57,22 @@ const CareerItemsColumn: React.FC<{ companyId }> = ({ companyId }) => {
 
   return (
     <>
-      {careerItems.map((item) => (
-      <span key={item.id}>
-        {item.roleName} -{" "}
-        <FromToColumn startDate={item.startDate} endDate={item.endDate} />
-        <br />
-      </span>
-    ))}
+      <td className={styles.rolecolumn}>
+        {careerItems.map((item) => (
+          <span key={item.id}>
+            {item.roleName} 
+            <br />
+          </span>
+        ))}
+      </td>
+      <td className={styles.durationcolumn}>
+        {careerItems.map((item) => (
+          <span key={item.id}>
+            <FromToColumn startDate={item.startDate} endDate={item.endDate} />
+            <br />
+          </span>
+        ))}
+      </td>
     </>
   );
 };
@@ -78,7 +86,9 @@ const FromToColumn: React.FC<{ startDate: Date; endDate?: Date }> = ({
       {monthNumToStr[startDate.getMonth()]}, {new Date(startDate).getFullYear()}{" "}
       to{" "}
       {endDate
-        ? `${monthNumToStr[endDate.getMonth()]}, ${new Date(endDate).getFullYear()}`
+        ? `${monthNumToStr[endDate.getMonth()]}, ${new Date(
+            endDate
+          ).getFullYear()}`
         : "Present"}
     </i>
   );

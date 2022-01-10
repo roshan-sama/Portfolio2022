@@ -11,5 +11,10 @@
 }
 
 .rolecolumn{
-    width: 2000px;
+    width: 15rem;
 }
+
+.durationcolumn{
+    width: 22rem;
+}
+
