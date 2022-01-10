@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default function Layout({ children }) {
   const [value, setValue] = useLocalStorageValue<ColorScheme>({
     key: "color-scheme",
-    defaultValue: "dark",
+    defaultValue: "light",
   });
   const [wrapperKey, setWrapperKey] = useState("pre");
   const [disableLoader, setDisableLoader] = useState(false);
@@ -42,9 +42,8 @@ export default function Layout({ children }) {
       <VantaWrapper key={wrapperKey}>
         <MantineProvider theme={{ colorScheme: value }}>
           <AppShell
-            padding="md"
             styles={(theme) => ({
-              main: { height: "100vh" },
+              main: { height: "90vh", overflowY: "auto", overflowX: "auto" },
             })}
             header={
               <Header height={60} padding="xs">

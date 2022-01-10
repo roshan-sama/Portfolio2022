@@ -1,4 +1,11 @@
-import { Card, Center, Grid, Container, Blockquote } from "@mantine/core";
+import {
+  Card,
+  Center,
+  Grid,
+  Container,
+  Blockquote,
+  ScrollArea,
+} from "@mantine/core";
 import Layout from "../components/layout";
 import CareerItem from "../components/career-item/career-item";
 import CompaniesTable from "../components/Company/companies-table";
@@ -6,7 +13,7 @@ import AboutMe from "../components/about-me";
 
 export default function Home() {
   return (
-    <Container fluid={true} style={{ height: "inherit" }}>
+    <Container fluid={true} style={{ height: "80vh" }}>
       <Grid justify="center" align="start" style={{ height: "inherit" }}>
         <Grid.Col span={12} sm={8} lg={6}>
           <Grid justify="center">
