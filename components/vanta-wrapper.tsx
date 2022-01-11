@@ -26,18 +26,18 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
+      minHeight: 1080.0,
+      minWidth: 1820.0,
       speed: 1,
       scale: 1.0,
       scaleMobile: 1.0,
-      color: dark ? 0xbe4bdb : 0xbe4bdb, // 0xffb84e,
-      backgroundColor: dark ? 0xd0025 : 0xf8f9fa,
-      points: 5.0,
-      spacing: 17.0,
+      color: dark ? 0xbe4bdb : 0x862e9c,
+      backgroundColor: dark ? 0xd0025 : 0x1098ad,
+      points: 8.0,
+      spacing: 12.0,
     });
 
-    updateVanta({ ...vantaEffect });
+    updateVanta(vantaEffect);
 
     return () => vanta && vanta.destroy();
   }, [reduceMotion]);
@@ -46,9 +46,10 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
     if (!vanta) {
       return;
     }
-    vanta.options.color = dark ? 0xbe4bdb : 0x000000; // 0xffb84e,
-    vanta.options.backgroundColor = dark ? 0xd0025 : 0xffeeff;
-    vanta.restart()
+    vanta.setOptions({
+      color: dark ? 0xbe4bdb : 0x862e9c,
+      backgroundColor : dark ? 0xd0025 : 0x1098ad
+    })
   }, [theme]);
 
   return (
