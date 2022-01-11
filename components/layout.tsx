@@ -39,8 +39,8 @@ export default function Layout({ children }) {
           <div className="loader"></div>
         </div>
       )}
-      <VantaWrapper key={wrapperKey}>
-        <MantineProvider theme={{ colorScheme: value }}>
+      <VantaWrapper key={wrapperKey} theme={value}>
+        <MantineProvider theme={{ colorScheme: value, primaryColor: "grape" }}>
           <AppShell
             styles={(theme) => ({
               main: { height: "90vh", overflowY: "auto", overflowX: "auto" },

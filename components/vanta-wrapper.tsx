@@ -4,35 +4,52 @@ import Image from "next/image";
 import styles from "../styles/Vanta.module.css";
 import { useReducedMotion } from "@mantine/hooks";
 import bg from "../public/img/vantabg_static.png";
+import { ColorScheme } from "@mantine/core";
 
-export default function VantaWrapper({ children }) {
+const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
+  children,
+  theme,
+}) => {
   const reduceMotion = useReducedMotion();
   const vantaWrapperId = "vanta-background-div";
-  const [vantaSet, updateVantaSet] = useState(false);
+  const [vanta, updateVanta] = useState(null);
+  const dark = theme === "dark";
 
   useEffect(() => {
-    if (reduceMotion === false) {
-      if (!vantaSet) {
-        //@ts-ignore
-        VANTA.NET({
-          el: `#${vantaWrapperId}`,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          speed: 1,
-          scale: 1.0,
-          scaleMobile: 1.0,
-          color: 0xffb84e,
-          backgroundColor: 0xd0025,
-          points: 12.0,
-          spacing: 17.0,
-        });
-        updateVantaSet(true)
-      }
+    if (reduceMotion) {
+      vanta && vanta.destroy();
     }
-  }, [reduceMotion, vantaSet]);
+
+    //@ts-ignore
+    const vantaEffect = VANTA.NET({
+      el: `#${vantaWrapperId}`,
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      speed: 1,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: dark ? 0xbe4bdb : 0xbe4bdb, // 0xffb84e,
+      backgroundColor: dark ? 0xd0025 : 0xf8f9fa,
+      points: 5.0,
+      spacing: 17.0,
+    });
+
+    updateVanta({ ...vantaEffect });
+
+    return () => vanta && vanta.destroy();
+  }, [reduceMotion]);
+
+  useEffect(() => {
+    if (!vanta) {
+      return;
+    }
+    vanta.options.color = dark ? 0xbe4bdb : 0x000000; // 0xffb84e,
+    vanta.options.backgroundColor = dark ? 0xd0025 : 0xffeeff;
+    vanta.restart()
+  }, [theme]);
 
   return (
     <>
@@ -57,4 +74,6 @@ export default function VantaWrapper({ children }) {
       )}
     </>
   );
-}
+};
+
+export default VantaWrapper;
