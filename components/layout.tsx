@@ -43,8 +43,9 @@ export default function Layout({ children }) {
         <MantineProvider theme={{ colorScheme: value, primaryColor: "grape" }}>
           <AppShell
             styles={(theme) => ({
-              main: { height: "90vh", overflowY: "auto", overflowX: "auto" },
+              main: { overflowY: "auto", overflowX: "auto" },
             })}
+            fixed
             header={
               <Header height={60} padding="xs">
                 {/* Header content */}

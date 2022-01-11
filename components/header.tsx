@@ -51,7 +51,6 @@ const Header: React.FC<{
         style={{
           display: "flex",
           alignItems: "center",
-          height: "100%",
         }}
       >
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
@@ -77,7 +76,7 @@ const Header: React.FC<{
             component="a"
             href="https://github.com/Roesh"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener noreferrer"            
             variant="gradient"
             gradient={{ from: "indigo", to: "grape", deg: 105 }}
             radius="xl"
