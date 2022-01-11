@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 export default function Layout({ children }) {
   const [value, setValue] = useLocalStorageValue<ColorScheme>({
     key: "color-scheme",
-    defaultValue: "light",
+    defaultValue: "dark",
   });
   const [wrapperKey, setWrapperKey] = useState("pre");
   const [disableLoader, setDisableLoader] = useState(false);
