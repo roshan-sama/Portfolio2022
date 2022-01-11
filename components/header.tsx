@@ -13,8 +13,15 @@ import {
   Badge,
   ActionIcon,
   Box,
+  Tabs,
+  TabsProps,
 } from "@mantine/core";
-import { GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import {
+  BackpackIcon,
+  GitHubLogoIcon,
+  MoonIcon,
+  SunIcon,
+} from "@radix-ui/react-icons";
 import { ColorScheme } from "../types";
 import styles from "../styles/animation.module.css";
 
@@ -60,7 +67,9 @@ const Header: React.FC<{
         <div style={{ marginRight: "20px" }}>{avatar}</div>
 
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Group>{Navs}</Group>
+          <Group>
+            <Navs orientation="horizontal" activeNav={0}/>
+          </Group>
         </MediaQuery>
         {/* <SidebarRight /> */}
         <Group style={{ marginLeft: "auto" }}>
@@ -89,7 +98,7 @@ const Header: React.FC<{
           </Button>
           <div
             onClick={() => {
-              if(animating){
+              if (animating) {
                 return;
               }
               setAnimating(true);
@@ -99,7 +108,10 @@ const Header: React.FC<{
               }, 500);
             }}
           >
-            <div style={{cursor: "pointer"}} className={animating ? styles.spinForward : styles.rotateHalf}>
+            <div
+              style={{ cursor: "pointer" }}
+              className={animating ? styles.spinForward : styles.rotateHalf}
+            >
               <ActionIcon
                 variant="transparent"
                 sx={(theme) =>
@@ -147,7 +159,7 @@ const Header: React.FC<{
                   direction="column"
                   style={{ marginLeft: "10px", zIndex: 100 }}
                 >
-                  {Navs}
+                  <Navs orientation="vertical" activeNav={0}/>
                 </Group>
               </Paper>
             </div>
@@ -158,26 +170,21 @@ const Header: React.FC<{
   );
 };
 
+const Navs: React.FC<{
+  activeNav: number;
+  orientation: TabsProps["orientation"];
+}> = ({ activeNav, orientation }) => {
+  return (
+    <Tabs orientation={orientation}>
+      <Tabs.Tab label="Career" icon={<BackpackIcon />}></Tabs.Tab>
+      <Tabs.Tab label="Resume"></Tabs.Tab>
+      <Tabs.Tab label="Portfolio"></Tabs.Tab>
+    </Tabs>
+  );
+};
+
 const getOppositeColorScheme = (start: ColorScheme): ColorScheme => {
   return start === "light" ? "dark" : "light";
 };
-
-const Navs = [
-  <Link key={0} href="/hello" passHref>
-    <Text sx={(theme) => ({ marginRight: "20px", cursor: "pointer" })}>
-      Career
-    </Text>
-  </Link>,
-  <Link key={1} href="/resume.pdf" passHref>
-    <Text sx={(theme) => ({ marginRight: "20px", cursor: "pointer" })}>
-      Resume
-    </Text>
-  </Link>,
-  <Link key={2} href="/portfolio" passHref>
-    <Text sx={(theme) => ({ marginRight: "20px", cursor: "pointer" })}>
-      Portfolios
-    </Text>
-  </Link>,
-];
 
 export default Header;
