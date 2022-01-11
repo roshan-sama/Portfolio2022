@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { AppShell, Header, MantineProvider } from "@mantine/core";
+import { AppShell, Header, MantineProvider, ScrollArea } from "@mantine/core";
 import { useLocalStorageValue } from "@mantine/hooks";
 import NavHeader from "./header";
 import VantaWrapper from "./vanta-wrapper";
@@ -14,7 +14,7 @@ export default function Layout({ children }) {
   const [wrapperKey, setWrapperKey] = useState("pre");
   const [disableLoader, setDisableLoader] = useState(false);
 
-  // Used to re-render content on the client. 
+  // Used to re-render content on the client.
   // This is because the Layout page cannot access cookie values, which
   // would have helped solve incorrect color-scheme on first load
   useEffect(() => {
@@ -39,24 +39,26 @@ export default function Layout({ children }) {
           <div className="loader"></div>
         </div>
       )}
-      <VantaWrapper key={wrapperKey} theme={value}>
-        <MantineProvider theme={{ colorScheme: value, primaryColor: "grape" }}>
-          <AppShell
-            styles={(theme) => ({
-              main: { overflowY: "auto", overflowX: "auto" },
-            })}
-            fixed
-            header={
-              <Header height={60} padding="xs">
-                {/* Header content */}
-                <NavHeader value={value} setValue={setValue} />
-              </Header>
-            }
-          >
-            {children}
-          </AppShell>
-        </MantineProvider>
-      </VantaWrapper>
+      <MantineProvider
+        theme={{ colorScheme: value, primaryColor: "grape" }}
+        key={wrapperKey}
+      >
+        <VantaWrapper theme={value}>
+          <ScrollArea>
+            <AppShell
+              fixed
+              header={
+                <Header height={60} padding="xs">
+                  {/* Header content */}
+                  <NavHeader value={value} setValue={setValue} />
+                </Header>
+              }
+            >
+              {children}
+            </AppShell>
+          </ScrollArea>
+        </VantaWrapper>
+      </MantineProvider>
     </>
   );
 }
