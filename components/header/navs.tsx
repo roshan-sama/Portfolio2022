@@ -1,8 +1,6 @@
 import { Tabs, TabsProps } from "@mantine/core";
 import { BackpackIcon } from "@radix-ui/react-icons";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 const tabIndexToPathMap = {
   0: "/", // Career
@@ -29,7 +27,7 @@ const Navs: React.FC<{
       orientation={orientation}
       active={activeTab}
       onTabChange={
-        (tabIndex) /*Index starts from 1*/ => {
+        (tabIndex) => {
           router.push(tabIndexToPathMap[tabIndex] ?? "/");
         }
       }
