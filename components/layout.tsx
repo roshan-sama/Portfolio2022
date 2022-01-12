@@ -1,6 +1,12 @@
 import Head from "next/head";
-import { AppShell, Header, MantineProvider, ScrollArea } from "@mantine/core";
-import { useLocalStorageValue } from "@mantine/hooks";
+import {
+  AppShell,
+  Grid,
+  Header,
+  MantineProvider,
+  ScrollArea,
+} from "@mantine/core";
+import { useLocalStorageValue, useMediaQuery } from "@mantine/hooks";
 import NavHeader from "./header/header";
 import VantaWrapper from "./vanta-wrapper";
 import { ColorScheme } from "../types";
@@ -60,21 +66,49 @@ export default function Layout({ children }) {
         }}
         key={wrapperKey}
       >
-        <VantaWrapper theme={scheme}>
-          <ScrollArea>
-            <AppShell
-              fixed
-              header={
-                <Header height={60} padding="xs">
-                  <NavHeader value={scheme} setValue={setScheme} />
-                </Header>
-              }
-            >
-              {children}
-            </AppShell>
-          </ScrollArea>
+        <VantaWrapper scheme={scheme}>
+          <AppShell
+            fixed
+            header={
+              <Header height={60} padding="xs">
+                <NavHeader value={scheme} setValue={setScheme} />
+              </Header>
+            }
+          >
+            <ScrollArea style={{ height: "100vh", marginBottom: -60 }}>
+              <FixedBg />
+              {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
+              <div style={{ marginTop: "25vh" }}>{children}</div>
+            </ScrollArea>
+          </AppShell>
         </VantaWrapper>
       </MantineProvider>
     </>
   );
 }
+
+const FixedBg = () => {
+  const largeScreen = useMediaQuery("(min-width: 1547px)");
+  const mediumScreen = useMediaQuery("(min-width: 1146px)");
+  const smallScreen = useMediaQuery("(max-width: 300px)");
+
+  return (
+    <Grid style={{ pointerEvents: "none", position: "fixed" }}>
+      <Grid.Col span={12} md={5}>
+        <div
+          style={{
+            fontSize: largeScreen ? "240px" : mediumScreen ? "180px" : "130px",
+            height: "auto",
+            color: "white",
+            lineHeight: "1",
+            display: "inline",
+          }}
+        >
+          Roshan
+          <br />
+          Manuel
+        </div>
+      </Grid.Col>
+    </Grid>
+  );
+};
