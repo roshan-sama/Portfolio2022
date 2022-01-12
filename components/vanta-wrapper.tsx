@@ -6,14 +6,15 @@ import { useReducedMotion } from "@mantine/hooks";
 import bg from "../public/img/vantabg_static.png";
 import { ColorScheme, useMantineTheme } from "@mantine/core";
 
-const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
+const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
   children,
-  theme,
+  scheme: theme,
 }) => {
   const reduceMotion = useReducedMotion();
   const vantaWrapperId = "vanta-background-div";
   const [vanta, updateVanta] = useState(null);
   const dark = theme === "dark";
+
   const themes = useMantineTheme()
   const grape = themes.colors.grape[6]
   const darkGrape = themes.colors.grape[9]
@@ -71,7 +72,7 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
             style={{ zIndex: -5 }}
             className={styles.backgroundfill}
           >
-            <Image alt="Vanta Net background" src={bg} layout="fill" />
+            <Image alt="Vanta Net background" src={bg} layout="fixed" />
           </div>
           <div key={"childrenelems"} style={{ zIndex: 0 }}>
             {children}
