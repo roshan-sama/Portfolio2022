@@ -7,7 +7,7 @@ import { ColorScheme } from "../types";
 import { useEffect, useState } from "react";
 
 export default function Layout({ children }) {
-  const [value, setValue] = useLocalStorageValue<ColorScheme>({
+  const [scheme, setScheme] = useLocalStorageValue<ColorScheme>({
     key: "color-scheme",
     defaultValue: "dark",
   });
@@ -24,7 +24,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     setTimeout(() => {
       setDisableLoader(true);
-    }, 100); // Gives Vanta enough time to setup
+    });
   }, [wrapperKey]);
 
   return (
@@ -40,17 +40,33 @@ export default function Layout({ children }) {
         </div>
       )}
       <MantineProvider
-        theme={{ colorScheme: value, primaryColor: "grape" }}
+        theme={{
+          colorScheme: scheme,
+          primaryColor: "grape",
+          colors: {
+            "alt-purple": [
+              "#eee5ff",
+              "#ccb4fb",
+              "#ac82f9",
+              "#8b50f8",
+              "#6c22f7",
+              "#540dde",
+              "#4108ac",
+              "#2f047b",
+              "#1c024a",
+              "#09001a",
+            ],
+          },
+        }}
         key={wrapperKey}
       >
-        <VantaWrapper theme={value}>
+        <VantaWrapper theme={scheme}>
           <ScrollArea>
             <AppShell
               fixed
               header={
                 <Header height={60} padding="xs">
-                  {/* Header content */}
-                  <NavHeader value={value} setValue={setValue} />
+                  <NavHeader value={scheme} setValue={setScheme} />
                 </Header>
               }
             >
