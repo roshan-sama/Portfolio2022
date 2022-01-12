@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { AppShell, Header, MantineProvider, ScrollArea } from "@mantine/core";
 import { useLocalStorageValue } from "@mantine/hooks";
-import NavHeader from "./header";
+import NavHeader from "./header/header";
 import VantaWrapper from "./vanta-wrapper";
 import { ColorScheme } from "../types";
 import { useEffect, useState } from "react";
