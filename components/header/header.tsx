@@ -1,8 +1,6 @@
 import { useState } from "react";
-import Link from "next/link";
 import {
   MediaQuery,
-  Text,
   Burger,
   DEFAULT_THEME,
   Paper,
@@ -10,20 +8,12 @@ import {
   Group,
   Button,
   Avatar,
-  Badge,
   ActionIcon,
-  Box,
-  Tabs,
-  TabsProps,
 } from "@mantine/core";
-import {
-  BackpackIcon,
-  GitHubLogoIcon,
-  MoonIcon,
-  SunIcon,
-} from "@radix-ui/react-icons";
-import { ColorScheme } from "../types";
-import styles from "../styles/animation.module.css";
+import { GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { ColorScheme } from "../../types";
+import styles from "../../styles/animation.module.css";
+import Navs from "./navs";
 
 const Header: React.FC<{
   value: ColorScheme;
@@ -31,9 +21,9 @@ const Header: React.FC<{
     val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
   ) => void;
 }> = ({ value, setValue }) => {
-  const [opened, setOpened] = useState(false);
+  const [burgerOpened, setBurgerOpened] = useState(false);
   const [animating, setAnimating] = useState(false);
-  const title = opened ? "Close navigation" : "Open navigation";
+  const title = burgerOpened ? "Close navigation" : "Open navigation";
 
   const avatar = (
     <Avatar
@@ -55,8 +45,8 @@ const Header: React.FC<{
       >
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
           <Burger
-            opened={opened}
-            onClick={() => setOpened((o) => !o)}
+            opened={burgerOpened}
+            onClick={() => setBurgerOpened((o) => !o)}
             size="sm"
             color={DEFAULT_THEME.colors.gray[6]}
             mr="xl"
@@ -67,7 +57,7 @@ const Header: React.FC<{
 
         <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
           <Group>
-            <Navs orientation="horizontal" activeNav={0}/>
+            <Navs orientation="horizontal" />
           </Group>
         </MediaQuery>
         {/* <SidebarRight /> */}
@@ -76,7 +66,7 @@ const Header: React.FC<{
             component="a"
             href="https://github.com/Roesh"
             target="_blank"
-            rel="noopener noreferrer"            
+            rel="noopener noreferrer"
             variant="gradient"
             gradient={{ from: "indigo", to: "grape", deg: 105 }}
             radius="xl"
@@ -132,9 +122,9 @@ const Header: React.FC<{
           </div>
         </Group>
       </div>
-      {opened && (
+      {burgerOpened && (
         <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-          <Collapse in={opened}>
+          <Collapse in={burgerOpened}>
             <div
               style={{
                 display: "flex",
@@ -158,7 +148,7 @@ const Header: React.FC<{
                   direction="column"
                   style={{ marginLeft: "10px", zIndex: 100 }}
                 >
-                  <Navs orientation="vertical" activeNav={0}/>
+                  <Navs orientation="vertical" />
                 </Group>
               </Paper>
             </div>
@@ -166,19 +156,6 @@ const Header: React.FC<{
         </MediaQuery>
       )}
     </>
-  );
-};
-
-const Navs: React.FC<{
-  activeNav: number;
-  orientation: TabsProps["orientation"];
-}> = ({ activeNav, orientation }) => {
-  return (
-    <Tabs orientation={orientation}>
-      <Tabs.Tab label="Career" icon={<BackpackIcon />}></Tabs.Tab>
-      <Tabs.Tab label="Resume"></Tabs.Tab>
-      <Tabs.Tab label="Portfolio"></Tabs.Tab>
-    </Tabs>
   );
 };
 
