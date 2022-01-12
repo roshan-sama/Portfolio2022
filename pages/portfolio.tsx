@@ -30,13 +30,13 @@ export default function Portfolio() {
   const { name } = router.query;
 
   return (
-    <Container fluid={true} style={{ height: "inherit" }}>
+    <Container fluid={true} style={{ height: "100vh", marginTop: "-10vh" }}>
       <Grid justify="center" align="center" style={{ height: "inherit" }}>
         <Grid.Col span={12} sm={8} lg={6}>
-          <Paper padding="sm">
+          <Card padding="sm">
             <Title order={1}>Roshan&apos;s {getPortfolioName(name)}</Title>
-          </Paper>
-          <Card>2</Card>
+          </Card>
+          <Card>In progress</Card>
         </Grid.Col>
       </Grid>
     </Container>
