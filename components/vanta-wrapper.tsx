@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Vanta.module.css";
 import { useReducedMotion } from "@mantine/hooks";
 import bg from "../public/img/vantabg_static.png";
-import { ColorScheme } from "@mantine/core";
+import { ColorScheme, useMantineTheme } from "@mantine/core";
 
 const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
   children,
@@ -14,12 +14,12 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
   const vantaWrapperId = "vanta-background-div";
   const [vanta, updateVanta] = useState(null);
   const dark = theme === "dark";
+  const themes = useMantineTheme()
+  const grape = themes.colors.grape[6]
+  const darkGrape = themes.colors.grape[9]
+  const darkbg = themes.colors.dark[6]
 
   useEffect(() => {
-    if (reduceMotion) {
-      vanta && vanta.destroy();
-    }
-
     //@ts-ignore
     const vantaEffect = VANTA.NET({
       el: `#${vantaWrapperId}`,
@@ -31,26 +31,30 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
       speed: 1,
       scale: 1.0,
       scaleMobile: 1.0,
-      color: dark ? 0xbe4bdb : 0x862e9c,
-      backgroundColor: dark ? 0xd0025 : 0x1098ad,
+      color: dark ? grape : darkGrape,
+      backgroundColor: dark ? 0x0d0025 : darkbg,
       points: 8.0,
       spacing: 12.0,
     });
-
     updateVanta(vantaEffect);
-
     return () => vanta && vanta.destroy();
-  }, [reduceMotion]);
+  }, []);
+
+  useEffect(() => {
+    if (reduceMotion) {
+      vanta && vanta.destroy();
+    }
+  }, [reduceMotion, vanta])
 
   useEffect(() => {
     if (!vanta) {
       return;
     }
     vanta.setOptions({
-      color: dark ? 0xbe4bdb : 0x862e9c,
-      backgroundColor : dark ? 0xd0025 : 0x1098ad
+      color: dark ? grape : darkGrape,
+      backgroundColor : dark ? 0x0d0025 : darkbg
     })
-  }, [theme]);
+  }, [dark]);
 
   return (
     <>
