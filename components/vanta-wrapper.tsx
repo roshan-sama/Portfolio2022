@@ -17,7 +17,8 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
   const themes = useMantineTheme()
   const grape = themes.colors.grape[6]
   const darkGrape = themes.colors.grape[9]
-  const darkbg = themes.colors.dark[6]
+  const bglight = themes.colors.dark[6]
+  const bgDark = themes.colors["alt-purple"][9]
 
   useEffect(() => {
     //@ts-ignore
@@ -32,7 +33,7 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
       scale: 1.0,
       scaleMobile: 1.0,
       color: dark ? grape : darkGrape,
-      backgroundColor: dark ? 0x0d0025 : darkbg,
+      backgroundColor: dark ? bgDark : bglight,
       points: 8.0,
       spacing: 12.0,
     });
@@ -52,7 +53,7 @@ const VantaWrapper: React.FC<{ theme: ColorScheme }> = ({
     }
     vanta.setOptions({
       color: dark ? grape : darkGrape,
-      backgroundColor : dark ? 0x0d0025 : darkbg
+      backgroundColor : dark ? bgDark : bglight
     })
   }, [dark]);
 
