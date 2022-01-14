@@ -9,24 +9,17 @@
         },
         "services": [
           {
-            "id": "blitz-test-web",
-            "name": "blitz-test-web",
+            "id": "rjm-portfolio",
+            "name": "rjm-portfolio",
             "type": "fargate",
             "cpu": 0.5,
             "memory": 1024,
-            "domain": "test.flightcontrolhq.com",
             "minInstances": 1,
             "maxInstances": 1,
-            "buildCommand": "blitz prisma generate && blitz build",
-            "startCommand": "blitz start",
+            "buildCommand": "next build",
+            "startCommand": "next start",
             "envVariables": {
-              "APP_ENV": "production",
-              "DATABASE_URL": {
-                "fromParameterStore": "bb.test.database-url"
-              },
-              "SESSION_SECRET_KEY": {
-                "fromParameterStore": "bb.test.session-secret-key"
-              }
+              "APP_ENV": "production"           
             }
           }
         ]
