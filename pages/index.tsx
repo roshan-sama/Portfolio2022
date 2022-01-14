@@ -14,7 +14,7 @@ import AboutMe from "../components/about-me";
 import { useMediaQuery } from "@mantine/hooks";
 
 export default function Home() {
-  const large = useMediaQuery("(min-width: 900px)");
+  const large = useMediaQuery("(min-width: 965px)");
   return (
     <Container fluid={true} style={{ marginBottom: "20vh" }}>
       <Grid justify="center" align="start" style={{ height: "inherit" }}>
@@ -24,7 +24,6 @@ export default function Home() {
               {/* // TODO: Make height difference below inversely proportional to view height
 Smaller device heights must make the spacing larger
 */}
-
               <MediaQuery query="(max-width: 965px)" styles={{ height: "6vw" }}>
                 <div style={{}}></div>
               </MediaQuery>
