@@ -1,0 +1,35 @@
+{
+    "environments": [
+      {
+        "id": "production",
+        "name": "Production",
+        "region": "us-west-2",
+        "source": {
+          "branch": "main"
+        },
+        "services": [
+          {
+            "id": "blitz-test-web",
+            "name": "blitz-test-web",
+            "type": "fargate",
+            "cpu": 0.5,
+            "memory": 1024,
+            "domain": "test.flightcontrolhq.com",
+            "minInstances": 1,
+            "maxInstances": 1,
+            "buildCommand": "blitz prisma generate && blitz build",
+            "startCommand": "blitz start",
+            "envVariables": {
+              "APP_ENV": "production",
+              "DATABASE_URL": {
+                "fromParameterStore": "bb.test.database-url"
+              },
+              "SESSION_SECRET_KEY": {
+                "fromParameterStore": "bb.test.session-secret-key"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
