@@ -1,6 +1,6 @@
 import { NextRouter } from "next/router";
 
-const preservedKeys = ["path"];
+const preservedKeys = ["role"];
 
 const preservedPush: (
   router: NextRouter,
