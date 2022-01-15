@@ -16,19 +16,24 @@ const PortfolioSkillHeader: React.FC<{
   skillCategory: SkillCategoryType;
   allRoleSkills: SkillType[];
 }> = ({ skillCategory, allRoleSkills }) => {
+  
   const { skills, skillIds } = useMemo(() => {
+    // Filter on all skills to return skills that both
+    // 1) Belong to this category skillCategory
+    // 2) Are part of the skills the belong to this role (allRoleSkills)
     const skills = Skills.filter(
       (skill) =>
         skill.skillCategoryId === skillCategory.id &&
         (allRoleSkills.findIndex((allSkill) => allSkill.id === skill.id) !== -1)
     );
+
     const skillIds = skills.map((skill) => skill.id);
 
     return {
       skills,
       skillIds,
     };
-  }, [skillCategory]);
+  }, [skillCategory, allRoleSkills]);
 
   // const [selectedSkills, setSelectedSkills] = useState(skillIds)
 
