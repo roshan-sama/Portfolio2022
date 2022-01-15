@@ -1,3 +1,4 @@
+import Skills from "../Skill/skills";
 import RoleType from "./role-type";
 
 const Roles: RoleType[] = [
@@ -7,7 +8,7 @@ const Roles: RoleType[] = [
         description: "Devops engineer description",
         imgUrl: "",
         infoUrl: "",
-        relevantSkills: []
+        relevantSkills: [Skills[0], Skills[1]]
     },
     {
         id: "id_role_fstack",
@@ -15,7 +16,7 @@ const Roles: RoleType[] = [
         description: "Devops engineer description",
         imgUrl: "",
         infoUrl: "",
-        relevantSkills: []
+        relevantSkills: [Skills[0], Skills[1]]
     },
     {
         id: "id_role_gamedev",
@@ -23,7 +24,7 @@ const Roles: RoleType[] = [
         description: "Devops engineer description",
         imgUrl: "",
         infoUrl: "",
-        relevantSkills: []
+        relevantSkills: [Skills[0], Skills[1]]
     }
 ]
 
