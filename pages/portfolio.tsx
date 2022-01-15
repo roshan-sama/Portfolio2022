@@ -2,6 +2,7 @@ import {
   Card,
   Title,
   Grid,
+  Text,
   Container,
   Center,
   Group,
@@ -20,6 +21,7 @@ import PortfolioSkillHeader, {
 import SkillType from "../components/Skill/skill-type";
 import SkillCategoryType from "../components/skill-category/skill-category-type";
 import { useEffect, useMemo, useState } from "react";
+import ProjectTable from "../components/Project/project-table";
 
 const getRoleById = (roleid: string): RoleType =>
   Roles.find((role) => role.id === `id_role_${roleid}`);
@@ -97,12 +99,8 @@ export default function Portfolio() {
     const skills = roles.flatMap((role) => role.relevantSkills);
     return getDeduplicatedSkills(skills);
   }, [roles, getDeduplicatedSkills]);
-  
-  const numSkillCats = dedupCategories.length;
-  const adjustedColSpan =
-    dedupCategories.length >= 1 && dedupCategories.length <= 3
-      ? 12 / numSkillCats
-      : 12;
+
+  const adjustedColSpan = 6;
 
   return (
     <Container fluid={true} style={{ marginTop: "50vh", marginBottom: "20vh" }}>
@@ -112,15 +110,16 @@ export default function Portfolio() {
         align="center"
         style={{ height: "inherit" }}
       >
-        <Grid.Col span={12} md={10} xl={8}>
-          <Card padding="xs">
+        <Grid.Col span={12} md={10} xl={6}>
+          <Card>
             <Title order={1} style={{ marginBottom: "1rem" }}>
               Roshan&apos;s {getPortfolioName(roleId)}
             </Title>
-            <Card
-              style={{ backgroundColor: secondaryColor, backgroundImage: "" }}
-            >
+            <Card style={{ backgroundColor: secondaryColor }}>
               <Container fluid>
+                <Title order={3} style={{ marginBottom: "5px" }}>
+                  Relevant skills:
+                </Title>
                 <Grid gutter="xs">
                   {dedupCategories.map((category) => (
                     <ColWrapper
@@ -135,10 +134,15 @@ export default function Portfolio() {
                     </ColWrapper>
                   ))}
                 </Grid>
+                <Text>
+                  You can filter the portfolio items below by checking one or
+                  more of these skills
+                </Text>
               </Container>
             </Card>
           </Card>
-          <Card>In progress</Card>
+
+          <ProjectTable />
         </Grid.Col>
       </Grid>
     </Container>
