@@ -70,7 +70,7 @@ const Header: React.FC<{
             target="_blank"
             rel="noopener noreferrer"
             variant="gradient"
-            gradient={{ from: "indigo", to: "grape", deg: 105 }}
+            gradient={{ from: "violet", to: "grape", deg: 105 }}
             radius="xl"
             leftIcon={<GitHubLogoIcon width={18} height={18} />}
             rightIcon={<ExternalLinkIcon width={15} height={15} />}
