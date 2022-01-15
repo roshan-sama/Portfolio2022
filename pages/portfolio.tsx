@@ -88,21 +88,16 @@ export default function Portfolio() {
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2];
 
-  const [roles, setRoles] = useState([]);
-
-  useEffect(() => {
-    let roles = getRoles(roleId);
-    if (roles === undefined || roles[0] === undefined) {
-      roles = Roles;
-    }
-    setRoles((prev) => [...roles]);
-  }, [roleId]);
+  let roles = getRoles(roleId);
+  if (roles === undefined || roles[0] === undefined) {
+    roles = Roles;
+  }
 
   const { dedupSkills, dedupCategories } = useMemo(() => {
     const skills = roles.flatMap((role) => role.relevantSkills);
     return getDeduplicatedSkills(skills);
   }, [roles, getDeduplicatedSkills]);
-
+  
   const numSkillCats = dedupCategories.length;
   const adjustedColSpan =
     dedupCategories.length >= 1 && dedupCategories.length <= 3
@@ -133,7 +128,10 @@ export default function Portfolio() {
                       span={12}
                       sm={adjustedColSpan}
                     >
-                      <PortfolioSkillHeader skillCategory={category} />
+                      <PortfolioSkillHeader
+                        skillCategory={category}
+                        allRoleSkills={dedupSkills}
+                      />
                     </ColWrapper>
                   ))}
                 </Grid>
