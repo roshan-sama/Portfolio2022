@@ -21,6 +21,7 @@ const Roles: RoleType[] = [
       getSkillById("id_skill_harbor"),
       getSkillById("id_skill_microsvcs"),
       getSkillById("id_skill_git"),
+      getSkillById("id_skill_gitops"),
     ],
   },
   {
