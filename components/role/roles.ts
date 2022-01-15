@@ -1,6 +1,10 @@
+import SkillType from "../Skill/skill-type";
 import Skills from "../Skill/skills";
 import RoleType from "./role-type";
 
+const getSkillById = (id:string): SkillType => {
+
+}
 const Roles: RoleType[] = [
     {
         id: "id_role_dops",

@@ -1,4 +1,4 @@
-interface Skill {
+interface SkillType {
     id: string,
     name: string,
     description: string,
@@ -6,4 +6,4 @@ interface Skill {
     skillCategoryId: string
 }
 
-export default Skill;
+export default SkillType;

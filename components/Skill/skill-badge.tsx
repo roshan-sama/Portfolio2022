@@ -1,7 +1,7 @@
-import Skill from "./skill";
+import SkillType from "./skill-type";
 import { Badge, Tooltip } from "@mantine/core";
 
-const SkillBadge: React.FC<{ skill: Skill }> = ({ skill }) => {
+const SkillBadge: React.FC<{ skill: SkillType }> = ({ skill }) => {
   const InnerBadge: React.FC = skill.infoUrl ? (
     ({children}) => <Badge component="a" href={skill.infoUrl} style={{cursor: "pointer"}}>
       {children}

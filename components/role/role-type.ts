@@ -1,10 +1,10 @@
-import Skill from "../Skill/skill";
+import SkillType from "../Skill/skill-type";
 
 interface RoleType{
     id: string,
     name: string,
     description: string,
-    relevantSkills: Skill[],
+    relevantSkills: SkillType[],
     imgUrl: string,
     infoUrl: string
 }

@@ -17,7 +17,7 @@ import SkillCategories from "../components/skill-category/skillCategories";
 import PortfolioSkillHeader, {
   ColWrapper,
 } from "../components/skill-category/skill-category-portfolio-header";
-import Skill from "../components/Skill/skill";
+import SkillType from "../components/Skill/skill-type";
 import SkillCategoryType from "../components/skill-category/skill-category-type";
 import { useEffect, useMemo, useState } from "react";
 
@@ -57,8 +57,8 @@ const getRoles = (id: string | string[]): RoleType[] => {
 };
 
 const getDeduplicatedSkills = (
-  skills: Skill[]
-): { dedupSkills: Skill[]; dedupCategories: SkillCategoryType[] } => {
+  skills: SkillType[]
+): { dedupSkills: SkillType[]; dedupCategories: SkillCategoryType[] } => {
   const seenSkillIds = {};
   const seenCategoryIds = {};
   const dedupSkills = [];

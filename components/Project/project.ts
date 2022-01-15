@@ -1,10 +1,10 @@
-import Skill from "../Skill/skill";
+import SkillType from "../Skill/skill-type";
 
 interface Project{
     id: string,
     name: string,
     description: string, // markdown?
-    skills: Skill[]
+    skills: SkillType[]
 }
 
 export default Project
