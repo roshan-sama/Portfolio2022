@@ -27,7 +27,7 @@ const Roles: RoleType[] = [
   {
     id: "id_role_fstack",
     name: "Fullstack Engineer",
-    description: "Devops engineer description",
+    description: "Fullstack engineer description",
     imgUrl: "",
     infoUrl: "",
     relevantSkills: [
@@ -43,7 +43,7 @@ const Roles: RoleType[] = [
   {
     id: "id_role_gamedev",
     name: "Game Development",
-    description: "Devops engineer description",
+    description: "Game Development portfolio",
     imgUrl: "",
     infoUrl: "",
     relevantSkills: [getSkillById("id_skill_unity3d")],
