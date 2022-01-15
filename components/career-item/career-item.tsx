@@ -13,23 +13,7 @@ const CareerItem: React.FC<{ career: Career }> = ({ career }) => {
       </Grid.Col>
       <Grid.Col key={2} span={4}>
         <Group position="center">
-          <>{career.roleName}</>
-          <SkillBadge
-            skill={{
-              name: "C#",
-              description: "Object oriented Programming language by Microsoft",
-              infoUrl:
-                "https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/",
-            }}
-          />
-          <SkillBadge
-            skill={{
-              name: "ASP.NET Core",
-              description: "Framework by Microsoft",
-              infoUrl:
-                "https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/",
-            }}
-          />
+          <>{career.roleName}</>          
         </Group>
       </Grid.Col>
       <Grid.Col key={3} span={4}>
