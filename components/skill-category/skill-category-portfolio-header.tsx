@@ -16,7 +16,6 @@ const PortfolioSkillHeader: React.FC<{
   skillCategory: SkillCategoryType;
   allRoleSkills: SkillType[];
 }> = ({ skillCategory, allRoleSkills }) => {
-  
   const { skills, skillIds } = useMemo(() => {
     // Filter on all skills to return skills that both
     // 1) Belong to this category skillCategory
@@ -24,7 +23,7 @@ const PortfolioSkillHeader: React.FC<{
     const skills = Skills.filter(
       (skill) =>
         skill.skillCategoryId === skillCategory.id &&
-        (allRoleSkills.findIndex((allSkill) => allSkill.id === skill.id) !== -1)
+        allRoleSkills.findIndex((allSkill) => allSkill.id === skill.id) !== -1
     );
 
     const skillIds = skills.map((skill) => skill.id);
@@ -39,8 +38,6 @@ const PortfolioSkillHeader: React.FC<{
 
   return (
     <Card shadow="lg" padding="sm" style={{ height: "100%" }}>
-      {skillCategory.name}
-      <Divider my="xs" />
       <Chips multiple value={skillIds}>
         {skills.map((skill) => {
           return (
@@ -50,6 +47,8 @@ const PortfolioSkillHeader: React.FC<{
           );
         })}
       </Chips>
+      <Divider my="xs" />
+      {skillCategory.name}
     </Card>
   );
 };
