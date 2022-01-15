@@ -1,4 +1,4 @@
-import { Card, Chip, Chips, Divider, Grid } from "@mantine/core";
+import { Badge, Card, Chip, Chips, Divider, Grid } from "@mantine/core";
 import { useMemo, useState } from "react";
 import SkillType from "../Skill/skill-type";
 import Skills from "../Skill/skills";
@@ -37,19 +37,25 @@ const PortfolioSkillHeader: React.FC<{
   // const [selectedSkills, setSelectedSkills] = useState(skillIds)
 
   return (
-    <Card shadow="lg" padding="sm" style={{ height: "100%" }}>
-      <Chips multiple value={skillIds}>
-        {skills.map((skill) => {
-          return (
-            <Chip key={skill.id} value={skill.id}>
-              {skill.name}
-            </Chip>
-          );
-        })}
-      </Chips>
-      <Divider my="xs" />
-      {skillCategory.name}
-    </Card>
+    <>
+      <Card
+        shadow="lg"
+        padding="sm"
+        style={{ height: "100%" }}
+      >
+        <Badge color="cyan" style={{marginBottom: "10px"}}>{skillCategory.name}</Badge>
+
+        <Chips multiple value={skillIds} style={{display: "flex"}}>
+          {skills.map((skill) => {
+            return (
+              <Chip key={skill.id} value={skill.id}>
+                {skill.name}
+              </Chip>
+            );
+          })}
+        </Chips>
+      </Card>
+    </>
   );
 };
 
