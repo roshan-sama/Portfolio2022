@@ -1,4 +1,5 @@
-import { Card, Grid, Text, Title } from "@mantine/core";
+import { Button, Card, Divider, Grid, Group, Text, Title } from "@mantine/core";
+import Link from "next/link";
 
 const AboutMe = () => {
   return (
@@ -48,8 +49,6 @@ const AboutMe = () => {
         style={{ fontFamily: "Greycliff CF, sans-serif" }}
       >
         Welcome to my portfolio website!
-        <br />
-        <br />
       </Text>
       <Text>
         I&apos;m a biomedical enginnering graduate interested in all things
@@ -57,9 +56,31 @@ const AboutMe = () => {
         <br />
       </Text>
       <Text>
-        I&apos;m also a self-taught software developer that specializes in Fullstack
-        web and devops tools
+        I&apos;m also a self-taught software developer that specializes in
+        Fullstack web and devops tools
       </Text>
+      <Divider style={{marginBlock: "5px"}} />
+      <Text color="dimmed">Check out my portfolios:</Text>
+      <Group style={{ marginTop: "10px" }}>
+        <Button
+          variant="gradient"
+          gradient={{ from: "teal", to: "blue", deg: 60 }}
+        >
+          <Link href="/portfolio?roleId=dops#title">Devops Portfolio</Link>
+        </Button>
+        <Button
+          variant="gradient"
+          gradient={{ from: "teal", to: "blue", deg: 60 }}
+        >
+          <Link href="/portfolio?roleId=fstack#title">Fullstack Portfolio</Link>
+        </Button>
+        <Button
+          variant="gradient"
+          gradient={{ from: "teal", to: "blue", deg: 60 }}
+        >
+          <Link href="/portfolio?roleId=gamedev#title">Game dev Portfolio</Link>
+        </Button>
+      </Group>
     </Card>
   );
 };
