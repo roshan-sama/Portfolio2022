@@ -13,13 +13,15 @@ const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
   const reduceMotion = useReducedMotion();
   const vantaWrapperId = "vanta-background-div";
   const [vanta, updateVanta] = useState(null);
+
+  const [prevTheme, setPrevTheme] = useState(undefined);
   const dark = theme === "dark";
 
-  const themes = useMantineTheme()
-  const grape = themes.colors.grape[6]
-  const darkGrape = themes.colors.grape[9]
-  const bglight = themes.colors.dark[6]
-  const bgDark = themes.colors["alt-purple"][9]
+  const themes = useMantineTheme();
+  const grape = themes.colors.grape[6];
+  const darkGrape = themes.colors.grape[9];
+  const bglight = themes.colors.dark[6];
+  const bgDark = themes.colors["alt-purple"][9];
 
   useEffect(() => {
     //@ts-ignore
@@ -30,7 +32,7 @@ const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
       gyroControls: false,
       minHeight: 1080.0,
       minWidth: 1820.0,
-      speed: 1,
+      speed: 0,
       scale: 1.0,
       scaleMobile: 1.0,
       color: dark ? grape : darkGrape,
@@ -46,16 +48,19 @@ const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
     if (reduceMotion) {
       vanta && vanta.destroy();
     }
-  }, [reduceMotion, vanta])
+  }, [reduceMotion, vanta]);
 
   useEffect(() => {
     if (!vanta) {
       return;
     }
-    vanta.setOptions({
-      color: dark ? grape : darkGrape,
-      backgroundColor : dark ? bgDark : bglight
-    })
+    if (prevTheme !== theme) {
+      vanta.setOptions({
+        color: dark ? grape : darkGrape,
+        backgroundColor: dark ? bgDark : bglight,
+      });
+      setPrevTheme(theme)
+    }
   }, [dark]);
 
   return (
