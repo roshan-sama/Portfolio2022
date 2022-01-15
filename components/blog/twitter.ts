@@ -1,0 +1,3 @@
+// <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Most major web development problems have been solved. Coding is no longer just a programming skill but primarily requires the skill of putting things together.</p>&mdash; Incognito (@javascriptual) <a href="https://twitter.com/javascriptual/status/1481303352294182930?ref_src=twsrc%5Etfw">January 12, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+export {}
