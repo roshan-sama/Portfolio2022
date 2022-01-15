@@ -18,7 +18,7 @@ const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
   const dark = theme === "dark";
 
   const themes = useMantineTheme();
-  const grape = themes.colors.grape[6];
+  const grape = themes.colors.grape[9];
   const darkGrape = themes.colors.grape[9];
   const bglight = themes.colors.dark[6];
   const bgDark = themes.colors["alt-purple"][9];
