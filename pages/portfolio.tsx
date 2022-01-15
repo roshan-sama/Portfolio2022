@@ -110,7 +110,7 @@ export default function Portfolio() {
       : 12;
 
   return (
-    <Container fluid={true} style={{ marginTop: "50vh" }}>
+    <Container fluid={true} style={{ marginTop: "50vh", marginBottom: "20vh" }}>
       <Grid
         gutter="xs"
         justify="center"
