@@ -26,12 +26,12 @@ a {
   top: 0;
   left: 0;
   z-index: 99999;
-  background-color: #0D0025;
+  background-color: #1c024a;
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #ffb84e;
+  border: 16px solid #862e9c;
+  border-top: 16px solid #00000000;
   border-radius: 50%;
   width: 120px;
   height: 120px;
