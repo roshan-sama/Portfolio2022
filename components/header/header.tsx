@@ -9,8 +9,9 @@ import {
   Button,
   Avatar,
   ActionIcon,
+  useMantineTheme,
 } from "@mantine/core";
-import { GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { ExternalLinkIcon, GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { ColorScheme } from "../../types";
 import styles from "../../styles/animation.module.css";
 import Navs from "./navs";
@@ -24,6 +25,7 @@ const Header: React.FC<{
   const [burgerOpened, setBurgerOpened] = useState(false);
   const [animating, setAnimating] = useState(false);
   const title = burgerOpened ? "Close navigation" : "Open navigation";
+  const theme = useMantineTheme()
 
   const avatar = (
     <Avatar
@@ -71,6 +73,7 @@ const Header: React.FC<{
             gradient={{ from: "indigo", to: "grape", deg: 105 }}
             radius="xl"
             leftIcon={<GitHubLogoIcon width={18} height={18} />}
+            rightIcon={<ExternalLinkIcon width={15} height={15} />}
           >
             Github
           </Button>
@@ -80,8 +83,9 @@ const Header: React.FC<{
             target="_blank"
             rel="noopener noreferrer"
             variant="gradient"
-            gradient={{ from: "teal", to: "blue", deg: 105 }}
+            gradient={{ from: "violet", to: theme.primaryColor, deg: 105 }}
             radius="xl"
+            rightIcon={<ExternalLinkIcon width={15} height={15} />}
           >
             Linkedin
           </Button>
