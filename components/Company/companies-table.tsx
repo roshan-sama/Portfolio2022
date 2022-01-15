@@ -23,15 +23,7 @@ const CompaniesTable = () => {
   ));
 
   return (
-    <Card
-      sx={(theme) => ({
-        // backgroundColor: theme.colors.gray[0],
-        // "&:hover": {
-        //   backgroundColor: theme.colors.gray[1],
-        // },
-        marginTop: "5vh",
-      })}
-    >
+    <Card style={{ marginTop: "5vh" }}>
       <Title order={2}>My Career</Title>
       <br />
       <Table>
