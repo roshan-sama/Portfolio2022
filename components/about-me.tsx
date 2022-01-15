@@ -59,27 +59,34 @@ const AboutMe = () => {
         I&apos;m also a self-taught software developer that specializes in
         Fullstack web and devops tools
       </Text>
-      <Divider style={{marginBlock: "5px"}} />
+      <Divider style={{ marginBlock: "5px" }} />
+
       <Text color="dimmed">Check out my portfolios:</Text>
-      <Group style={{ marginTop: "10px" }}>
-        <Button
-          variant="gradient"
-          gradient={{ from: "teal", to: "blue", deg: 60 }}
-        >
-          <Link href="/portfolio?roleId=dops#title">Devops Portfolio</Link>
-        </Button>
-        <Button
-          variant="gradient"
-          gradient={{ from: "teal", to: "blue", deg: 60 }}
-        >
-          <Link href="/portfolio?roleId=fstack#title">Fullstack Portfolio</Link>
-        </Button>
-        <Button
-          variant="gradient"
-          gradient={{ from: "teal", to: "blue", deg: 60 }}
-        >
-          <Link href="/portfolio?roleId=gamedev#title">Game dev Portfolio</Link>
-        </Button>
+      <Group position="center" style={{ marginTop: "10px", marginLeft: "auto" }}>
+        <Link href="/portfolio?roleId=dops">
+          <Button
+            variant="gradient"
+            gradient={{ from: "teal", to: "blue", deg: 60 }}
+          >
+            Devops Portfolio
+          </Button>
+        </Link>
+        <Link href="/portfolio?roleId=fstack">
+          <Button
+            variant="gradient"
+            gradient={{ from: "teal", to: "blue", deg: 60 }}
+          >
+            Fullstack Portfolio
+          </Button>
+        </Link>
+        <Link href="/portfolio?roleId=gamedev#title">
+          <Button
+            variant="gradient"
+            gradient={{ from: "teal", to: "blue", deg: 60 }}
+          >
+            Game dev Portfolio
+          </Button>
+        </Link>
       </Group>
     </Card>
   );
