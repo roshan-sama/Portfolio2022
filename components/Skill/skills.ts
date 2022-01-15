@@ -23,6 +23,13 @@ const Skills: SkillType[] = [
     skillCategoryId: "id_skcat_language"
   },
   {
+    id: "id_skill_ts",
+    name: "Typescript",
+    description: "Strongly typed programming language that builds on JavaScript by Microsoft",
+    infoUrl: "https://www.typescriptlang.org/",
+    skillCategoryId: "id_skcat_language"
+  },
+  {
     id: "id_skill_react",
     name: "React",
     description: "JavaScript library for building user interfaces by Facebook",

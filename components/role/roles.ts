@@ -33,6 +33,7 @@ const Roles: RoleType[] = [
       getSkillById("id_skill_csharp"),
       getSkillById("id_skill_java"),
       getSkillById("id_skill_js"),
+      getSkillById("id_skill_ts"),
       getSkillById("id_skill_react"),
       getSkillById("id_skill_nextjs"),
       getSkillById("id_skill_blitzjs"),
