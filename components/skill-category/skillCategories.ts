@@ -3,15 +3,19 @@ import SkillCategoryType from "./skill-category-type"
 const SkillCategories: SkillCategoryType[] = [
     {
         id: "id_skcat_language",
-        name: "Programming Language",
+        name: "Programming Languages",
     },
     {
         id: "id_skcat_tool",
-        name: "Software tool",        
+        name: "Software tools",        
     },
     {
         id: "id_skcat_concepts",
-        name: "Concepts & Knowledge",        
+        name: "Knowledge & Concepts",
+    },
+    {
+        id: "id_skcat_misc",
+        name: "Miscellaneous",
     }
 ]
 
