@@ -22,6 +22,7 @@ import SkillType from "../components/Skill/skill-type";
 import SkillCategoryType from "../components/skill-category/skill-category-type";
 import { useEffect, useMemo, useState } from "react";
 import ProjectTable from "../components/Project/project-table";
+import { useMediaQuery } from "@mantine/hooks";
 
 const getRoleById = (roleid: string): RoleType =>
   Roles.find((role) => role.id === `id_role_${roleid}`);
@@ -86,6 +87,8 @@ export default function Portfolio() {
   const router = useRouter();
   const { roleId } = router.query;
 
+  const largeScreen = useMediaQuery("(min-width: 1400px)");
+
   const theme = useMantineTheme();
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2];
@@ -103,14 +106,17 @@ export default function Portfolio() {
   const adjustedColSpan = 6;
 
   return (
-    <Container fluid={true} style={{ marginTop: "50vh", marginBottom: "20vh" }}>
+    <Container
+      fluid={true}
+      style={{ marginTop: largeScreen ? "0vh" : "300px", marginBottom: "20vh" }}
+    >
       <Grid
         gutter="xs"
         justify="center"
         align="center"
         style={{ height: "inherit" }}
       >
-        <Grid.Col span={12} md={10} xl={6}>
+        <Grid.Col span={12} xl={6} offset={largeScreen ? 5 : 0}>
           <Card>
             <Title order={1} style={{ marginBottom: "1rem" }}>
               Roshan&apos;s {getPortfolioName(roleId)}
@@ -141,7 +147,8 @@ export default function Portfolio() {
               </Container>
             </Card>
           </Card>
-
+        </Grid.Col>
+        <Grid.Col span={12} xl={8}>
           <ProjectTable />
         </Grid.Col>
       </Grid>
