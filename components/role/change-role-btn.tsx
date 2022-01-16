@@ -1,9 +1,9 @@
 import { MultiSelect } from "@mantine/core";
 import { useRouter } from "next/router";
-import preservedPush from "../hooks/use-alt-push";
-import swapPush from "../hooks/use-update-push";
-import getRolesById from "../utils/get-roles-by-ids";
-import Roles from "./role/roles";
+import preservedPush from "../../hooks/use-alt-push";
+import swapPush from "../../hooks/use-update-push";
+import getRolesById from "../../utils/get-roles-by-ids";
+import Roles from "./roles";
 
 const ChangeRoleBtn = () => {
   const router = useRouter();

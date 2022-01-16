@@ -6,6 +6,7 @@ import {
   Container,
   useMantineTheme,
   Group,
+  Switch,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -13,17 +14,23 @@ import Roles from "../components/role/roles";
 import PortfolioSkillHeader, {
   ColWrapper,
 } from "../components/skill-category/skill-category-portfolio-header";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import ProjectTable from "../components/Project/project-table";
 import { useMediaQuery } from "@mantine/hooks";
 import getDeduplicatedSkills from "../utils/get-dedup-skills";
 import getPortfolioName from "../utils/get-portfolio-name";
 import getRolesById from "../utils/get-roles-by-ids";
-import ChangeRoleBtn from "../components/change-role-btn";
+import ChangeRoleBtn from "../components/role/change-role-btn";
+import ChangeRoleBtnSingle from "../components/role/change-role-btn-single";
+import isStringArray from "../utils/is-string-array";
 
 export default function Portfolio() {
   const router = useRouter();
-  const { roleId } = router.query;
+  let { roleId } = router.query;
+  if (!roleId) {
+    roleId = [];
+  }
+  const [multipleRoles, setMultipleRoles] = useState(false);
 
   const largeScreen = useMediaQuery("(min-width: 1400px)");
 
@@ -56,11 +63,30 @@ export default function Portfolio() {
       >
         <Grid.Col span={12} xl={6} offset={largeScreen ? 5 : 0}>
           <Card>
-            <Group position="apart">
-              <Title order={1} style={{ marginBottom: "1rem" }}>
-                Roshan&apos;s {getPortfolioName(roleId)}
-              </Title>
-              <ChangeRoleBtn />
+            <Group position="apart" style={{ marginBottom: "1rem" }}>
+              <Title order={1}>Roshan&apos;s {getPortfolioName(roleId)}</Title>
+              <Group direction="column">
+                {isStringArray(roleId) && roleId.length > 1 && (
+                  <Text color="dimmed">
+                    <i>Remove one or more roles below to enable</i>
+                  </Text>
+                )}
+                <Switch
+                  label="Choose multiple roles"
+                  checked={multipleRoles}
+                  disabled={
+                    multipleRoles && isStringArray(roleId) && roleId.length > 1
+                  }
+                  onChange={(event) => {
+                    setMultipleRoles(event.currentTarget.checked);
+                  }}
+                />
+                {isStringArray(roleId) || multipleRoles ? (
+                  <ChangeRoleBtn />
+                ) : (
+                  <ChangeRoleBtnSingle currentRoleId={roleId} />
+                )}
+              </Group>
             </Group>
             <Card style={{ backgroundColor: secondaryColor }}>
               <Container fluid>
@@ -83,8 +109,8 @@ export default function Portfolio() {
                   ))}
                 </Grid>
                 <Text>
-                  You can filter the portfolio items below by checking one or
-                  more of these skills
+                  In progress: Filter the portfolio items below by checking one
+                  or more of these skills
                 </Text>
               </Container>
             </Card>
