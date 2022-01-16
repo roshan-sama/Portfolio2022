@@ -8,7 +8,8 @@ const getRolesById = (id: string | string[]): RoleType[] => {
   }
 
   if (isStringArray(id)) {
-    return id.map((id) => getRoleById(id));
+    let roles = id.map((id) => getRoleById(id));    
+    return roles.filter((role) => role !== undefined);
   } else {
     return [getRoleById(id)];
   }
