@@ -10,8 +10,14 @@ import {
   Avatar,
   ActionIcon,
   useMantineTheme,
+  Tooltip,
 } from "@mantine/core";
-import { ExternalLinkIcon, GitHubLogoIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import {
+  ExternalLinkIcon,
+  GitHubLogoIcon,
+  MoonIcon,
+  SunIcon,
+} from "@radix-ui/react-icons";
 import { ColorScheme } from "../../types";
 import styles from "../../styles/animation.module.css";
 import Navs from "./navs";
@@ -25,7 +31,7 @@ const Header: React.FC<{
   const [burgerOpened, setBurgerOpened] = useState(false);
   const [animating, setAnimating] = useState(false);
   const title = burgerOpened ? "Close navigation" : "Open navigation";
-  const theme = useMantineTheme()
+  const theme = useMantineTheme();
 
   const avatar = (
     <Avatar
@@ -105,23 +111,26 @@ const Header: React.FC<{
               style={{ cursor: "pointer" }}
               className={animating ? styles.spinForward : styles.rotateHalf}
             >
-              <ActionIcon
-                variant="transparent"
-                sx={(theme) =>
-                  value === "dark"
-                    ? {
-                        color: theme.colors.dark[5],
-                        backgroundColor: theme.colors.yellow[5],
-                      }
-                    : {
-                        color: theme.colors.blue[2],
-                        backgroundColor: theme.colors.dark[9],
-                      }
-                }
-                size="lg"
-              >
-                {value === "dark" ? <SunIcon /> : <MoonIcon />}
-              </ActionIcon>
+              <Tooltip label={value === "dark" ? "Light Theme": "Dark Theme"} withArrow>
+                <ActionIcon
+                  variant="transparent"
+                  sx={(theme) =>
+                    value === "dark"
+                      ? {
+                          color: theme.colors.dark[5],
+                          // backgroundColor: theme.colors.yellow[5],
+                          backgroundColor: theme.colors.grape[3],
+                        }
+                      : {
+                          color: theme.colors.blue[2],
+                          backgroundColor: theme.colors.dark[9],
+                        }
+                  }
+                  size="lg"
+                >
+                  {value === "dark" ? <SunIcon /> : <MoonIcon />}
+                </ActionIcon>
+              </Tooltip>
             </div>
           </div>
         </Group>

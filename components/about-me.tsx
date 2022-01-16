@@ -1,7 +1,23 @@
-import { Button, Card, Divider, Grid, Group, Text, Title } from "@mantine/core";
+import {
+  Button,
+  Card,
+  Divider,
+  Grid,
+  Group,
+  Text,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
 import Link from "next/link";
 
 const AboutMe = () => {
+  const theme = useMantineTheme();
+  const buttonGradient = {
+    from: "grape",
+    to: theme.colorScheme === "dark" ? "violet" : "violet",
+    deg: 90,
+  };
+
   return (
     <Card>
       <Text component="span" align="center" role="img" size="xl" weight={700}>
@@ -62,28 +78,22 @@ const AboutMe = () => {
       <Divider style={{ marginBlock: "5px" }} />
 
       <Text color="dimmed">Check out my portfolios:</Text>
-      <Group position="center" style={{ marginTop: "10px", marginLeft: "auto" }}>
+      <Group
+        position="center"
+        style={{ marginTop: "10px", marginLeft: "auto" }}
+      >
         <Link href="/portfolio?roleId=dops">
-          <Button
-            variant="gradient"
-            gradient={{ from: "teal", to: "blue", deg: 60 }}
-          >
+          <Button variant="gradient" gradient={buttonGradient}>
             Devops Portfolio
           </Button>
         </Link>
         <Link href="/portfolio?roleId=fstack">
-          <Button
-            variant="gradient"
-            gradient={{ from: "teal", to: "blue", deg: 60 }}
-          >
+          <Button variant="gradient" gradient={buttonGradient}>
             Fullstack Portfolio
           </Button>
         </Link>
         <Link href="/portfolio?roleId=gamedev#title">
-          <Button
-            variant="gradient"
-            gradient={{ from: "teal", to: "blue", deg: 60 }}
-          >
+          <Button variant="gradient" gradient={buttonGradient}>
             Game dev Portfolio
           </Button>
         </Link>
