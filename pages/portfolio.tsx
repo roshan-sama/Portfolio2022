@@ -4,84 +4,20 @@ import {
   Grid,
   Text,
   Container,
-  Center,
-  Group,
-  Paper,
   useMantineTheme,
 } from "@mantine/core";
 import Layout from "../components/layout";
-import CareerItem from "../components/career-item/career-item";
 import { useRouter } from "next/router";
 import Roles from "../components/role/roles";
-import RoleType from "../components/role/role-type";
-import SkillCategories from "../components/skill-category/skillCategories";
 import PortfolioSkillHeader, {
   ColWrapper,
 } from "../components/skill-category/skill-category-portfolio-header";
-import SkillType from "../components/Skill/skill-type";
-import SkillCategoryType from "../components/skill-category/skill-category-type";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import ProjectTable from "../components/Project/project-table";
 import { useMediaQuery } from "@mantine/hooks";
-
-const getRoleById = (roleid: string): RoleType =>
-  Roles.find((role) => role.id === `id_role_${roleid}`);
-
-const isStringArray = (role: string | string[]): role is string[] => {
-  return (role as string[]).reduce !== undefined;
-};
-
-const getPortfolioName = (id: string | string[]) => {
-  if (!id || isStringArray(id)) {
-    return "Portfolio";
-  } else {
-    const role = getRoleById(id);
-    if (!role) {
-      return "Portfolio";
-    }
-    return `${role.name} Portfolio`;
-  }
-};
-
-const getCategoryById = (id: string): SkillCategoryType => {
-  return SkillCategories.find((skill) => skill.id === id);
-};
-
-const getRoles = (id: string | string[]): RoleType[] => {
-  if (!id) {
-    return undefined;
-  }
-
-  if (isStringArray(id)) {
-    return id.map((id) => getRoleById(id));
-  } else {
-    return [getRoleById(id)];
-  }
-};
-
-const getDeduplicatedSkills = (
-  skills: SkillType[]
-): { dedupSkills: SkillType[]; dedupCategories: SkillCategoryType[] } => {
-  const seenSkillIds = {};
-  const seenCategoryIds = {};
-  const dedupSkills = [];
-  const dedupCategories = [];
-
-  skills.forEach((skill) => {
-    if (seenSkillIds[skill.id] === skill.id) {
-      return;
-    }
-    dedupSkills.push(skill);
-    seenSkillIds[skill.id] = skill.id;
-    if (seenCategoryIds[skill.skillCategoryId] === skill.skillCategoryId) {
-      return;
-    }
-    dedupCategories.push(getCategoryById(skill.skillCategoryId));
-    seenCategoryIds[skill.skillCategoryId] = skill.skillCategoryId;
-  });
-
-  return { dedupSkills, dedupCategories };
-};
+import getDeduplicatedSkills from "../utils/get-dedup-skills";
+import getPortfolioName from "../utils/get-portfolio-name";
+import getRolesById from "../utils/get-roles-by-ids";
 
 export default function Portfolio() {
   const router = useRouter();
@@ -93,7 +29,7 @@ export default function Portfolio() {
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2];
 
-  let roles = getRoles(roleId);
+  let roles = getRolesById(roleId);
   if (roles === undefined || roles[0] === undefined) {
     roles = Roles;
   }
