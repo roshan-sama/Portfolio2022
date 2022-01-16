@@ -1,6 +1,7 @@
 import { Tabs, TabsProps } from "@mantine/core";
 import { BackpackIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
+import preservedPush from "../../hooks/use-alt-push";
 
 const tabIndexToPathMap = {
   0: "/", // Career
@@ -28,7 +29,7 @@ const Navs: React.FC<{
       active={activeTab}
       onTabChange={
         (tabIndex) => {
-          router.push(tabIndexToPathMap[tabIndex] ?? "/");
+          preservedPush(router, tabIndexToPathMap[tabIndex] ?? "/")
         }
       }
     >
