@@ -5,6 +5,9 @@ based on tags like "devops" or "fullstack". This allows for the generation of a 
 using any number of combinations. E.g.: Unity 3D + Epic EHR, which will generate a page that lists the 
 projects and experiences that are tagged with those skills
 
+## Similar projects
+[Astro](https://github.com/withastro/astro) has a tempalte that lets you generate a portfolio https://astro.new/
+
 ## Mantine info
 
 https://mantine.dev/
