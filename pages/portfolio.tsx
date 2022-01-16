@@ -5,6 +5,7 @@ import {
   Text,
   Container,
   useMantineTheme,
+  Group,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -18,6 +19,7 @@ import { useMediaQuery } from "@mantine/hooks";
 import getDeduplicatedSkills from "../utils/get-dedup-skills";
 import getPortfolioName from "../utils/get-portfolio-name";
 import getRolesById from "../utils/get-roles-by-ids";
+import ChangeRoleBtn from "../components/change-role-btn";
 
 export default function Portfolio() {
   const router = useRouter();
@@ -54,14 +56,18 @@ export default function Portfolio() {
       >
         <Grid.Col span={12} xl={6} offset={largeScreen ? 5 : 0}>
           <Card>
-            <Title order={1} style={{ marginBottom: "1rem" }}>
-              Roshan&apos;s {getPortfolioName(roleId)}
-            </Title>
+            <Group position="apart">
+              <Title order={1} style={{ marginBottom: "1rem" }}>
+                Roshan&apos;s {getPortfolioName(roleId)}
+              </Title>
+              <ChangeRoleBtn />
+            </Group>
             <Card style={{ backgroundColor: secondaryColor }}>
               <Container fluid>
                 <Title order={3} style={{ marginBottom: "5px" }}>
                   Relevant skills:
                 </Title>
+
                 <Grid gutter="xs">
                   {dedupCategories.map((category) => (
                     <ColWrapper
