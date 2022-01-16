@@ -91,7 +91,7 @@ export default function Portfolio() {
           </Card>
         </Grid.Col>
         <Grid.Col span={12} xl={8}>
-          <ProjectTable />
+          <ProjectTable selectedSkills={dedupSkills} />
         </Grid.Col>
       </Grid>
     </Container>

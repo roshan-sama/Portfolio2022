@@ -1,10 +1,9 @@
-import SkillType from "../Skill/skill-type";
-
-interface Project{
-    id: string,
-    name: string,
-    description: string, // markdown?
-    skills: SkillType[]
+interface ProjectType {
+  id: string;
+  name: string;
+  description: string; // markdown?
+  companyId?: string;
+  skills: { [key in string]: string };
 }
 
-export default Project
+export default ProjectType;
