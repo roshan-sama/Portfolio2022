@@ -70,12 +70,12 @@ export default function Layout({ children }) {
           <AppShell
             fixed
             header={
-              <Header height={60} padding="xs">
+              <Header fixed height="auto" padding="xs">
                 <NavHeader value={scheme} setValue={setScheme} />
               </Header>
             }
           >
-            <ScrollArea style={{ height: "100vh", marginBottom: -60 }}>
+            <ScrollArea style={{ height: "100vh", marginTop: 60 }}>
               <FixedBg />
               {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
               <div style={{ marginTop: "25vh" }}>{children}</div>
