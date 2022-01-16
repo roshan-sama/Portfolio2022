@@ -11,7 +11,7 @@ const getRolesById = (id: string | string[]): RoleType[] => {
     let roles = id.map((id) => getRoleById(id));    
     return roles.filter((role) => role !== undefined);
   } else {
-    return [getRoleById(id)];
+    return getRoleById(id) ? [getRoleById(id)] : undefined;
   }
 };
 
