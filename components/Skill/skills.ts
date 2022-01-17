@@ -93,7 +93,7 @@ const Skills: SkillType[] = [
     name: "Kubernetes",
     description:
       "Open source system for automating management of containerized applications by the CNCF",
-    infoUrl: "https://www.salesforce.com/",
+    infoUrl: "https://kubernetes.io/",
     skillCategoryId: "id_skcat_tool",
   },
   {

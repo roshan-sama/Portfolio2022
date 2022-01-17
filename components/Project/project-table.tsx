@@ -1,4 +1,4 @@
-import { Table, Avatar, Card, Title, Group } from "@mantine/core";
+import { Table, Avatar, Card, Title, Group, Center } from "@mantine/core";
 import styles from "../../styles/table.module.css";
 import CareerItems from "../career-item/career-items";
 import CareerItemType from "../career-item/career-item-type";
@@ -8,6 +8,7 @@ import SkillType from "../Skill/skill-type";
 import Projects from "./projects";
 import SkillBadge from "../Skill/skill-badge";
 import getSkillById from "../../utils/get-skill-by-id";
+import GetCompanyById from "../../utils/get-company-by-id";
 
 const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
   selectedSkills,
@@ -27,19 +28,30 @@ const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
     [selectedSkills]
   );
 
-  const rows = projects.map((project) => (
-    <tr key={project.id} className={styles.tablerow}>
-      <td className={styles.rolecolumn}>{project.name}</td>
-      <td className={styles.namecolumn}>{project.description}</td>
-      <td className={styles.durationcolumn}>
-        <Group>
-          {Object.keys(project.skills).map((skillid) => {
-            return <SkillBadge key={skillid} skill={getSkillById(skillid)} />;
-          })}
-        </Group>
-      </td>
-    </tr>
-  ));
+  const rows = projects.map((project) => {
+    const name = GetCompanyById(project.companyId).name;
+    const imgUrl = GetCompanyById(project.companyId).imgUrl;
+
+    return (
+      <tr key={project.id} className={styles.tablerow}>
+        <td className={styles.iconColumn}>
+          <Center>
+            {<Avatar src={imgUrl} alt={name} size="md" />}
+            {name}
+          </Center>
+        </td>
+        <td className={styles.rolecolumn}>{project.name}</td>
+        <td className={styles.namecolumn}>{project.description}</td>
+        <td className={styles.durationcolumn}>
+          <Group>
+            {Object.keys(project.skills).map((skillid) => {
+              return <SkillBadge key={skillid} skill={getSkillById(skillid)} />;
+            })}
+          </Group>
+        </td>
+      </tr>
+    );
+  });
 
   return (
     <Card style={{ marginTop: "5vh" }}>
@@ -47,6 +59,7 @@ const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
       <Table>
         <thead>
           <tr>
+            <th className={styles.iconcolumn}>Company</th>
             <th className={styles.rolecolumn}>Project</th>
             <th className={styles.namecolumn}>Description</th>
             <th className={styles.durationcolumn}>Skills used</th>
