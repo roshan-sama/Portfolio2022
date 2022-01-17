@@ -1,4 +1,12 @@
-import { Badge, Card, Chip, Chips, Divider, Grid } from "@mantine/core";
+import {
+  Badge,
+  Card,
+  Chip,
+  Chips,
+  Divider,
+  Grid,
+  Tooltip,
+} from "@mantine/core";
 import { useMemo, useState } from "react";
 import SkillType from "../Skill/skill-type";
 import Skills from "../Skill/skills";
@@ -38,14 +46,12 @@ const PortfolioSkillHeader: React.FC<{
 
   return (
     <>
-      <Card
-        shadow="lg"
-        padding="sm"
-        style={{ height: "100%" }}
-      >
-        <Badge color="cyan" style={{marginBottom: "10px"}}>{skillCategory.name}</Badge>
+      <Card shadow="lg" padding="sm" style={{ height: "100%" }}>
+        <Badge color="cyan" style={{ marginBottom: "10px" }}>
+          {skillCategory.name}
+        </Badge>
 
-        <Chips multiple value={skillIds} style={{display: "flex"}}>
+        <Chips multiple value={skillIds} style={{ display: "flex" }}>
           {skills.map((skill) => {
             return (
               <Chip key={skill.id} value={skill.id}>
