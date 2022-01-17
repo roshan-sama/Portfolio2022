@@ -1,4 +1,4 @@
-import { Table, Avatar, Card, Title, Group, Center } from "@mantine/core";
+import { Table, Avatar, Card, Title, Group, Center, Text } from "@mantine/core";
 import styles from "../../styles/table.module.css";
 import CareerItems from "../career-item/career-items";
 import CareerItemType from "../career-item/career-item-type";
@@ -36,8 +36,8 @@ const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
       <tr key={project.id} className={styles.tablerow}>
         <td className={styles.iconColumn}>
           <Center>
-            {<Avatar src={imgUrl} alt={name} size="md" />}
-            {name}
+            {<Avatar src={imgUrl} alt={name} size="sm" style={{marginRight: "5px"}} />}
+            <Text size="xs">{name}</Text>
           </Center>
         </td>
         <td className={styles.rolecolumn}>{project.name}</td>

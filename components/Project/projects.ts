@@ -18,7 +18,19 @@ const Projects: ProjectType[] = [
     name: "Shipping Request Form",
     description:
       "Created React form to allow users to submit information about the cars and containers they want to ship with us online",
-    companyId: "id_comp_synergy",
+    companyId: "id_comp_angelic",
+    skills: {
+        id_skill_csharp: "",
+        id_skill_react: "",
+        id_skill_js: ""
+    },
+  },
+  {
+    id: "id_proj_widowhunt",
+    name: "Shipping Request Form",
+    description:
+      "Created a fullstack Blitzjs application to store and track my progress on various projects and tasks",
+    companyId: "id_comp_gwidow",
     skills: {
         id_skill_csharp: "",
         id_skill_react: "",
