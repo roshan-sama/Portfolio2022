@@ -67,7 +67,7 @@ const AboutMe = () => {
         Welcome to my portfolio website!
       </Text>
       <Text>
-        I&apos;m a biomedical enginnering graduate interested in all things
+        I&apos;m a biomedical engineering graduate interested in all things
         technology
         <br />
       </Text>
