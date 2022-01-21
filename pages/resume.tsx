@@ -6,6 +6,7 @@ import {
   Container,
   useMantineTheme,
   Group,
+  Center,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -17,6 +18,9 @@ import { useMemo } from "react";
 import { useMediaQuery } from "@mantine/hooks";
 import getDeduplicatedSkills from "../utils/get-dedup-skills";
 import getRolesById from "../utils/get-roles-by-ids";
+import ResumeShell from "../components/resume/resume-shell";
+import ResumeContext from "../hooks/resume-context";
+import ChangeRoleBtn from "../components/role/change-role-btn";
 
 export default function Resume() {
   const router = useRouter();
@@ -41,23 +45,33 @@ export default function Resume() {
   const adjustedColSpan = 6;
 
   return (
-    <Container
-      fluid={true}
-      style={{ marginTop: largeScreen ? "0vh" : "300px", marginBottom: "20vh" }}
-    >
-      <Grid
-        gutter="xs"
-        justify="center"
-        align="center"
-        style={{ height: "inherit" }}
+    <ResumeContext.Provider value={{ roles: roles }}>
+      <Container
+        fluid={true}
+        style={{
+          marginTop: largeScreen ? "0vh" : "300px",
+          marginBottom: "20vh",
+        }}
       >
-        <Grid.Col span={12} xl={6}>
-          <Card>
-              Resume in progress
-          </Card>
-        </Grid.Col>
-      </Grid>
-    </Container>
+        <Center>
+          <ChangeRoleBtn />
+        </Center>
+        <Grid
+          gutter="xs"
+          justify="center"
+          align="center"
+          style={{ height: "inherit" }}
+        >
+          <Grid.Col span={12} xl={6}>
+            <Center>
+              <Card>
+                <ResumeShell />
+              </Card>
+            </Center>
+          </Grid.Col>
+        </Grid>
+      </Container>
+    </ResumeContext.Provider>
   );
 }
 
