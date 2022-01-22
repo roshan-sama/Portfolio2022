@@ -82,7 +82,7 @@ export default function Resume() {
 const BtnWrapper: React.FC<{}> = ({ children }) => {
   return (
     <>
-      <MediaQuery key={"choicewithpaper"} smallerThan="lg">
+      <MediaQuery key={"choicewithpaper"} smallerThan="lg" styles={{}}>
         {children}
       </MediaQuery>
     </>
