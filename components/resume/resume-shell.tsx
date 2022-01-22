@@ -1,5 +1,6 @@
-import { Paper } from "@mantine/core";
+import { Grid, Paper } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import ResumeBox from "./resume-box";
 import ResumeHeader from "./resume-header";
 
 const ResumeShell = () => {
@@ -11,6 +12,22 @@ const ResumeShell = () => {
   return (
     <Paper style={dimensions} shadow="xl">
       <ResumeHeader />
+      <Grid>
+        <Grid.Col span={6}>
+          <ResumeBox            
+            boxHeading="Profile"
+            boxText="I create software to automate business processes and improve customer satisfaction"
+          />
+          
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <ResumeBox            
+            boxHeading="Profile"
+            boxText="I create software to automate business processes and improve customer satisfaction"
+          />
+          
+        </Grid.Col>
+      </Grid>
     </Paper>
   );
 };

@@ -7,6 +7,8 @@ import {
   useMantineTheme,
   Group,
   Center,
+  MediaQuery,
+  Paper,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -49,12 +51,14 @@ export default function Resume() {
       <Container
         fluid={true}
         style={{
-          marginTop: largeScreen ? "0vh" : "300px",
+          marginTop: "-200px",
           marginBottom: "20vh",
         }}
       >
         <Center>
-          <ChangeRoleBtn />
+          <BtnWrapper>
+            <ChangeRoleBtn />
+          </BtnWrapper>
         </Center>
         <Grid
           gutter="xs"
@@ -74,6 +78,16 @@ export default function Resume() {
     </ResumeContext.Provider>
   );
 }
+
+const BtnWrapper: React.FC<{}> = ({ children }) => {
+  return (
+    <>
+      <MediaQuery key={"choicewithpaper"} smallerThan="lg">
+        {children}
+      </MediaQuery>
+    </>
+  );
+};
 
 Resume.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>;
