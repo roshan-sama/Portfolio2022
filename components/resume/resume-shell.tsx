@@ -8,11 +8,11 @@ const ResumeShell = () => {
 
   const dimensions = widerThan8_5inch
     ? { height: "11in", width: "8.5in", margin: "auto" }
-    : { height: "100vh", width: "80vw", margin: "auto" };
+    : { height: "auto", width: "80vw", margin: "auto" };
 
   const paperDimensions = widerThan8_5inch
     ? { height: "10.5in", width: "8.25in", margin: "auto" }
-    : { height: "95vh", width: "75vw", margin: "auto" };
+    : { height: "auto", width: "75vw", margin: "auto" };
 
   const colProps = {
     span: 12,
