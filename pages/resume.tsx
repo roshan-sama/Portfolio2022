@@ -59,32 +59,19 @@ export default function Resume() {
             <ChangeRoleBtn />
           </BtnWrapper>
         </Center>
-        <Grid
-          gutter="xs"
-          justify="center"
-          align="center"
-          style={{ height: "inherit" }}
-        >
-          <Grid.Col span={12} xl={6}>
-            <Center>
-              <Card>
-                <ResumeShell />
-              </Card>
-            </Center>
-          </Grid.Col>
-        </Grid>
+
+        <ResumeShell />
       </Container>
     </ResumeContext.Provider>
   );
 }
 
-const BtnWrapper: React.FC<{}> = ({ children }) => {
-  // const mediumScreen = useMediaQuery("(min-width: 768px");
-
-  // if (mediumScreen) {
-  //   return <>{children}</>;
-  // }
-  return <Card style={{padding: "0px 10px", marginBottom: "10px"}}>{children}</Card>;
+const BtnWrapper: React.FC<{}> = ({ children }) => {  
+  return (
+    <Card style={{ padding: "0px 10px", marginBottom: "10px" }}>
+      {children}
+    </Card>
+  );
 };
 
 Resume.getLayout = function getLayout(page) {
