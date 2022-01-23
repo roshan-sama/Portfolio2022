@@ -51,7 +51,6 @@ export default function Resume() {
       <Container
         fluid={true}
         style={{
-          marginTop: "-200px",
           marginBottom: "20vh",
         }}
       >
@@ -80,13 +79,12 @@ export default function Resume() {
 }
 
 const BtnWrapper: React.FC<{}> = ({ children }) => {
-  return (
-    <>
-      <MediaQuery key={"choicewithpaper"} smallerThan="lg" styles={{}}>
-        {children}
-      </MediaQuery>
-    </>
-  );
+  // const mediumScreen = useMediaQuery("(min-width: 768px");
+
+  // if (mediumScreen) {
+  //   return <>{children}</>;
+  // }
+  return <Card style={{padding: "0px 10px", marginBottom: "10px"}}>{children}</Card>;
 };
 
 Resume.getLayout = function getLayout(page) {

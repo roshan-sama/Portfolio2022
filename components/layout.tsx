@@ -1,18 +1,30 @@
 import Head from "next/head";
 import {
+  Affix,
   AppShell,
+  Button,
   Grid,
   Header,
   MantineProvider,
   ScrollArea,
+  Tooltip,
+  Transition,
 } from "@mantine/core";
 import { useLocalStorageValue, useMediaQuery } from "@mantine/hooks";
 import NavHeader from "./header/header";
 import VantaWrapper from "./vanta-wrapper";
 import { ColorScheme } from "../types";
 import { useEffect, useState } from "react";
+import {
+  ArrowTopRightIcon,
+  CornerTopRightIcon,
+  ExternalLinkIcon,
+  GitHubLogoIcon,
+} from "@radix-ui/react-icons";
 
 export default function Layout({ children }) {
+  // TODO: Affix "view page source button"
+  // TODO: Change title spacing to pixels "view page source button"
   const [scheme, setScheme] = useLocalStorageValue<ColorScheme>({
     key: "color-scheme",
     defaultValue: "dark",
@@ -78,7 +90,20 @@ export default function Layout({ children }) {
             <ScrollArea style={{ height: "100vh", marginTop: 60 }}>
               <FixedBg />
               {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
-              <div style={{ marginTop: "25vh" }}>{children}</div>
+              <div style={{ marginTop: "120px" }}>{children}</div>
+              <Affix position={{ bottom: 20, left: 20 }}>
+                <Tooltip label="View the source code for this page on Github">
+                  <Button
+                    component="a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/Roesh/Portfolio2022"
+                    rightIcon={<ExternalLinkIcon />}
+                  >
+                    View source
+                  </Button>
+                </Tooltip>
+              </Affix>
             </ScrollArea>
           </AppShell>
         </VantaWrapper>
