@@ -22,7 +22,7 @@ import {
   GitHubLogoIcon,
 } from "@radix-ui/react-icons";
 
-export default function Layout({ children }) {
+export default function Layout({ children, hideName = false }) {
   // TODO: Affix "view page source button"
   // TODO: Change title spacing to pixels "view page source button"
   const [scheme, setScheme] = useLocalStorageValue<ColorScheme>({
@@ -88,7 +88,7 @@ export default function Layout({ children }) {
             }
           >
             <ScrollArea style={{ height: "100vh", marginTop: 60 }}>
-              <FixedBg />
+              {!hideName && <FixedBg />}
               {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
               <div style={{ marginTop: "120px" }}>{children}</div>
               <Affix position={{ bottom: 20, left: 20 }}>
