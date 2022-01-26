@@ -7,6 +7,8 @@ import {
   useMantineTheme,
   Group,
   Switch,
+  Paper,
+  Divider,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -61,8 +63,8 @@ export default function Portfolio() {
         align="center"
         style={{ height: "inherit" }}
       >
-        <Grid.Col span={12} xl={6} offset={largeScreen ? 5 : 0}>
-          <Card>
+        <Grid.Col span={12} xl={8}>
+          <Paper padding="xl">
             <Group position="apart" style={{ marginBottom: "1rem" }}>
               <Title order={1}>Roshan&apos;s {getPortfolioName(roleId)}</Title>
               <Group direction="column">
@@ -88,36 +90,31 @@ export default function Portfolio() {
                 )}
               </Group>
             </Group>
-            <Card style={{ backgroundColor: secondaryColor }}>
+            <Card>
               <Container fluid>
-                <Title order={3} style={{ marginBottom: "5px" }}>
-                  Relevant skills:
-                </Title>
-
                 <Grid gutter="xs">
                   {dedupCategories.map((category) => (
                     <ColWrapper
                       key={category.id}
                       span={12}
-                      sm={adjustedColSpan}
+                      // sm={adjustedColSpan}
                     >
                       <PortfolioSkillHeader
                         skillCategory={category}
                         allRoleSkills={dedupSkills}
                       />
+                      <Divider style={{ margin: "10px 0px 0px 0px" }} />
                     </ColWrapper>
                   ))}
                 </Grid>
                 <Text>
-                  In progress: Filter the portfolio items below by checking one
-                  or more of these skills
+                  Filter the portfolio items below by checking one or more of
+                  these skills (Feature in progress)
                 </Text>
               </Container>
+              <ProjectTable selectedSkills={dedupSkills} />
             </Card>
-          </Card>
-        </Grid.Col>
-        <Grid.Col span={12} xl={8}>
-          <ProjectTable selectedSkills={dedupSkills} />
+          </Paper>
         </Grid.Col>
       </Grid>
     </Container>
@@ -125,5 +122,5 @@ export default function Portfolio() {
 }
 
 Portfolio.getLayout = function getLayout(page) {
-  return <Layout>{page}</Layout>;
+  return <Layout hideName={true}>{page}</Layout>;
 };

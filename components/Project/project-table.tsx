@@ -54,7 +54,7 @@ const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
   });
 
   return (
-    <Card style={{ marginTop: "5vh" }}>
+    <Card>
       <br />
       <Table>
         <thead>

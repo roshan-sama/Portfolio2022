@@ -46,21 +46,29 @@ const PortfolioSkillHeader: React.FC<{
 
   return (
     <>
-      <Card shadow="lg" padding="sm" style={{ height: "100%" }}>
-        <Badge color="cyan" style={{ marginBottom: "10px" }}>
-          {skillCategory.name}
-        </Badge>
+      {/* <Card shadow="lg" padding="sm" style={{ height: "100%" }}> */}
+      {/* INFO: Hardcoded color */}
+      <Badge color="grape" style={{ marginBottom: "10px" }}>
+        {skillCategory.name}
+      </Badge>
 
-        <Chips multiple value={skillIds} style={{ display: "flex" }}>
-          {skills.map((skill) => {
-            return (
-              <Chip key={skill.id} value={skill.id}>
-                {skill.name}
-              </Chip>
-            );
-          })}
-        </Chips>
-      </Card>
+      <Chips
+        size="xs"
+        // {/* INFO: Hardcoded color */}
+        color="blue" 
+        multiple
+        value={skillIds}
+        style={{ display: "flex" }}
+      >
+        {skills.map((skill) => {
+          return (
+            <Chip key={skill.id} value={skill.id}>
+              {skill.name}
+            </Chip>
+          );
+        })}
+      </Chips>
+      {/* </Card> */}
     </>
   );
 };

@@ -27,7 +27,7 @@ const Projects: ProjectType[] = [
   },
   {
     id: "id_proj_widowhunt",
-    name: "Shipping Request Form",
+    name: "Widow Hunt - Progress tracker",
     description:
       "Created a fullstack Blitzjs application to store and track my progress on various projects and tasks",
     companyId: "id_comp_gwidow",
