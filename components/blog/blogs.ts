@@ -54,6 +54,13 @@ const blogs = [
         our postgres database was not migrated, and we ended by sshing into that container, examining its schema against the schema of the latest persistent volume, and adding and editing the postgres schema if the broken db \
         to match the new one, my manager and I did this on a 2 hour Teams call, table by table, until Harbor began working again",
   },
+  {
+    title: "Building a location tracker app in two months using Blitzjs",
+    skillIds: ["id_skill_blitzjs"],
+    description:
+      "Builds on the components created for the word anthakshari (link to blog) and widow hunt (link yo blog) apps \
+        and the google maps api I researched in angelic solutoin spot (link to blog)",
+  },
 ];
 
 export default blogs;
