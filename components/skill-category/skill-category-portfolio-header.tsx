@@ -5,6 +5,7 @@ import {
   Chips,
   Divider,
   Grid,
+  Group,
   Tooltip,
 } from "@mantine/core";
 import { useMemo, useState } from "react";
@@ -48,26 +49,28 @@ const PortfolioSkillHeader: React.FC<{
     <>
       {/* <Card shadow="lg" padding="sm" style={{ height: "100%" }}> */}
       {/* INFO: Hardcoded color */}
-      <Badge color="grape" style={{ marginBottom: "10px" }}>
-        {skillCategory.name}
-      </Badge>
+      <Group direction="row">
+        <Badge color="grape">
+          {skillCategory.name}
+        </Badge>
 
-      <Chips
-        size="xs"
-        // {/* INFO: Hardcoded color */}
-        color="blue" 
-        multiple
-        value={skillIds}
-        style={{ display: "flex" }}
-      >
-        {skills.map((skill) => {
-          return (
-            <Chip key={skill.id} value={skill.id}>
-              {skill.name}
-            </Chip>
-          );
-        })}
-      </Chips>
+        <Chips
+          size="xs"
+          // {/* INFO: Hardcoded color */}
+          color="blue"
+          multiple
+          value={skillIds}
+          style={{ display: "flex" }}
+        >
+          {skills.map((skill) => {
+            return (
+              <Chip key={skill.id} value={skill.id}>
+                {skill.name}
+              </Chip>
+            );
+          })}
+        </Chips>
+      </Group>
       {/* </Card> */}
     </>
   );
