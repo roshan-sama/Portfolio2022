@@ -64,17 +64,20 @@ export default function Portfolio() {
         style={{ height: "inherit" }}
       >
         <Grid.Col span={12} xl={8}>
-          <Paper padding="xl">
-            <Group position="apart" style={{ marginBottom: "1rem" }}>
-              <Title order={1}>Roshan&apos;s {getPortfolioName(roleId)}</Title>
-              <Group direction="column">
-                {isStringArray(roleId) && roleId.length > 1 && (
-                  <Text color="dimmed">
-                    <i>Remove one or more roles below to enable</i>
-                  </Text>
+          <Group style={{ marginBottom: "10px" }}>
+            <Paper style={{ padding: "0px 10px" }}>
+              <Group direction="row">
+                {isStringArray(roleId) || multipleRoles ? (
+                  <ChangeRoleBtn />
+                ) : (
+                  <ChangeRoleBtnSingle currentRoleId={roleId} />
                 )}
                 <Switch
-                  label="Choose multiple roles"
+                  label={
+                    isStringArray(roleId) && roleId.length > 1
+                      ? "Remove roles below to toggle single role"
+                      : "Choose multiple roles"
+                  }
                   checked={multipleRoles}
                   disabled={
                     multipleRoles && isStringArray(roleId) && roleId.length > 1
@@ -83,12 +86,12 @@ export default function Portfolio() {
                     setMultipleRoles(event.currentTarget.checked);
                   }}
                 />
-                {isStringArray(roleId) || multipleRoles ? (
-                  <ChangeRoleBtn />
-                ) : (
-                  <ChangeRoleBtnSingle currentRoleId={roleId} />
-                )}
               </Group>
+            </Paper>
+          </Group>
+          <Paper padding="xl">
+            <Group position="apart" style={{ marginBottom: "1rem" }}>
+              <Title order={1}>Roshan&apos;s {getPortfolioName(roleId)}</Title>
             </Group>
             <Card>
               <Container fluid>
