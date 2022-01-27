@@ -61,6 +61,26 @@ const blogs = [
       "Builds on the components created for the word anthakshari (link to blog) and widow hunt (link yo blog) apps \
         and the google maps api I researched in angelic solutoin spot (link to blog)",
   },
+  {
+    title: "Feature focus: Word anthakshari multiplayer chat component",
+    skillIds: [],
+    description: "Describe how the word anthakrhari chat component works, and how it consumes and displays a feed \
+    of game information and player chats. It was inspired by the online pictionary chat"
+  },
+  {
+    title: "Do you know what these clicks do?",
+    skillIds: [],
+    description: "Describe the journey of learning salesforce and becoming a certified admin in 3 months. \
+      Salesforce is a low code, no code platform"
+  },
+  {
+    title: "The framework wars",
+    skillIds: [],
+    description: "The number of JAvascript web frameworks are booming. Each has its strenghts, and ultimately, the developer experiences is improving because of this competition. \
+    Its a lot of fun to see the competition though:"
+    //"<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Who is going to win? <a href="https://twitter.com/hashtag/ReactJS?src=hash&amp;ref_src=twsrc%5Etfw">#ReactJS</a> <a href="https://twitter.com/hashtag/javascript?src=hash&amp;ref_src=twsrc%5Etfw">#javascript</a> <a href="https://t.co/jcBEDceJub">pic.twitter.com/jcBEDceJub</a></p>&mdash; Fireship (@fireship_dev) <a href="https://twitter.com/fireship_dev/status/1486087419946430465?ref_src=twsrc%5Etfw">January 25, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> "
+    //<blockquote class="twitter-tweet"><p lang="und" dir="ltr">inb4 <a href="https://twitter.com/blitz_js?ref_src=twsrc%5Etfw">@blitz_js</a> <a href="https://twitter.com/hashtag/ReactJS?src=hash&amp;ref_src=twsrc%5Etfw">#ReactJS</a> <a href="https://twitter.com/hashtag/javascript?src=hash&amp;ref_src=twsrc%5Etfw">#javascript</a> <a href="https://t.co/GKHq53yU8h">pic.twitter.com/GKHq53yU8h</a></p>&mdash; Michal (@pietmichal) <a href="https://twitter.com/pietmichal/status/1486641447264833544?ref_src=twsrc%5Etfw">January 27, 2022</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+  },
 ];
 
 export default blogs;
