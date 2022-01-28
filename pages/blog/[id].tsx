@@ -19,6 +19,6 @@ export default function IndividualBlog() {
   );
 }
 
-Home.getLayout = function getLayout(page) {
+IndividualBlog.getLayout = function getLayout(page) {
   return <Layout hideName={true}>{page}</Layout>;
 };
