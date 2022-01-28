@@ -6,7 +6,7 @@ import { parse } from "marked";
 const Blog: React.FC<{ id?: string }> = ({ id }) => {
   const [loading, setLoading] = useState(true);
   const markDownElementId = "mark-down-root-element";
-
+  
   useEffect(() => {
     if (loading) {
       getMarkDown();
@@ -27,16 +27,18 @@ const Blog: React.FC<{ id?: string }> = ({ id }) => {
   return (
     <Card
       style={{
-        width: 400,
+        width: "100%",
+        height: "100%",
         position: "relative",
         margin: "auto",
-        marginTop: "10px",
       }}
     >
-      <Center>
-        {loading && <Loader />}
-        <div id={markDownElementId}></div>
-      </Center>
+      {loading && (
+        <Center>
+          <Loader />
+        </Center>
+      )}
+      <div style={{margin: "32px"}} id={markDownElementId}></div>
     </Card>
   );
 };

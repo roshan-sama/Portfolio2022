@@ -1,10 +1,11 @@
 import { Grid, Container, Card } from "@mantine/core";
 import Layout from "../../components/layout";
-import { useMediaQuery } from "@mantine/hooks";
 import Blog from "../../components/blog/blog";
+import { useRouter } from "next/router";
 
-export default function Home() {
-  const large = useMediaQuery("(min-width: 965px)");
+export default function IndividualBlog() {
+  const router = useRouter();
+  const { id } = router.query;
 
   return (
     <Container fluid={true} style={{ marginBottom: "20vh" }}>
