@@ -1,7 +1,8 @@
 import SkillType from "./skill-type";
 import { Badge, Tooltip } from "@mantine/core";
+import { CSSProperties } from "@mantine/styles/lib/tss/types/css-object";
 
-const SkillBadge: React.FC<{ skill: SkillType }> = ({ skill }) => {
+const SkillBadge: React.FC<{ skill: SkillType, margin?: string }> = ({ skill, margin }) => {
   const InnerBadge: React.FC = skill.infoUrl
     ? ({ children }) => (
         <Badge
@@ -9,7 +10,7 @@ const SkillBadge: React.FC<{ skill: SkillType }> = ({ skill }) => {
           rel="noopener noreferrer"
           target="_blank"
           href={skill.infoUrl}
-          style={{ cursor: "pointer" }}
+          style={{ cursor: "pointer", margin: margin }}
         >
           {children}
         </Badge>

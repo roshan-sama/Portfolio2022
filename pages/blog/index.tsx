@@ -1,4 +1,12 @@
-import { Grid, Container, Card, Title, Paper } from "@mantine/core";
+import {
+  Grid,
+  Container,
+  Card,
+  Title,
+  Paper,
+  Badge,
+  Divider,
+} from "@mantine/core";
 import Layout from "../../components/layout";
 import Blog from "../../components/blog/blog";
 import { useRouter } from "next/router";
@@ -8,19 +16,16 @@ import blogType from "../../components/blog/blog-type";
 import { useNotifications } from "@mantine/notifications";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import Skills from "../../components/Skill/skills";
+import SkillBadge from "../../components/Skill/skill-badge";
 
 export default function IndividualBlog() {
   const router = useRouter();
   const { postid } = router.query;
-  const { showNotification, hideNotification } = useNotifications();
+  const { showNotification } = useNotifications();
   const [showGallery, setShowGallery] = useState(false);
-  const [timeoutNotif, setTimeoutNotif] = useState(null);
   const invalidBlogNotifId = "invalid-blog";
 
-  // TODO: If postid returns an undefined blog, then perform a useeffect to
-  // check if blog is underfined, then rouiter.push to remove hte invalid postid
-  // And set a flag to display a notification that the postid request either does not
-  // exist or was renamed/ removed
   const blog: blogType | undefined = useMemo(
     () => blogs.filter((blog) => blog.id === postid)[0] ?? undefined,
     [postid]
@@ -43,10 +48,6 @@ export default function IndividualBlog() {
         icon: <Cross1Icon />,
       });
     }
-    // let timeout = setTimeout(() => {
-
-    // }, 2000);
-    // setTimeoutNotif(timeout);
   }, [blog, postid]);
 
   if (showGallery) {
@@ -56,7 +57,15 @@ export default function IndividualBlog() {
           <Title order={2}>My Blog Posts</Title>
           {blogs.map((blog) => (
             <Link key={blog.id} href={`/blog?postid=${blog.id}`}>
-              {blog.title}
+              <Card style={{ margin: "16px 8px", cursor: "pointer" }}>
+                {blog.title}
+                <br />
+                {blog.skillIds &&
+                  blog.skillIds.map((skillId) => {
+                    const skill = Skills.find((skill) => skill.id === skillId);
+                    return <SkillBadge margin="0px 5px" skill={skill} />;
+                  })}
+              </Card>
             </Link>
           ))}
         </Paper>
