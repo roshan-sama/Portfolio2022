@@ -64,7 +64,7 @@ const AboutMe = () => {
         weight={700}
         style={{ fontFamily: "Greycliff CF, sans-serif" }}
       >
-        Welcome to my portfolio website!
+        Welcome to my little corner of the internet!
       </Text>
       <Text>
         I&apos;m a biomedical engineering graduate interested in all things
