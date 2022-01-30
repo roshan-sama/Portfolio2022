@@ -63,7 +63,7 @@ export default function IndividualBlog() {
                 {blog.skillIds &&
                   blog.skillIds.map((skillId) => {
                     const skill = Skills.find((skill) => skill.id === skillId);
-                    return <SkillBadge margin="0px 5px" skill={skill} />;
+                    return <SkillBadge key={skillId} margin="0px 5px" skill={skill} />;
                   })}
               </Card>
             </Link>
