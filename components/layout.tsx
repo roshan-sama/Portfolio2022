@@ -21,6 +21,7 @@ import {
   ExternalLinkIcon,
   GitHubLogoIcon,
 } from "@radix-ui/react-icons";
+import { NotificationsProvider } from "@mantine/notifications";
 
 export default function Layout({ children, hideName = false }) {
   // TODO: Affix "view page source button"
@@ -79,33 +80,35 @@ export default function Layout({ children, hideName = false }) {
         key={wrapperKey}
       >
         <VantaWrapper scheme={scheme}>
-          <AppShell
-            fixed
-            header={
-              <Header fixed height="auto" padding="xs">
-                <NavHeader value={scheme} setValue={setScheme} />
-              </Header>
-            }
-          >
-            <ScrollArea style={{ height: "100vh", marginTop: 60 }}>
-              {!hideName && <FixedBg />}
-              {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
-              <div style={{ marginTop: "120px" }}>{children}</div>
-              <Affix position={{ bottom: 20, left: 20 }}>
-                <Tooltip label="View the source code for this page on Github">
-                  <Button
-                    component="a"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/Roesh/Portfolio2022"
-                    rightIcon={<ExternalLinkIcon />}
-                  >
-                    View source
-                  </Button>
-                </Tooltip>
-              </Affix>
-            </ScrollArea>
-          </AppShell>
+          <NotificationsProvider limit={5}>
+            <AppShell
+              fixed
+              header={
+                <Header fixed height="auto" padding="xs">
+                  <NavHeader value={scheme} setValue={setScheme} />
+                </Header>
+              }
+            >
+              <ScrollArea style={{ height: "100vh", marginTop: 60 }}>
+                {!hideName && <FixedBg />}
+                {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
+                <div style={{ marginTop: "120px" }}>{children}</div>
+                <Affix position={{ bottom: 20, left: 20 }}>
+                  <Tooltip label="View the source code for this page on Github">
+                    <Button
+                      component="a"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/Roesh/Portfolio2022"
+                      rightIcon={<ExternalLinkIcon />}
+                    >
+                      View source
+                    </Button>
+                  </Tooltip>
+                </Affix>
+              </ScrollArea>
+            </AppShell>
+          </NotificationsProvider>
         </VantaWrapper>
       </MantineProvider>
     </>
