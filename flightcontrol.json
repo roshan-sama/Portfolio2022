@@ -11,6 +11,7 @@
           {
             "id": "rjm-portfolio",
             "name": "rjm-portfolio",
+            "domain": "portfolio.roshan.page",
             "type": "fargate",
             "cpu": 0.5,
             "memory": 1024,
