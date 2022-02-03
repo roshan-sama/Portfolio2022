@@ -4,8 +4,8 @@ import {
   Card,
   Title,
   Paper,
-  Badge,
-  Divider,
+  Button,
+  Center,
 } from "@mantine/core";
 import Layout from "../../components/layout";
 import Blog from "../../components/blog/blog";
@@ -63,7 +63,13 @@ export default function IndividualBlog() {
                 {blog.skillIds &&
                   blog.skillIds.map((skillId) => {
                     const skill = Skills.find((skill) => skill.id === skillId);
-                    return <SkillBadge key={skillId} margin="0px 5px" skill={skill} />;
+                    return (
+                      <SkillBadge
+                        key={skillId}
+                        margin="0px 5px"
+                        skill={skill}
+                      />
+                    );
                   })}
               </Card>
             </Link>
@@ -76,12 +82,22 @@ export default function IndividualBlog() {
   return (
     <PageWrapper>
       {blog !== undefined && (
-        <Paper padding="xs">
-          <Title order={2} style={{ marginBottom: "5px" }}>
-            {blog.title}
-          </Title>
-          <Blog path={"posts/" + blog.path} />
-        </Paper>
+        <>
+          <Link href={"/blog"}>
+            <Button style={{ marginBottom: "5px" }}>&lt; Back to blogs</Button>
+          </Link>
+          <Paper padding="xs">
+            <Center>
+              <Title
+                order={2}
+                style={{ marginBottom: "16px", fontSize: "32px" }}
+              >
+                {blog.title}
+              </Title>
+            </Center>
+            <Blog path={"posts/" + blog.path} />
+          </Paper>
+        </>
       )}
     </PageWrapper>
   );

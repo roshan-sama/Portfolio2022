@@ -86,7 +86,6 @@ export default function Layout({ children, hideName = false }) {
       >
         <VantaWrapper scheme={scheme}>
           <NotificationsProvider limit={5}>
-            <ProgressNotification />
             <AppShell
               fixed
               header={
@@ -112,6 +111,18 @@ export default function Layout({ children, hideName = false }) {
                     </Button>
                   </Tooltip>
                 </Affix>
+                <Affix position={{ bottom: 20, right: 20 }}>
+                  <Notification                  
+                    style={{ width: "250px", borderRadius: "3px", borderStyle: "dashed", borderColor: "#000000" }}
+                    onClose={() => {}}
+                    title="Pardon our progress"
+                    color="blue"
+                    icon={<ArchiveIcon />}
+                    disallowClose
+                  >
+                    This website is still under construction.
+                  </Notification>
+                </Affix>
               </ScrollArea>
             </AppShell>
           </NotificationsProvider>
@@ -121,28 +132,6 @@ export default function Layout({ children, hideName = false }) {
   );
 }
 
-const ProgressNotification = () => {
-  const { showNotification, hideNotification } = useNotifications();
-  const [shown, setShown] = useState(false);
-
-  useEffect(() => {
-    if (shown) {
-      return;
-    }
-    showNotification({
-      id: "in-progress-notif",
-      title: "Pardon our progress",
-      message:
-        "This website is still under construction. Your feedback is appreciated! Send an email to roshan@goldwidow.io",
-      color: "blue",
-      onClose: () => hideNotification("in-progress-notif"),
-      icon: <ArchiveIcon />,
-    });
-    setShown(true);
-  }, [shown]);
-
-  return null;
-};
 const FixedBg = () => {
   const largeScreen = useMediaQuery("(min-width: 1547px)");
   const mediumScreen = useMediaQuery("(min-width: 1146px)");
