@@ -14,33 +14,13 @@ I'd create models and a frontend for
 
 I'd associate Roles with Skills. This would allow users who visited the site to view the skills, experiences and projects associated with one role using a filter.
 
-A couple days later, while I was still in the process on finalizing the tech stack I wanted to use, I received an email from Marc Wilson, from PC & Network Downloads:
+A couple days later, while I was still in the process on finalizing the tech stack I wanted to use, I received an email from Marc Wilson, from PC & Network Downloads.
 
-***
+Marc had stumbled on my old personal [portfolio site](https://www.roshan.page/static/career.html) that I hadn't updated in over two years. I had linked to various different sites describing linux commands, but he reached out to recommend their comprehensive Linux commands "cheat sheet" - https://www.pcwdld.com/linux-commands-cheat-sheet. 
 
-> Hi Roshan,
->
-> Marc here from PCWDLD.
->
-> I’d like to suggest something to add to this page please - https://www.roshan.page/static/career.html
->
-> My colleague’s Linux commands “cheat sheet” - https://www.pcwdld.com/linux-commands-cheat-sheet - it’s a quick reference to Linux commands that I think could be useful.
->
-> It’s not a cheat sheet in the traditional sense as it’s more about helping someone to get started with Linux commands then providing some shortcuts to make life easier.
->
-> Please let me know your thoughts on adding this.
->
-> Thank you in advance.
->
-> -Marc
->
-> P.S. If you’d prefer not to hear from me just hit reply and let me know.
+This was a quick reference to Linux commands to help someone get started with the operating system which I actually found was better than the individual links I'd added. Their cheat sheet includes commands and descriptions for things like networking, file permissions, process management, etc. in one spot.
 
-***
-
-Marc had stumbled on my personal portfolio site that I hadn't updated in over two years. 
-
-I now knew where my new app was going to live. I was going to give my personal website a visual and functional boost with the best technologies I'd worked with over the past two years.
+Thanks to this reminder, I now knew where my new app was going to live. I was going to give my personal website a visual and functional boost with the best technologies I'd worked with over the past two years.
 
 ## Time to bake!
 
