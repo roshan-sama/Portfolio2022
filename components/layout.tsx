@@ -9,6 +9,7 @@ import {
   ScrollArea,
   Tooltip,
   Transition,
+  Notification,
 } from "@mantine/core";
 import { useLocalStorageValue, useMediaQuery } from "@mantine/hooks";
 import NavHeader from "./header/header";
@@ -16,12 +17,16 @@ import VantaWrapper from "./vanta-wrapper";
 import { ColorScheme } from "../types";
 import { useEffect, useState } from "react";
 import {
+  ArchiveIcon,
   ArrowTopRightIcon,
   CornerTopRightIcon,
   ExternalLinkIcon,
   GitHubLogoIcon,
 } from "@radix-ui/react-icons";
-import { NotificationsProvider } from "@mantine/notifications";
+import {
+  NotificationsProvider,
+  useNotifications,
+} from "@mantine/notifications";
 
 export default function Layout({ children, hideName = false }) {
   // TODO: Affix "view page source button"
@@ -81,6 +86,7 @@ export default function Layout({ children, hideName = false }) {
       >
         <VantaWrapper scheme={scheme}>
           <NotificationsProvider limit={5}>
+            <ProgressNotification />
             <AppShell
               fixed
               header={
@@ -115,6 +121,28 @@ export default function Layout({ children, hideName = false }) {
   );
 }
 
+const ProgressNotification = () => {
+  const { showNotification, hideNotification } = useNotifications();
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    if (shown) {
+      return;
+    }
+    showNotification({
+      id: "in-progress-notif",
+      title: "Pardon our progress",
+      message:
+        "This website is still under construction. Your feedback is appreciated! Send an email to roshan@goldwidow.io",
+      color: "blue",
+      onClose: () => hideNotification("in-progress-notif"),
+      icon: <ArchiveIcon />,
+    });
+    setShown(true);
+  }, [shown]);
+
+  return null;
+};
 const FixedBg = () => {
   const largeScreen = useMediaQuery("(min-width: 1547px)");
   const mediumScreen = useMediaQuery("(min-width: 1146px)");
