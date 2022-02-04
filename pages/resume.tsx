@@ -28,23 +28,12 @@ export default function Resume() {
   const router = useRouter();
   const { roleId } = router.query;
 
-  const largeScreen = useMediaQuery("(min-width: 1400px)");
-
   const theme = useMantineTheme();
-  const secondaryColor =
-    theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2];
 
   let roles = getRolesById(roleId);
   if (roles === undefined || roles[0] === undefined) {
     roles = Roles;
   }
-
-  const { dedupSkills, dedupCategories } = useMemo(() => {
-    const skills = roles.flatMap((role) => role.relevantSkills);
-    return getDeduplicatedSkills(skills);
-  }, [roles, getDeduplicatedSkills]);
-
-  const adjustedColSpan = 6;
 
   return (
     <ResumeContext.Provider value={{ roles: roles }}>

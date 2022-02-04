@@ -1,17 +1,12 @@
-import {
-  Card,
-  Group,
-  Text,
-  useMantineTheme,
-} from "@mantine/core";
+import { Card, Group, Text, useMantineTheme } from "@mantine/core";
 
 type resumeColorVersion = "first" | "second";
 
 const ResumeBox: React.FC<{
   boxHeading: string;
-  boxText: string;
+  boxText?: string;
   colorVersion: resumeColorVersion;
-}> = ({ boxHeading, boxText, colorVersion }) => {
+}> = ({ boxHeading, boxText, colorVersion, children }) => {
   const { colors, colorScheme } = useMantineTheme();
   const boxColor = colorVersion === "first" ? colors.grape : colors.cyan;
   const titleBg = colorScheme === "dark" ? boxColor["8"] : boxColor["6"];
@@ -28,7 +23,7 @@ const ResumeBox: React.FC<{
       shadow="xl"
     >
       <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-        <Group direction="row" style={{ height: "100%" }}>
+        <Group direction="row" style={{ height: "100%", width: "100%" }}>
           <div
             style={{
               width: "10%",
@@ -53,7 +48,11 @@ const ResumeBox: React.FC<{
               {boxHeading}
             </Text>
           </div>
-          <div style={{ width: "80%" }}>{boxText}</div>
+          {boxText ? (
+            <div style={{ width: "80%" }}>{boxText}</div>
+          ) : (
+            <div style={{ width: "85%" }}>{children}</div>
+          )}
         </Group>
       </div>
     </Card>

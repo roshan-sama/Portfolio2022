@@ -57,7 +57,7 @@ export default function IndividualBlog() {
           <Title order={2}>My Blog Posts</Title>
           {blogs.map((blog) => (
             <Link key={blog.id} href={`/blog?postid=${blog.id}`}>
-              <Card style={{ margin: "16px 8px", cursor: "pointer" }}>
+              <Card style={{ margin: "16px 8px", cursor: "pointer" }} shadow="md">
                 {blog.title}
                 <br />
                 {blog.skillIds &&

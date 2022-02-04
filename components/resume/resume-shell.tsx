@@ -1,4 +1,14 @@
-import { Card, Container, Grid, Paper } from "@mantine/core";
+import {
+  Button,
+  Card,
+  Center,
+  Container,
+  Grid,
+  Group,
+  Paper,
+  ScrollArea,
+  SimpleGrid,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import ResumeBox from "./resume-box";
 import ResumeHeader from "./resume-header";
@@ -57,13 +67,111 @@ const ResumeShell = () => {
           </Grid.Col>
         </Grid>
         <Grid.Col span={12} style={{ paddingRight: "0px", paddingLeft: "0px" }}>
-          <ResumeBox boxHeading="Work" boxText="" colorVersion="second" />
+          <ResumeBox boxHeading="Work" colorVersion="second">
+            <SimpleGrid
+              cols={3}
+              breakpoints={[
+                { minWidth: 601, cols: 3, spacing: "sm" },
+                { maxWidth: 600, cols: 1, spacing: "sm" },
+              ]}
+            >
+              <div>
+                <b>FULLSTACK DEVELOPER</b>
+                <br />
+                <b>May 2020 - Nov 2021</b>
+                <br />
+                <br />
+                Angelic Shipping, Capitol Heights, MD
+              </div>
+              <div>
+                <b>DEVOPS ENGINEER</b>
+                <br />
+                <b>Nov 2021 - Present</b>
+                <br />
+                <br />
+                Synergy BIS, Reston, VA
+              </div>
+              <div>
+                <b>FULLSTACK DEVELOPER</b>
+                <br />
+                <b>May 2020 - Nov 2021</b>
+                <br />
+                <br />
+                Synergy BIS, Reston, VA
+              </div>
+            </SimpleGrid>
+          </ResumeBox>
         </Grid.Col>
         <Grid.Col span={12} style={{ paddingRight: "0px", paddingLeft: "0px" }}>
-          <ResumeBox boxHeading="Projects" boxText="" colorVersion="first" />
+          <ResumeBox boxHeading="Projects" boxText="" colorVersion="first">
+            <SimpleGrid
+              cols={3}
+              breakpoints={[
+                { minWidth: 601, cols: 3, spacing: "sm" },
+                { maxWidth: 600, cols: 1, spacing: "sm" },
+              ]}
+            >
+              <div>
+                <b>Angelic Shipping</b>
+                <br />
+                <br />
+                Created a booking request form using React and ASP.NET Core
+              </div>
+              <div>
+                <b>Synergy Devops</b>
+                <br />
+                <br />
+                Designed turnkey solution to create a complete devsecops
+                pipeline
+              </div>
+              <div>
+                <b>GoldWidow LLC</b>
+                <br />
+                <br />
+                Created applications using, and contributed to the Blitzjs
+                fullstack framework
+              </div>
+            </SimpleGrid>
+          </ResumeBox>
         </Grid.Col>
         <Grid.Col span={12} style={{ paddingRight: "0px", paddingLeft: "0px" }}>
-          <ResumeBox boxHeading="Skills" boxText="" colorVersion="second" />
+          <ResumeBox boxHeading="Skills" boxText="" colorVersion="second">
+            <SimpleGrid
+              cols={3}
+              breakpoints={[
+                { minWidth: 601, cols: 3, spacing: "sm" },
+                { maxWidth: 600, cols: 1, spacing: "sm" },
+              ]}
+            >
+              <div>
+                <Center>
+                  <b>LANGUAGES</b>
+                </Center>
+                <br />
+                <Center>C# | ASP.NET | MVC</Center>
+                <Center>Javascript | React | Nextjs</Center>
+                <Center>Typescript | Node | Blitzjs</Center>
+              </div>
+              <div>
+                <Center>
+                  <b>DEVOPS TOOLS</b>
+                </Center>
+                <br />
+                <Center>Docker | Kubernetes</Center>
+                <Center>ArgoCD | Terraform | Bash</Center>
+                <Center>Jenkins | Harbor | aws CLI</Center>
+              </div>
+              <div>
+                <Center>
+                  <b>OTHER TOOLS</b>
+                </Center>
+                <br />
+                <Center>Postgres | SQL | Git</Center>
+                <Center>Twilio | Stripe | Maps API</Center>
+                <Center>Linux | NGINX | postfix</Center>
+              </div>
+            </SimpleGrid>
+          </ResumeBox>
         </Grid.Col>
       </Paper>
     </Card>
