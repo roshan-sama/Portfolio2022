@@ -1,7 +1,7 @@
 import { Card, Center, Loader } from "@mantine/core";
 import { useEffect, useState } from "react";
 import purify from "dompurify/dist/purify";
-import { parse } from "marked";
+import marked from "../../utils/custom-marked";
 
 const Blog: React.FC<{ path: string }> = ({ path }) => {
   const [loading, setLoading] = useState(true);
@@ -19,8 +19,10 @@ const Blog: React.FC<{ path: string }> = ({ path }) => {
       setLoading(false);
       return;
     }
-    const markdownHtml = parse(await md.text());
-    const sanitizedHtml = purify.sanitize(markdownHtml);
+    const markdownHtml = marked.parse(await md.text());
+    const sanitizedHtml = purify.sanitize(markdownHtml, {
+      ADD_ATTR: ["target"],
+    });
     // DO NOT ALTER THE HTML AFTER THE SANITIZATION STEP ABOVE
     // unless you know what you're doing
     // 🚨 VVV This next line is usually dangerous. 🚨
