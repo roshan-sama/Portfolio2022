@@ -1,0 +1,1 @@
+- Fix vanta not found client error when loading a blog page with an invalid blog id. E.g: https://portfolio.roshan.page/blog/view?postid=id_blog_appcreatezasd
