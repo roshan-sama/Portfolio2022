@@ -94,7 +94,7 @@ const ResumeShell = () => {
               <div>
                 <b>FULLSTACK DEVELOPER</b>
                 <br />
-                <b>May 2020 - Nov 2021</b>
+                <b>Nov 2021 - Present</b>
                 <br />
                 <br />
                 Synergy BIS, Reston, VA
