@@ -125,6 +125,13 @@ const Skills: SkillType[] = [
     infoUrl: "https://unity.com/",
     skillCategoryId: "id_skcat_tool",
   },
+  {
+    id: "id_skill_postgres",
+    name: "PostgreSQL",
+    description: "Popular Open Source Relational Database",
+    infoUrl: "https://unity.com/",
+    skillCategoryId: "id_skcat_tool",
+  },
 ];
 
 export default Skills;
