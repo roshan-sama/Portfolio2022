@@ -117,6 +117,14 @@ const Skills: SkillType[] = [
     description: "Open source container and artifact registry by the CNCF",
     infoUrl: "https://goharbor.io/",
     skillCategoryId: "id_skcat_tool",
+  },  
+  {
+    id: "id_skill_jenkins",
+    name: "Jenkins",
+    description:
+      "Popular open source automation server",
+    infoUrl: "https://www.jenkins.io/",
+    skillCategoryId: "id_skcat_tool",
   },
   {
     id: "id_skill_unity3d",

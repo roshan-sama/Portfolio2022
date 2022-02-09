@@ -30,6 +30,27 @@ const Projects: ProjectType[] = [
     },
   },
   {
+    id: "id_proj_jenkins",
+    name: "Jenkins integration",
+    description:
+      "Created and maintained Jenkinsfiles to automate the build and deployment (CI/CD) of various Synergybis applications",
+    companyId: "id_comp_synergy",
+    skills: {
+      id_skill_jenkins: "",
+    },
+  },
+  {
+    id: "id_proj_harborissue",
+    name: "Harbor issue resolution",
+    description:
+      "Resolved issue with version upgrade failures caused by data migration failure for Harbor",
+    companyId: "id_comp_synergy",
+    skills: {
+      id_skill_harbor: "",
+      id_skill_postgres: "",
+    },
+  },
+  {
     id: "id_proj_angshipbkgreq",
     name: "Shipping Request Form",
     description:
