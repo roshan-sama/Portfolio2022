@@ -49,6 +49,7 @@ const Projects: ProjectType[] = [
       id_skill_harbor: "",
       id_skill_postgres: "",
     },
+    blogId: "id_blog_surgerydb"
   },
   {
     id: "id_proj_angshipbkgreq",

@@ -9,6 +9,8 @@ import Projects from "./projects";
 import SkillBadge from "../Skill/skill-badge";
 import getSkillById from "../../utils/get-skill-by-id";
 import GetCompanyById from "../../utils/get-company-by-id";
+import Link from "next/link";
+import { Link1Icon, Link2Icon } from "@radix-ui/react-icons";
 
 const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
   selectedSkills,
@@ -36,12 +38,37 @@ const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
       <tr key={project.id} className={styles.tablerow}>
         <td className={styles.iconColumn}>
           <Center>
-            {<Avatar src={imgUrl} alt={name} size="sm" style={{marginRight: "5px"}} />}
+            {
+              <Avatar
+                src={imgUrl}
+                alt={name}
+                size="sm"
+                style={{ marginRight: "5px" }}
+              />
+            }
             <Text size="xs">{name}</Text>
           </Center>
         </td>
         <td className={styles.rolecolumn}>{project.name}</td>
-        <td className={styles.namecolumn}>{project.description}</td>
+        <td className={styles.namecolumn}>
+          {project.description}
+          {project.blogId !== undefined && (
+            <>
+              <br />
+              <Link href={`/blog/view?postid=${project.blogId}`}>
+                <span
+                  style={{
+                    cursor: "pointer",
+                    textDecoration: "underline",
+                    border: "",
+                  }}
+                >
+                  View blog
+                </span>
+              </Link>
+            </>
+          )}
+        </td>
         <td className={styles.durationcolumn}>
           <Group>
             {Object.keys(project.skills).map((skillid) => {
