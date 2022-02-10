@@ -82,17 +82,17 @@ const AboutMe = () => {
         position="center"
         style={{ marginTop: "10px", marginLeft: "auto" }}
       >
-        <Link href="/portfolio?roleId=dops">
+        <Link href="/portfolio?roleId=dops" prefetch={false}>
           <Button variant="gradient" gradient={buttonGradient}>
             Devops Portfolio
           </Button>
         </Link>
-        <Link href="/portfolio?roleId=fstack">
+        <Link href="/portfolio?roleId=fstack" prefetch={false}>
           <Button variant="gradient" gradient={buttonGradient}>
             Fullstack Portfolio
           </Button>
         </Link>
-        <Link href="/portfolio?roleId=gamedev#title">
+        <Link href="/portfolio?roleId=gamedev#title" prefetch={false}>
           <Button variant="gradient" gradient={buttonGradient}>
             Game dev Portfolio
           </Button>
