@@ -15,6 +15,7 @@ import {
 import {
   ExternalLinkIcon,
   GitHubLogoIcon,
+  LinkedInLogoIcon,
   MoonIcon,
   SunIcon,
 } from "@radix-ui/react-icons";
@@ -91,6 +92,7 @@ const Header: React.FC<{
             variant="gradient"
             gradient={{ from: "violet", to: theme.primaryColor, deg: 105 }}
             radius="xl"
+            leftIcon={<LinkedInLogoIcon width={15} height={15} />}
             rightIcon={<ExternalLinkIcon width={15} height={15} />}
           >
             Linkedin
