@@ -3,8 +3,12 @@ import {
   Box,
   Button,
   Slider,
+  Text,
   Tabs,
   TabsProps,
+  Card,
+  Loader,
+  Center,
 } from "@mantine/core";
 import {
   BackpackIcon,
@@ -102,16 +106,24 @@ const Navs: React.FC<{
         {playing && <i>Pause</i>}
       </Button>
       {playing && (
-        <Box style={{ width: "100px" }}>
-          <Slider
-            showLabelOnHover={false}
-            min={0}
-            max={1}
-            step={0.1}
-            value={volume}
-            onChange={setVolume}
-          />
-        </Box>
+        <div style={{ width: "100px" }}>
+          <Card style={{ marginTop: "0px", padding: "3px", width: "100%" }}>
+            <Text align="center" size="sm">
+              <Loader variant="bars" />
+              <br />
+              Volume
+            </Text>
+            <Slider
+              showLabelOnHover={false}
+              min={0}
+              max={1}
+              label={(value) => value.toFixed(1)}
+              step={0.1}
+              value={volume}
+              onChange={setVolume}
+            />
+          </Card>
+        </div>
       )}
     </>
   );
