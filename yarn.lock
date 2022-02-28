@@ -195,31 +195,31 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@mantine/core@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-3.5.0.tgz#414e0fec0d9c4503ac359acbb81a0b2f3a861481"
-  integrity sha512-kYiuyJHtooiAZhTdoi7HWwNJUAtqDZbK7yQEsR2jjDLfHlyCJF8JvEFh/atjaUqeGAX5mUcV4MMM1bCAhQD39A==
+"@mantine/core@3.6.11":
+  version "3.6.11"
+  resolved "https://registry.yarnpkg.com/@mantine/core/-/core-3.6.11.tgz#5c0cd6f9ae1d06423ec2c0e91f16aee32fb6846d"
+  integrity sha512-WeL10zfO/u6ZBTh6LOxP2WBqdvNpG0BU0tdUfZFUIRW6/rz+vWhZylFwZfxtaoDgas6JaXWm+Hdxqnop9Zix2w==
   dependencies:
-    "@mantine/styles" "3.5.0"
+    "@mantine/styles" "3.6.11"
     "@popperjs/core" "^2.9.3"
     "@radix-ui/react-scroll-area" "^0.1.1"
     clsx "^1.1.1"
     react-popper "^2.2.5"
     react-textarea-autosize "^8.3.2"
 
-"@mantine/hooks@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-3.5.0.tgz#84feea7c5c7c3a8371115e5ac092d35aad6520ac"
-  integrity sha512-pFs9bMZ1TlrytmktCj+IB+CTZOelEbGACeVpY2oRJUMterqLDlrehB6W3FwtEMbxgfcaR9HXpd7G8iRwv0PBEA==
+"@mantine/hooks@3.6.11":
+  version "3.6.11"
+  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-3.6.11.tgz#881352e381d262711909b560a71258be52ce9744"
+  integrity sha512-HojHT9FnP+mEA1idXYNVxTy7Fdzlk8aLjs/v9Mik9os3TjPiLSV9C6pSck06LepEIC6PEICQi/WSTP1rY8ZP+g==
 
-"@mantine/next@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-3.5.0.tgz#bf240abe4fca09a1b6f73b1394c6d264331902ae"
-  integrity sha512-tgJh1a4PtJ3P7RDCl4irXff7mIsr9tffTR0btN3vnz2X6rHhj2ujwn2x20bSCRVGOWuKK9xYAjoF93xnpXpxWg==
+"@mantine/next@3.6.11":
+  version "3.6.11"
+  resolved "https://registry.yarnpkg.com/@mantine/next/-/next-3.6.11.tgz#6888232935bd2cc6b1fecbba371f065b5972ac54"
+  integrity sha512-mLv43h4iLM9ufk8z3G8PeFk6fn/RluMDF4ZEcJLIO6ZvzxeQpJ2fC08tpSQV7qa+Ez6aefvQvshxI6kMvXPbjw==
   dependencies:
-    "@mantine/ssr" "3.5.0"
+    "@mantine/ssr" "3.6.11"
 
-"@mantine/notifications@^3.6.3":
+"@mantine/notifications@3.6.11":
   version "3.6.11"
   resolved "https://registry.yarnpkg.com/@mantine/notifications/-/notifications-3.6.11.tgz#83257119a4289968771fc0cbfc64f6759f862a46"
   integrity sha512-f6IXge+NeRv3xZ75cgqMbwm2yFGInpPmD+JEToHE3AeZjVusC8IQTKyo+09vAT8d4lXHGLvcvv08Ol6uUn3Fzw==
@@ -227,24 +227,24 @@
     clsx "^1.1.1"
     react-transition-group "^4.4.2"
 
-"@mantine/ssr@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-3.5.0.tgz#ff0395c156d3431ccf740c27f654263a959dcba8"
-  integrity sha512-e4Lh9+PQ3FdPVd0lBnnpPAtt2Xpzr8wZZoChCknBQ0jVrBpRGopaHmdwsN4mrqq1aY0J2r8xDlaHjMtkBADi/g==
+"@mantine/ssr@3.6.11":
+  version "3.6.11"
+  resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-3.6.11.tgz#ffe481e0745878e6fe9ca9936a4d47dcf3733efe"
+  integrity sha512-NWN5eKFSCbNyZHNc/GheJpugSkcjI4O5ZqRBlJg8Sx22vW0S4ic08sDga30raO7bAtYG3o0C7Rtv1F37zGVr/Q==
   dependencies:
     "@emotion/cache" "^11.7.1"
     "@emotion/react" "^11.7.1"
     "@emotion/serialize" "^1.0.2"
     "@emotion/server" "^11.4.0"
     "@emotion/utils" "^1.0.0"
-    "@mantine/styles" "3.5.0"
+    "@mantine/styles" "3.6.11"
     csstype "^3.0.9"
     html-react-parser "^1.3.0"
 
-"@mantine/styles@3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-3.5.0.tgz#54586fd97cae463586fcd39483e0824c2424bb63"
-  integrity sha512-Bw/Aj/EUfCut6dJ48pzIgR5ql54leaFj5tch90ltehlHgyPm2VcH3JImuhu1I4Uc5ey2aX3SKXxg+9+YtwEz4A==
+"@mantine/styles@3.6.11":
+  version "3.6.11"
+  resolved "https://registry.yarnpkg.com/@mantine/styles/-/styles-3.6.11.tgz#d2c9c513a909c0fe9ab11f7e31661ec05d0a6d99"
+  integrity sha512-KgDWV1TfaTXbhOKjoE31jDtTHn55VrmurrnXiPFndGlCPwx9RHQF4MNaUEHQof+qq4qTRR/wOLGrC43s21FbDA==
   dependencies:
     "@emotion/cache" "^11.7.1"
     "@emotion/react" "^11.7.1"
@@ -374,7 +374,7 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
-"@radix-ui/react-icons@^1.1.0":
+"@radix-ui/react-icons@1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-icons/-/react-icons-1.1.0.tgz#c060c48ea04ea9df15cfc2be801f84eea3015855"
   integrity sha512-nhctV9YKN8G4HfkS3p03ml+osTBDMGKImaAJTm666hymtaWEgIPiqL7F53ivDqIO4A+20ERwUiiKJ8h3XK7uAg==
