@@ -16,7 +16,7 @@ import Roles from "../components/role/roles";
 import PortfolioSkillHeader, {
   ColWrapper,
 } from "../components/skill-category/skill-category-portfolio-header";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ProjectTable from "../components/Project/project-table";
 import { useMediaQuery } from "@mantine/hooks";
 import getDeduplicatedSkills from "../utils/get-dedup-skills";
@@ -28,29 +28,27 @@ import isStringArray from "../utils/is-string-array";
 
 export default function Portfolio() {
   const router = useRouter();
-  let { roleId } = router.query;
-  if (!roleId) {
-    roleId = [];
+  let { roleId, skillId } = router.query;
+  roleId = roleId ?? [];
+  skillId = skillId ?? [];
+
+  if (!isStringArray(skillId)) {
+    skillId = [skillId];
   }
+
   const [multipleRoles, setMultipleRoles] = useState(false);
 
   const largeScreen = useMediaQuery("(min-width: 1400px)");
-
-  const theme = useMantineTheme();
-  const secondaryColor =
-    theme.colorScheme === "dark" ? theme.colors.dark[4] : theme.colors.gray[2];
 
   let roles = getRolesById(roleId);
   if (roles === undefined || roles[0] === undefined) {
     roles = Roles;
   }
 
-  const { dedupSkills, dedupCategories } = useMemo(() => {
+  const { dedupSkills: dedupSkillsFromRole, dedupCategories } = useMemo(() => {
     const skills = roles.flatMap((role) => role.relevantSkills);
     return getDeduplicatedSkills(skills);
   }, [roles, getDeduplicatedSkills]);
-
-  const adjustedColSpan = 6;
 
   return (
     <Container
@@ -100,11 +98,12 @@ export default function Portfolio() {
                     <ColWrapper
                       key={category.id}
                       span={12}
-                      // sm={adjustedColSpan}
                     >
                       <PortfolioSkillHeader
                         skillCategory={category}
-                        allRoleSkills={dedupSkills}
+                        allRoleSkills={dedupSkillsFromRole}
+                        //@ts-ignore
+                        selectedSkillsIds={skillId}
                       />
                       <Divider style={{ margin: "10px 0px 0px 0px" }} />
                     </ColWrapper>
@@ -115,7 +114,10 @@ export default function Portfolio() {
                   these skills (Feature in progress)
                 </Text>
               </Container>
-              <ProjectTable selectedSkills={dedupSkills} />
+              <ProjectTable
+                roleDedupedSkills={dedupSkillsFromRole}
+                selectedSkillsIds={skillId}
+              />
             </Card>
           </Paper>
         </Grid.Col>

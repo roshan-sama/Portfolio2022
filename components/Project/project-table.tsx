@@ -12,25 +12,43 @@ import GetCompanyById from "../../utils/get-company-by-id";
 import Link from "next/link";
 import { Link1Icon, Link2Icon } from "@radix-ui/react-icons";
 
-const ProjectTable: React.FC<{ selectedSkills: SkillType[] }> = ({
-  selectedSkills,
-}) => {
-  const projects: ProjectType[] = useMemo(
+const ProjectTable: React.FC<{
+  roleDedupedSkills: SkillType[];
+  selectedSkillsIds: SkillType["id"][];
+}> = ({ roleDedupedSkills, selectedSkillsIds }) => {
+  const projectsFilteredByRole: ProjectType[] = useMemo(
     () =>
       Projects.filter((project) => {
         let projectUsesSkill = false;
-        for (let cnt = 0; cnt < selectedSkills.length; cnt++) {
-          if (project.skills[selectedSkills[cnt].id] !== undefined) {
+        for (let cnt = 0; cnt < roleDedupedSkills.length; cnt++) {
+          if (project.skills[roleDedupedSkills[cnt].id] !== undefined) {
             projectUsesSkill = true;
             break;
           }
         }
         return projectUsesSkill;
       }),
-    [selectedSkills]
+    [roleDedupedSkills]
   );
 
-  const rows = projects.map((project) => {
+  const filteredProjects: ProjectType[] = useMemo(
+    () =>
+      selectedSkillsIds.length === 0
+        ? projectsFilteredByRole
+        : projectsFilteredByRole.filter((project) => {
+            let projectUsesSkill = false;
+            for (let cnt = 0; cnt < selectedSkillsIds.length; cnt++) {
+              if (project.skills[selectedSkillsIds[cnt]] !== undefined) {
+                projectUsesSkill = true;
+                break;
+              }
+            }
+            return projectUsesSkill;
+          }),
+    [selectedSkillsIds]
+  );
+
+  const rows = filteredProjects.map((project) => {
     const name = GetCompanyById(project.companyId).name;
     const imgUrl = GetCompanyById(project.companyId).imgUrl;
 
