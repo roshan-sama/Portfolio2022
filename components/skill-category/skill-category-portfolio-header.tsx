@@ -25,7 +25,11 @@ const PortfolioSkillHeader: React.FC<{
   skillCategory: SkillCategoryType;
   allRoleSkills: SkillType[];
   selectedSkillsIds: SkillType["id"][];
-}> = ({ skillCategory, allRoleSkills, selectedSkillsIds }) => {
+  setNewSkillList: (
+    categoryId: SkillCategoryType["id"],
+    selectedSkillsIds: string[]
+  ) => void;
+}> = ({ skillCategory, allRoleSkills, selectedSkillsIds, setNewSkillList }) => {
   const { skills, skillIds } = useMemo(() => {
     // Filter on all skills to return skills that both
     // 1) Belong to this category skillCategory
@@ -55,10 +59,14 @@ const PortfolioSkillHeader: React.FC<{
           color="blue"
           multiple
           value={selectedSkillsIds.length > 0 ? selectedSkillsIds : skillIds}
+          onChange={(values) => setNewSkillList(skillCategory.id, values)}
           style={{ display: "flex" }}
         >
           {skills.map((skill) => {
             return (
+              // TODO: If number of selected skills is 1, and trying to unselect last skill, then
+              // add a flag called 'noskills' which causes behavior where no skills are selected,
+              // instead of displaying all skills
               <Chip key={skill.id} value={skill.id}>
                 {skill.name}
               </Chip>
