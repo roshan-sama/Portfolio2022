@@ -1,11 +1,12 @@
 import { NextRouter } from "next/router";
 
-const swapKey = "roleId";
+type swapkeys = "roleId" | "skillId"
 
 const swapPush: (
   router: NextRouter,
+  swapKey: swapkeys,
   swapValues: string[]
-) => Promise<boolean> = async (router, swapValues) => {
+) => Promise<boolean> = async (router, swapKey, swapValues) => {
   const queryStr = router.query;
   queryStr[swapKey] = swapValues;
 

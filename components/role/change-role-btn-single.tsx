@@ -26,7 +26,7 @@ const ChangeRoleBtnSingle: React.FC<{ currentRoleId }> = ({
       value={currentRoleId}
       style={{ marginBottom: "1rem", minWidth: "15rem" }}
       onChange={(ids) => {
-        swapPush(router, [ids]);
+        swapPush(router, "roleId", [ids]);
       }}
     />
   );

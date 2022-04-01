@@ -16,8 +16,8 @@ const ChangeRoleBtn = () => {
 
   const roles = getRolesById(roleId) ?? [];
   const selectedValues = roles.map((role) => {
-    return role ? role.id.split("id_role_")[1] : ""
-  })
+    return role ? role.id.split("id_role_")[1] : "";
+  });
 
   return (
     <MultiSelect
@@ -27,7 +27,7 @@ const ChangeRoleBtn = () => {
       value={selectedValues}
       style={{ marginBottom: "1rem", minWidth: "15rem" }}
       onChange={(ids) => {
-        swapPush(router, ids)
+        swapPush(router, "roleId", ids);
       }}
     />
   );
