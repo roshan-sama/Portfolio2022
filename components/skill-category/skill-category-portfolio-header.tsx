@@ -24,7 +24,8 @@ export function ColWrapper(props: React.ComponentProps<typeof Grid.Col>) {
 const PortfolioSkillHeader: React.FC<{
   skillCategory: SkillCategoryType;
   allRoleSkills: SkillType[];
-}> = ({ skillCategory, allRoleSkills }) => {
+  selectedSkillsIds: SkillType["id"][];
+}> = ({ skillCategory, allRoleSkills, selectedSkillsIds }) => {
   const { skills, skillIds } = useMemo(() => {
     // Filter on all skills to return skills that both
     // 1) Belong to this category skillCategory
@@ -43,23 +44,17 @@ const PortfolioSkillHeader: React.FC<{
     };
   }, [skillCategory, allRoleSkills]);
 
-  // const [selectedSkills, setSelectedSkills] = useState(skillIds)
-
   return (
     <>
-      {/* <Card shadow="lg" padding="sm" style={{ height: "100%" }}> */}
-      {/* INFO: Hardcoded color */}
       <Group direction="row">
-        <Badge color="grape">
-          {skillCategory.name}
-        </Badge>
+        <Badge>{skillCategory.name}</Badge>
 
         <Chips
           size="xs"
           // {/* INFO: Hardcoded color */}
           color="blue"
           multiple
-          value={skillIds}
+          value={selectedSkillsIds.length > 0 ? selectedSkillsIds : skillIds}
           style={{ display: "flex" }}
         >
           {skills.map((skill) => {
