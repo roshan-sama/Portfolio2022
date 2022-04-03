@@ -27,11 +27,13 @@ const PortfolioSkillHeader: React.FC<{
   skillCategory: SkillCategoryType;
   allRoleSkills: SkillType[];
   selectedSkillsIds: SkillType["id"][];
-  setNewSkillList: (
-    categoryId: SkillCategoryType["id"],
-    selectedSkillsIds: string[]
-  ) => void;
-}> = ({ skillCategory, allRoleSkills, selectedSkillsIds, setNewSkillList }) => {
+  processSingleSkillChange: (changedSkillId, type: "removed" | "added") => void;
+}> = ({
+  skillCategory,
+  allRoleSkills,
+  selectedSkillsIds,
+  processSingleSkillChange,
+}) => {
   const router = useRouter();
   const skillDisplay = router.query[sdtypeKey];
 
@@ -52,6 +54,16 @@ const PortfolioSkillHeader: React.FC<{
       skillIds,
     };
   }, [skillCategory, allRoleSkills]);
+
+  const trackedSkillIds = useMemo<{ [key in string]: "" | undefined }>(() => {
+    let tracked = {};
+    if (selectedSkillsIds.length !== 0) {
+      selectedSkillsIds.forEach((id) => (tracked[id] = ""));
+    } else {
+      skillIds.forEach((id) => (tracked[id] = ""));
+    }
+    return tracked;
+  }, [selectedSkillsIds]);
 
   const getSkillsToDisplay = () => {
     if (skillDisplay === "none") {
@@ -74,7 +86,23 @@ const PortfolioSkillHeader: React.FC<{
           multiple
           value={getSkillsToDisplay()}
           onChange={(values) => {
-            setNewSkillList(skillCategory.id, values);
+            let changeDetected = false;
+            values.forEach((val) => {
+              if (trackedSkillIds[val] === undefined) {
+                if (!changeDetected) {
+                  changeDetected = true;
+                  processSingleSkillChange(val, "added");
+                }
+              }
+            });
+            if (changeDetected) {
+              return;
+            }
+            Object.keys(trackedSkillIds).forEach((tracked) => {
+              if (!values.find((id) => id === tracked)) {
+                processSingleSkillChange(tracked, "removed");
+              }
+            });
           }}
           style={{ display: "flex" }}
         >

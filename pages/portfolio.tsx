@@ -55,41 +55,34 @@ export default function Portfolio() {
     return getDeduplicatedSkills(skills);
   }, [roles, getDeduplicatedSkills]);
 
-  const setNewSkillList = (
-    categoryId: SkillCategoryType["id"],
-    selectedSkillsIds: string[]
+  const processSingleSkillChange = (
+    changedSkillId,
+    type: "removed" | "added"
   ) => {
-    //@ts-ignore
-    let finalSelectedSkillIds: string[] = skillId;
-    if (finalSelectedSkillIds.length === 0 && sdtype !== "none") {
-      finalSelectedSkillIds = Skills.map((skill) => skill.id);
+    let finalSelectedSkillIds: string[] = dedupSkillsFromRole.map(
+      (skill) => skill.id
+    );
+    if (sdtype === "some") {
+      //@ts-ignore
+      finalSelectedSkillIds = skillId;
+    } else if (finalSelectedSkillIds.length === 0 && sdtype !== "none") {
+      finalSelectedSkillIds = dedupSkillsFromRole.map((skill) => skill.id);
+    } else if (sdtype === "none") {
+      finalSelectedSkillIds = [];
     }
 
-    const skillsIdsToRemove = Skills.filter(
-      (skill) =>
-        skill.skillCategoryId === categoryId &&
-        selectedSkillsIds.find(
-          (selectedSkill) => selectedSkill === skill.id
-        ) === undefined
-    );
-
-    finalSelectedSkillIds = finalSelectedSkillIds.filter(
-      (skillId) =>
-        skillsIdsToRemove.find((remove) => remove.id === skillId) === undefined
-    );
-
-    const skillsIdsToAdd = Skills.filter(
-      (skill) =>
-        skill.skillCategoryId === categoryId &&
-        selectedSkillsIds.find(
-          (selectedSkill) => selectedSkill === skill.id
-        ) !== undefined &&
-        finalSelectedSkillIds.find(
-          (selectedSkill) => selectedSkill === skill.id
-        ) === undefined
-    );
-
-    skillsIdsToAdd.forEach((skillId) => finalSelectedSkillIds.push(skillId.id));
+    if (type === "added") {
+      if (!finalSelectedSkillIds.find((id) => id === changedSkillId)) {
+        finalSelectedSkillIds.push(changedSkillId);
+      }
+    } else {
+      if (finalSelectedSkillIds.length === 0) {
+        finalSelectedSkillIds = dedupSkillsFromRole.map((skill) => skill.id);
+      }
+      finalSelectedSkillIds = finalSelectedSkillIds.filter(
+        (id) => id !== changedSkillId
+      );
+    }
 
     let newSdtype = "some";
     if (finalSelectedSkillIds.length === 0) {
@@ -152,8 +145,8 @@ export default function Portfolio() {
                 <Grid gutter="xs">
                   <ColWrapper key={"segment display"} span={12}>
                     <Text>
-                      Filter the portfolio items below by one or more
-                      of the listed skills, or toggling Show all/none
+                      Filter the portfolio items below by one or more of the
+                      listed skills, or toggling Show all/none
                     </Text>
                   </ColWrapper>
                   {dedupCategories.map((category) => (
@@ -164,7 +157,7 @@ export default function Portfolio() {
                         allRoleSkills={dedupSkillsFromRole}
                         //@ts-ignore
                         selectedSkillsIds={skillId}
-                        setNewSkillList={setNewSkillList}
+                        processSingleSkillChange={processSingleSkillChange}
                       />
                       <Divider style={{ margin: "10px 0px 0px 0px" }} />
                     </ColWrapper>
