@@ -10,12 +10,16 @@ import SkillBadge from "../Skill/skill-badge";
 import getSkillById from "../../utils/get-skill-by-id";
 import GetCompanyById from "../../utils/get-company-by-id";
 import Link from "next/link";
-import { Link1Icon, Link2Icon } from "@radix-ui/react-icons";
+import { useRouter } from "next/router";
+import { sdtypeKey } from "../../constants";
 
 const ProjectTable: React.FC<{
   roleDedupedSkills: SkillType[];
   selectedSkillsIds: SkillType["id"][];
 }> = ({ roleDedupedSkills, selectedSkillsIds }) => {
+  const router = useRouter();
+  const skillDisplayOverride = router.query[sdtypeKey];
+
   const projectsFilteredByRole: ProjectType[] = useMemo(
     () =>
       Projects.filter((project) => {
@@ -31,22 +35,25 @@ const ProjectTable: React.FC<{
     [roleDedupedSkills]
   );
 
-  const filteredProjects: ProjectType[] = useMemo(
-    () =>
-      selectedSkillsIds.length === 0
-        ? projectsFilteredByRole
-        : projectsFilteredByRole.filter((project) => {
-            let projectUsesSkill = false;
-            for (let cnt = 0; cnt < selectedSkillsIds.length; cnt++) {
-              if (project.skills[selectedSkillsIds[cnt]] !== undefined) {
-                projectUsesSkill = true;
-                break;
-              }
+  const filteredProjects: ProjectType[] = useMemo(() => {
+    if (skillDisplayOverride === "none") {
+      return projectsFilteredByRole.filter(
+        (project) => Object.keys(project.skills).length === 0
+      );
+    }
+    return selectedSkillsIds.length === 0
+      ? projectsFilteredByRole
+      : projectsFilteredByRole.filter((project) => {
+          let projectUsesSkill = false;
+          for (let cnt = 0; cnt < selectedSkillsIds.length; cnt++) {
+            if (project.skills[selectedSkillsIds[cnt]] !== undefined) {
+              projectUsesSkill = true;
+              break;
             }
-            return projectUsesSkill;
-          }),
-    [selectedSkillsIds]
-  );
+          }
+          return projectUsesSkill;
+        });
+  }, [skillDisplayOverride, selectedSkillsIds]);
 
   const rows = filteredProjects.map((project) => {
     const name = GetCompanyById(project.companyId).name;
