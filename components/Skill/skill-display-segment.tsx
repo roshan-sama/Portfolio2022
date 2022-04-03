@@ -10,8 +10,7 @@ const SkillDisplaySegment = () => {
   const router = useRouter();
   const rawSdType = router.query[sdtypeKey];
   const [sdtype, setSdtype] = useState<skillDisplayChoices>("none");
-
-  console.log("sdtype is " + sdtype);
+  const [data, setData] = useState(dataWithoutSome);
 
   useEffect(() => {
     if (!rawSdType || rawSdType === "all") {
@@ -20,25 +19,25 @@ const SkillDisplaySegment = () => {
     if (rawSdType === "none") {
       setSdtype("none");
     }
-    router.query["skillId"] && setSdtype("some");
-  }, [rawSdType, router]);
-
-  const [data, setData] = useState(dataWithSome);
+    if (router.query["skillId"]) {
+      setData(dataWithSome);
+    } else {
+      setData(dataWithoutSome);
+    }
+  }, [rawSdType, router.query]);
 
   useEffect(() => {
-    if (sdtype === "some") {
-      setData(dataWithSome);
-      return;
+    if (data.length === 3) {
+      setSdtype("some");
     }
-    setData(dataWithSome);
-  }, [sdtype]);
+  }, [data]);
 
   return (
     <SegmentedControl
       value={sdtype}
       //@ts-ignore
       onChange={(values) => handleSegmentChange(values, router)}
-      data={dataWithSome}
+      data={data}
     />
   );
 };
