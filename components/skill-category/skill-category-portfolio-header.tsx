@@ -8,7 +8,9 @@ import {
   Group,
   Tooltip,
 } from "@mantine/core";
-import { useMemo, useState } from "react";
+import { useRouter } from "next/router";
+import { useMemo } from "react";
+import { sdtypeKey } from "../../constants";
 import SkillType from "../Skill/skill-type";
 import Skills from "../Skill/skills";
 import SkillCategoryType from "./skill-category-type";
@@ -30,6 +32,9 @@ const PortfolioSkillHeader: React.FC<{
     selectedSkillsIds: string[]
   ) => void;
 }> = ({ skillCategory, allRoleSkills, selectedSkillsIds, setNewSkillList }) => {
+  const router = useRouter();
+  const skillDisplay = router.query[sdtypeKey];
+
   const { skills, skillIds } = useMemo(() => {
     // Filter on all skills to return skills that both
     // 1) Belong to this category skillCategory
@@ -48,18 +53,29 @@ const PortfolioSkillHeader: React.FC<{
     };
   }, [skillCategory, allRoleSkills]);
 
+  const getSkillsToDisplay = () => {
+    if (skillDisplay === "none") {
+      return [];
+    }
+    if (selectedSkillsIds.length > 0) {
+      return selectedSkillsIds;
+    }
+    return skillIds;
+  };
+
   return (
     <>
       <Group direction="row">
         <Badge>{skillCategory.name}</Badge>
-
         <Chips
           size="xs"
           // {/* INFO: Hardcoded color */}
           color="blue"
           multiple
-          value={selectedSkillsIds.length > 0 ? selectedSkillsIds : skillIds}
-          onChange={(values) => setNewSkillList(skillCategory.id, values)}
+          value={getSkillsToDisplay()}
+          onChange={(values) => {
+            setNewSkillList(skillCategory.id, values);
+          }}
           style={{ display: "flex" }}
         >
           {skills.map((skill) => {
