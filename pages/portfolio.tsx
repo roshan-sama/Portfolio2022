@@ -27,14 +27,13 @@ import ChangeRoleBtn from "../components/role/change-role-btn";
 import ChangeRoleBtnSingle from "../components/role/change-role-btn-single";
 import isStringArray from "../utils/is-string-array";
 import SkillCategoryType from "../components/skill-category/skill-category-type";
-import SkillCategories from "../components/skill-category/skillCategories";
-import { singleSwap } from "../hooks/use-update-push";
+import { multiSwap } from "../hooks/use-update-push";
 import Skills from "../components/Skill/skills";
 import SkillDisplaySegment from "../components/Skill/skill-display-segment";
 
 export default function Portfolio() {
   const router = useRouter();
-  let { roleId, skillId } = router.query;
+  let { roleId, skillId, sdtype } = router.query;
   roleId = roleId ?? [];
   skillId = skillId ?? []; // TODO: Potential improvement, try making skillId a comma delimited list of just the id without id_skill prefix and add that prefix here
 
@@ -62,7 +61,7 @@ export default function Portfolio() {
   ) => {
     //@ts-ignore
     let finalSelectedSkillIds: string[] = skillId;
-    if (finalSelectedSkillIds.length === 0) {
+    if (finalSelectedSkillIds.length === 0 && sdtype !== "none") {
       finalSelectedSkillIds = Skills.map((skill) => skill.id);
     }
     const skillsIdsToRemove = Skills.filter(
@@ -86,7 +85,14 @@ export default function Portfolio() {
     );
     skillsIdsToAdd.forEach((skillId) => finalSelectedSkillIds.push(skillId.id));
 
-    singleSwap(router, "skillId", finalSelectedSkillIds);
+    let newSdtype = "some"
+    if(finalSelectedSkillIds.length === 0){
+      newSdtype = "none"
+    }
+    multiSwap(router, ["skillId", "sdtype"], {
+      skillId: finalSelectedSkillIds,
+      sdtype: [newSdtype],
+    });
   };
 
   return (
@@ -150,7 +156,7 @@ export default function Portfolio() {
                 </Grid>
                 <Text>
                   Filter the portfolio items below by checking one or more of
-                  these skills (Feature in progress)
+                  these skills
                 </Text>
               </Container>
               <ProjectTable
