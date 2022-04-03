@@ -1,7 +1,6 @@
 import { MultiSelect } from "@mantine/core";
 import { useRouter } from "next/router";
-import preservedPush from "../../hooks/use-alt-push";
-import swapPush from "../../hooks/use-update-push";
+import { singleSwap } from "../../hooks/use-update-push";
 import getRolesById from "../../utils/get-roles-by-ids";
 import Roles from "./roles";
 
@@ -27,7 +26,7 @@ const ChangeRoleBtn = () => {
       value={selectedValues}
       style={{ marginBottom: "1rem", minWidth: "15rem" }}
       onChange={(ids) => {
-        swapPush(router, "roleId", ids);
+        singleSwap(router, "roleId", ids);
       }}
     />
   );

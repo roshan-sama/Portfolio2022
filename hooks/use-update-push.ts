@@ -1,8 +1,8 @@
 import { NextRouter } from "next/router";
+import { swapkeys } from "../types";
+import isStringArray from "../utils/is-string-array";
 
-type swapkeys = "roleId" | "skillId"
-
-const swapPush: (
+const singleSwap: (
   router: NextRouter,
   swapKey: swapkeys,
   swapValues: string[]
@@ -16,4 +16,18 @@ const swapPush: (
   });
 };
 
-export default swapPush;
+const multiSwap: (
+  router: NextRouter,
+  swapKeys: swapkeys[],
+  swapValuesMap: { [key in swapkeys]?: string[] }
+) => Promise<boolean> = async (router, swapKeys, swapValuesMap) => {
+  const queryStr = router.query;
+  swapKeys.forEach((key) => (queryStr[key] = swapValuesMap[key]));
+
+  return router.push({
+    pathname: router.pathname,
+    query: queryStr,
+  });
+};
+
+export { singleSwap, multiSwap };

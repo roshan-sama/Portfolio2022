@@ -9,6 +9,7 @@ import {
   Switch,
   Paper,
   Divider,
+  SegmentedControl,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -27,8 +28,9 @@ import ChangeRoleBtnSingle from "../components/role/change-role-btn-single";
 import isStringArray from "../utils/is-string-array";
 import SkillCategoryType from "../components/skill-category/skill-category-type";
 import SkillCategories from "../components/skill-category/skillCategories";
-import swapPush from "../hooks/use-update-push";
+import { singleSwap } from "../hooks/use-update-push";
 import Skills from "../components/Skill/skills";
+import SkillDisplaySegment from "../components/Skill/skill-display-segment";
 
 export default function Portfolio() {
   const router = useRouter();
@@ -84,7 +86,7 @@ export default function Portfolio() {
     );
     skillsIdsToAdd.forEach((skillId) => finalSelectedSkillIds.push(skillId.id));
 
-    swapPush(router, "skillId", finalSelectedSkillIds);
+    singleSwap(router, "skillId", finalSelectedSkillIds);
   };
 
   return (
@@ -131,8 +133,10 @@ export default function Portfolio() {
             <Card>
               <Container fluid>
                 <Grid gutter="xs">
+                  <SkillDisplaySegment />
                   {dedupCategories.map((category) => (
                     <ColWrapper key={category.id} span={12}>
+                      <Divider style={{ margin: "0px 0px 10px 0px" }} />
                       <PortfolioSkillHeader
                         skillCategory={category}
                         allRoleSkills={dedupSkillsFromRole}
