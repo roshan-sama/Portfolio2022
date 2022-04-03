@@ -64,6 +64,7 @@ export default function Portfolio() {
     if (finalSelectedSkillIds.length === 0 && sdtype !== "none") {
       finalSelectedSkillIds = Skills.map((skill) => skill.id);
     }
+
     const skillsIdsToRemove = Skills.filter(
       (skill) =>
         skill.skillCategoryId === categoryId &&
@@ -71,24 +72,34 @@ export default function Portfolio() {
           (selectedSkill) => selectedSkill === skill.id
         ) === undefined
     );
-    const skillsIdsToAdd = Skills.filter(
-      (skill) =>
-        skill.skillCategoryId === categoryId &&
-        selectedSkillsIds.find(
-          (selectedSkill) => selectedSkill === skill.id
-        ) !== undefined
-    );
 
     finalSelectedSkillIds = finalSelectedSkillIds.filter(
       (skillId) =>
         skillsIdsToRemove.find((remove) => remove.id === skillId) === undefined
     );
+
+    const skillsIdsToAdd = Skills.filter(
+      (skill) =>
+        skill.skillCategoryId === categoryId &&
+        selectedSkillsIds.find(
+          (selectedSkill) => selectedSkill === skill.id
+        ) !== undefined &&
+        finalSelectedSkillIds.find(
+          (selectedSkill) => selectedSkill === skill.id
+        ) === undefined
+    );
+
     skillsIdsToAdd.forEach((skillId) => finalSelectedSkillIds.push(skillId.id));
 
-    let newSdtype = "some"
-    if(finalSelectedSkillIds.length === 0){
-      newSdtype = "none"
+    let newSdtype = "some";
+    if (finalSelectedSkillIds.length === 0) {
+      newSdtype = "none";
     }
+    if (finalSelectedSkillIds.length === dedupSkillsFromRole.length) {
+      newSdtype = "all";
+      finalSelectedSkillIds = [];
+    }
+
     multiSwap(router, ["skillId", "sdtype"], {
       skillId: finalSelectedSkillIds,
       sdtype: [newSdtype],
@@ -139,10 +150,15 @@ export default function Portfolio() {
             <Card>
               <Container fluid>
                 <Grid gutter="xs">
-                  <SkillDisplaySegment />
+                  <ColWrapper key={"segment display"} span={12}>
+                    <Text>
+                      Filter the portfolio items below by one or more
+                      of the listed skills, or toggling Show all/none
+                    </Text>
+                  </ColWrapper>
                   {dedupCategories.map((category) => (
                     <ColWrapper key={category.id} span={12}>
-                      <Divider style={{ margin: "0px 0px 10px 0px" }} />
+                      {/* <Divider style={{ margin: "0px 0px 10px 0px" }} /> */}
                       <PortfolioSkillHeader
                         skillCategory={category}
                         allRoleSkills={dedupSkillsFromRole}
@@ -153,11 +169,10 @@ export default function Portfolio() {
                       <Divider style={{ margin: "10px 0px 0px 0px" }} />
                     </ColWrapper>
                   ))}
+                  <ColWrapper key={"segment display"} span={12}>
+                    <SkillDisplaySegment />
+                  </ColWrapper>
                 </Grid>
-                <Text>
-                  Filter the portfolio items below by checking one or more of
-                  these skills
-                </Text>
               </Container>
               <ProjectTable
                 roleDedupedSkills={dedupSkillsFromRole}
