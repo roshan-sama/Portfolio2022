@@ -59,18 +59,14 @@ export default function Portfolio() {
     changedSkillId,
     type: "removed" | "added"
   ) => {
-    let finalSelectedSkillIds: string[] = dedupSkillsFromRole.map(
-      (skill) => skill.id
-    );
+    let finalSelectedSkillIds: string[] = [];
     if (sdtype === "some") {
-      //@ts-ignore
-      finalSelectedSkillIds = skillId;
-    } else if (finalSelectedSkillIds.length === 0 && sdtype !== "none") {
-      finalSelectedSkillIds = dedupSkillsFromRole.map((skill) => skill.id);
-    } else if (sdtype === "none") {
-      finalSelectedSkillIds = [];
+      if (isStringArray(skillId)) {
+        finalSelectedSkillIds = skillId;
+      } else {
+        finalSelectedSkillIds = [skillId];
+      }
     }
-
     if (type === "added") {
       if (!finalSelectedSkillIds.find((id) => id === changedSkillId)) {
         finalSelectedSkillIds.push(changedSkillId);

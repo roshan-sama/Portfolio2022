@@ -57,13 +57,18 @@ const PortfolioSkillHeader: React.FC<{
 
   const trackedSkillIds = useMemo<{ [key in string]: "" | undefined }>(() => {
     let tracked = {};
-    if (selectedSkillsIds.length !== 0) {
-      selectedSkillsIds.forEach((id) => (tracked[id] = ""));
-    } else {
+    if (skillDisplay === "none") {
+      return {};
+    } else if (
+      skillDisplay === "all" ||
+      (skillDisplay !== "all" && selectedSkillsIds.length === 0)
+    ) {
       skillIds.forEach((id) => (tracked[id] = ""));
+    } else {
+      selectedSkillsIds.forEach((id) => (tracked[id] = ""));
     }
     return tracked;
-  }, [selectedSkillsIds]);
+  }, [selectedSkillsIds, skillDisplay]);
 
   const getSkillsToDisplay = () => {
     if (skillDisplay === "none") {
@@ -108,9 +113,6 @@ const PortfolioSkillHeader: React.FC<{
         >
           {skills.map((skill) => {
             return (
-              // TODO: If number of selected skills is 1, and trying to unselect last skill, then
-              // add a flag called 'noskills' which causes behavior where no skills are selected,
-              // instead of displaying all skills
               <Chip key={skill.id} value={skill.id}>
                 {skill.name}
               </Chip>
