@@ -19,7 +19,7 @@
     "@mantine/next": "3.6.11",
     "@mantine/notifications": "3.6.11",
     "@radix-ui/react-icons": "1.1.0",
-    "@react-pdf/renderer": "^2.1.1",
+    "@react-pdf/renderer": "^3.1.12",
     "dompurify": "^2.3.5",
     "marked": "^4.0.12",
     "next": "12.1.0",

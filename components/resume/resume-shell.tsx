@@ -12,8 +12,9 @@ import {
 import { useMediaQuery } from "@mantine/hooks";
 import ResumeBox from "./resume-box";
 import ResumeHeader from "./resume-header";
+import { IResumeConfig } from "../../interfaces/resume-config.interface";
 
-const ResumeShell = () => {
+const ResumeShell = (props: IResumeConfig) => {
   const widerThan8_5inch = useMediaQuery("(min-width: 8.5in");
 
   const dimensions = widerThan8_5inch
