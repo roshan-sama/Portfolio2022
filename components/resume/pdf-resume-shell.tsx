@@ -9,6 +9,7 @@ import {
   PDFViewer,
   Line,
   Font,
+  Link,
 } from "@react-pdf/renderer";
 import { Style } from "@react-pdf/types/style.js";
 import dynamic from "next/dynamic";
@@ -32,6 +33,8 @@ const PdfResumeShell = () => {
   }, [roleToDisplay, getDeduplicatedSkills]);
 
   // const skillDisplay = router.query[];
+
+  Font.registerHyphenationCallback((word) => [word]);
 
   const widerThan8_5inch = useMediaQuery("(min-width: 8.5in");
 
@@ -81,7 +84,7 @@ const PdfResumeShell = () => {
       flexDirection: "row",
       backgroundColor: "#E4E4E4",
       paddingHorizontal: '0.15in',
-      paddingVertical: '0.25in'
+      paddingVertical: '0.15in'
     },
     section: {
       margin: 10,
@@ -93,7 +96,6 @@ const PdfResumeShell = () => {
       fontSize: 30,
       marginTop: 1,
       marginBottom: 1,
-      paddingVertical: 10,
     },
     h2: {
       fontSize: 24,
@@ -101,7 +103,6 @@ const PdfResumeShell = () => {
       marginBottom: 1,
       marginLeft: 0,
       marginRight: 0,
-      paddingVertical: 10,
     },
     h3: {
       fontSize: 20,
@@ -109,16 +110,20 @@ const PdfResumeShell = () => {
       marginBottom: 1,
       marginLeft: 0,
       marginRight: 0,
-      paddingVertical: 10,
+    },
+
+    p: {
+      fontSize: 12
     },
 
     row: {
       flex: 1,
       flexDirection: 'row',
       flexGrow: 1,
-      whitespace: "pre-wrap"
+      whitespace: "pre-wrap",
     },
     left: {
+      
       width: '33%',//<- working alternative
       whitespace: "pre-wrap"
       // flexGrow: 0,
@@ -127,11 +132,14 @@ const PdfResumeShell = () => {
     },
 
     right: {
-      padding: 5,
       width: '66%', //<- working alternative
       // flexShrink: 1,
       // flexGrow: 5,
     },
+
+    full: {
+      width: '100%'
+    }
 
   });
 
@@ -140,28 +148,47 @@ const PdfResumeShell = () => {
     <Card style={dimensions}>
       <PDFViewer style={pdfViewerDimensions}>
         <Document>
-          <Page size="A4" wrap style={styles.page}>
+          <Page size="A4" style={styles.page}>
             {displayResume &&
-              <View style={styles.row}>
-                <View style={styles.left}>
-                  <View>
+              <View style={{ display: "flex", flexDirection: 'column' }}>
+                <View style={{ display: "flex", flexDirection: 'row' }}>
+                  <View style={{ width: '50%' }}>
                     <Text style={styles.h1}>Roshan Manuel</Text>
+
                     <Text style={styles.h2}>{roleToDisplay.name}</Text>
                   </View>
-                  <View>
-                    <Text>Skills:</Text>
-                    {SkillCategories.map((category, index) =>
-                      <Text id={index.toString()} style={{ fontSize: '14px' }}>{category.name}</Text>
-                    )}
+                  <View style={{ width: '50%' }}>
+                    <Text style={{...styles.p, marginLeft: 'auto'}}>Email: roshan@goldwidow.io</Text>
+                    <Link src={window.location.href} style={{...styles.p, marginLeft: 'auto'}}>Resume / Portfolio Website</Link>
                   </View>
                 </View>
 
-                <View style={styles.right}>
-                  <View >
-                    <Text style={{ fontSize: '24px' }}>Professional Experience</Text>
-                    <Text style={{ fontSize: '24px' }}><ul><li>t1</li></ul></Text>
+                <View style={{...styles.row, borderTop: '2', borderColor: 'black', marginTop: 10, paddingTop: 10}}>
+                  <View style={{...styles.left, borderRight: '1', borderColor: 'black'}}>
+                    <View>
+                      <Text style={styles.h3}>Skills:</Text>
+                      {SkillCategories.map((category, index) => <>
+                        {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).length > 0 &&
+                          <View style={{ marginTop: 10 }}>
+                            <Text id={index.toString()} style={{ fontSize: '14px', textDecoration: 'underline' }}>{category.name}</Text>
+                            <Text style={styles.p}>
+                              {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).map((skill, index) =>
+                                <>{index !== 0 && ' | '}{skill.name}</>
+                              )}
+                            </Text>
+                          </View>}
+                      </>
+                      )}
+                    </View>
+                  </View>
+
+                  <View style={{...styles.right, paddingLeft: 10}}>
+                    <View>
+                      <Text style={styles.h3}>Professional Experience</Text>
+                    </View>
                   </View>
                 </View>
+
               </View>
             }
             {!displayResume &&
