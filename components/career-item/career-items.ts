@@ -6,14 +6,14 @@ const CareerItems: CareerItemType[] = [
     companyId: "id_comp_synergy",
     description: "",
     startDate: new Date(2021, 10),
-    roleName: "Devops Engineer",
+    roleId: "id_role_dops",
   },
   {
     id: "id_citem_synfstack",
     companyId: "id_comp_synergy",
     description: "",
     startDate: new Date(2021, 10),
-    roleName: "Fullstack Web Developer",
+    roleId: "id_role_fstack",
   },
   {
     id: "id_citem_angfstack2",
@@ -21,7 +21,7 @@ const CareerItems: CareerItemType[] = [
     description: "",
     startDate: new Date(2021, 5),
     endDate: new Date(2021, 10),
-    roleName: "Fullstack Web Developer",
+    roleId: "id_role_fstack",
   },
   {
     id: "id_citem_synvideo",
@@ -29,7 +29,7 @@ const CareerItems: CareerItemType[] = [
     description: "",
     startDate: new Date(2021, 5),
     endDate: new Date(2021, 10),
-    roleName: "Video Producer",
+    roleId: "id_role_videoproducer",
   },
   {
     id: "id_citem_angfstack",
@@ -37,14 +37,14 @@ const CareerItems: CareerItemType[] = [
     description: "",
     startDate: new Date(2020, 6),
     endDate: new Date(2021, 1),
-    roleName: "Fullstack Web Developer",
+    roleId: "id_role_fstack",
   },
   {
     id: "id_citem_gwflance",
     companyId: "id_comp_gwidow",
     description: "",
     startDate: new Date(2021, 0),
-    roleName: "Freelance Developer",
+    roleId: "id_role_fstack",
   },
   {
     id: "id_citem_epicsup",
@@ -52,7 +52,7 @@ const CareerItems: CareerItemType[] = [
     description: "",
     startDate: new Date(2018, 8),
     endDate: new Date(2020, 0),
-    roleName: "Technical Services Specialist",
+    roleId: "Technical Services Specialist",
   },
 ];
 

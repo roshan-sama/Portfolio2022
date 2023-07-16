@@ -5,7 +5,7 @@ interface CareerItemType {
   startDate: Date;
   endDate?: Date;
   imgUrl?: string;
-  roleName?: string;
+  roleId?: string;
   projectIDs?: string[];
 }
 

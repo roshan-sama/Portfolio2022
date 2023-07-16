@@ -4,6 +4,7 @@ import Company from "./company-type";
 import styles from "../../styles/table.module.css";
 import CareerItems from "../career-item/career-items";
 import CareerItemType from "../career-item/career-item-type";
+import Roles from "../role/roles";
 
 const CompaniesTable = () => {
   const companies: Company[] = Companies;
@@ -52,7 +53,7 @@ const CareerItemsColumn: React.FC<{ companyId }> = ({ companyId }) => {
       <tbody>
         {careerItems.map((item) => (
           <tr key={item.id}>
-            <td className={styles.rolecolumn}>{item.roleName}</td>
+            <td className={styles.rolecolumn}>{Roles.find(role => role.id === item.roleId)?.name}</td>
             <td className={styles.durationcolumn}>
               <FromToColumn startDate={item.startDate} endDate={item.endDate} />
             </td>

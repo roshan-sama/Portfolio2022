@@ -1,6 +1,7 @@
 import { Avatar, Grid, Group } from "@mantine/core";
 import SkillBadge from "../Skill/skill-badge";
 import Career from "./career-item-type";
+import Roles from "../role/roles";
 
 const CareerItem: React.FC<{ career: Career }> = ({ career }) => {
   return (
@@ -13,7 +14,7 @@ const CareerItem: React.FC<{ career: Career }> = ({ career }) => {
       </Grid.Col>
       <Grid.Col key={2} span={4}>
         <Group position="center">
-          <>{career.roleName}</>          
+          <>{Roles.find(role => role.id === career.roleId)?.name}</>          
         </Group>
       </Grid.Col>
       <Grid.Col key={3} span={4}>

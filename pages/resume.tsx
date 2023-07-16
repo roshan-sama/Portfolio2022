@@ -1,4 +1,4 @@
-import { Card, Container, Center } from "@mantine/core";
+import { Card, Container, Center, Paper } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
 import Roles from "../components/role/roles";
@@ -7,6 +7,7 @@ import ResumeContext from "../hooks/resume-context";
 import ChangeRoleBtn from "../components/role/change-role-btn";
 import PdfResumeShell from "../components/resume/pdf-resume-shell";
 import ResumeShell from "../components/resume/resume-shell";
+import ChangeRoleBtnSingle from "../components/role/change-role-btn-single";
 
 export default function Resume() {
   const router = useRouter();
@@ -22,15 +23,19 @@ export default function Resume() {
         fluid={true}
         style={{
           marginBottom: "20vh",
+          marginTop: "-110px"
         }}
       >
-        <Center>
-          <BtnWrapper>
-            <ChangeRoleBtn />
-          </BtnWrapper>
-        </Center>
-        <PdfResumeShell />        
-        <ResumeShell />
+        <Card style={{ display: 'flex', flexDirection: "row", justifyContent: "center" }}>
+          <div>
+            <Center>
+              <BtnWrapper>
+                <ChangeRoleBtnSingle currentRoleId={roles.length === 1 ? roleId : null} />
+              </BtnWrapper>
+            </Center>
+          </div>
+          <PdfResumeShell />
+        </Card>
       </Container>
     </ResumeContext.Provider>
   );

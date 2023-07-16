@@ -50,6 +50,22 @@ const Roles: RoleType[] = [
     infoUrl: "",
     relevantSkills: [getSkillById("id_skill_unity3d")],
   },
+  {
+    id: "id_role_videoproducer",
+    name: "Video Producer",
+    description: "Video producer portfolio",
+    imgUrl: "",
+    infoUrl: "",
+    relevantSkills: [getSkillById("id_skill_unity3d")],
+  },
+  {
+    id: "id_role_techsupport",
+    name: "Technical Support Specialist",
+    description: "Game Development portfolio",
+    imgUrl: "",
+    infoUrl: "",
+    relevantSkills: [],
+  },
 ];
 
 export default Roles;
