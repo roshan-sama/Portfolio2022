@@ -57,4 +57,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME localhost
 
-CMD ["yarn", "start"]
+CMD ["node", "server.js"]
