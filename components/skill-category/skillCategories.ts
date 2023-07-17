@@ -10,6 +10,10 @@ const SkillCategories: SkillCategoryType[] = [
         name: "Software tools",        
     },
     {
+        id: "id_skcat_lib",
+        name: "Libraries and Frameworks",        
+    },
+    {
         id: "id_skcat_concepts",
         name: "Knowledge & Concepts",
     },

@@ -91,7 +91,7 @@ const Projects: ProjectType[] = [
   },
   {
     id: "id_proj_aurumpath",
-    name: "Widow Hunt - Progress tracker",
+    name: "Aurum Path - Location tracker",
     description:
       "Created a Blitzjs and integrated with React Native to create a location tracker app",
     companyId: "id_comp_gwidow",
@@ -100,6 +100,7 @@ const Projects: ProjectType[] = [
       id_skill_js: "",
       id_skill_react: "",
       id_skill_blitzjs: "",
+      id_skill_rnexpo: ""
     },
   },
 ];

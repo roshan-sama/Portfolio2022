@@ -23,10 +23,11 @@ export default function Resume() {
         fluid={true}
         style={{
           marginBottom: "20vh",
-          marginTop: "-110px"
+          marginTop: "-110px",
+          display: "flex"
         }}
       >
-        <Card style={{ display: 'flex', flexDirection: "row", justifyContent: "center" }}>
+        <Card style={{ marginLeft: "auto", marginRight: "auto", display: 'flex', flexDirection: "row", justifyContent: "center", width: "fit-content" }}>
           <div>
             <Center>
               <BtnWrapper>

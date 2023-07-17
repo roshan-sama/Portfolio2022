@@ -1,14 +1,39 @@
 Blog in progress.
 =================
 
-Summary: Writing code for everything you need from scratch takes time, likely an infeasible amount of time if you are writing a web application. The explosion of Javascript libraries to assist with everything from form validation to UI animations makes getting started easy. But what are the security implications of downloading and utilizing gigabytes of code we didn't author?
+Writing code for everything you need from scratch takes time. Complex web applications have to deal with authentication and authorization, complex form inputs etc.
 
-While working on my progress tracker application the other day, I reviewed the features I wanted to implement. 
+Javascript libraries and frameworks make getting started easy, but what are the security implications of downloading and utilizing hundreds of megabytes of code we didn't author?
 
-I wanted the ability to write in yaml, and in real-time, have that trigger both behaviors and be structured in a visually appealing manner. My first instinct was to look up yaml to JSON converters. After a few hours of research, I landed on the open source [js-yaml](https://github.com/nodeca/js-yaml).
+```
+$ du -sh /workspaces/Portfolio2022/node_modules
+348M    /workspaces/Portfolio2022/node_modules
+```
 
-Of course, the entire app needed authentication/authorization.
+# Security Implications
 
-I was scrolling through youtube while working on the app, and stumbled across a programmer trying to create their own web browser from scratch. I thought the idea was amusing, and decided to estimate how much work it would actually be to try implement everything I was using in my progress tracker from scratch. If node_modules is any indicator, I would be writing code for two lifetimes...
+The most obvious concern is security. Malicious 3rd party libraries can hijack your website, using an end user's client to mine crypto currency or capture the information they enter.
 
-I'd also recently been concerned with security, and the Youtube video I saw was the catalyst that made me think more about how secure my project truly was. This was the first time it truly dawned on me that I didn't really have good safeguards in place to ensure the code I was using was non-malicious! What were standard best practices to ensure the packages I imported were safe? And are there tools that can make sure that when my project is being built, the dependencies that are downloaded are trusted and valid? 
+## Mitigating security issues
+
+The concept of a "Software Bill of Materials", used by cyber security specialists helps mitigate this risk. You can use a tool like [Dependency Track](https://dependencytrack.org/) 
+
+npm audit can help catch most known concerns. Github's Dependabot notifies me of dependency issues too.
+
+Use lockfiles like package-lock.json to lock in dependency versions, avoiding surprise breaks from downstream upgrades.
+
+# Reliability Concerns
+
+External libraries might not work as advertised. Actual code behavior might deviate subtly from that advertised in documentation, either because of a untested edge case, or because the authors omitted documenting specific caveats believing that information may not be needed.
+
+We may also need to extend the functionality provided by a library. How easy this is depends on how the library is configured.
+
+The [react-pdf](https://github.com/diegomura/react-pdf) library used in the app has an open issue to let users specify the default zoom level of the reader. I did not consider this a major issue until I wanted to display my resume at a smaller zoom level by default. 
+
+My first solution was to find the Zoom selection element and update the zoom level. This was not possible because the pdf renderer lived within an iframe, and I couldn't access the select input from the DOM my javascript was running in.
+
+## Mitigating reliability concerns
+
+Reliability shouldn't be an issue for popular libraries with a lot of activity and maintenance, but is still worth consideration. Checking in the package-lock.json file should help mitigate 
+
+if a library doesn't offer the functionality you need, as long as its open source, you have the opportunity to open an issue and contribute the feature yourself.
