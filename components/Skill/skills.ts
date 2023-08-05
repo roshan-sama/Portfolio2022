@@ -52,6 +52,13 @@ const Skills: SkillType[] = [
     skillCategoryId: "id_skcat_lib",
   },
   {
+    id: "id_skill_angular",
+    name: "Angular",
+    description: "Robust web development framework by Google",
+    infoUrl: "https://angular.io/",
+    skillCategoryId: "id_skcat_lib",
+  },
+  {
     id: "id_skill_rnexpo",
     name: "React Native + Expo",
     description: "Ecosystem of tools to create web, Android and iOS apps",
@@ -145,6 +152,27 @@ const Skills: SkillType[] = [
     name: "PostgreSQL",
     description: "Popular Open Source Relational Database",
     infoUrl: "https://unity.com/",
+    skillCategoryId: "id_skcat_tool",
+  },
+  {
+    id: "id_skill_nginx",
+    name: "Nginx",
+    description: "HTTP and reverse proxy server",
+    infoUrl: "https://nginx.org/en/",
+    skillCategoryId: "id_skcat_tool",
+  },
+  {
+    id: "id_skill_keycloak",
+    name: "Keycloak",
+    description: "Open Source Identity and Access Management tool",
+    infoUrl: "https://www.keycloak.org/",
+    skillCategoryId: "id_skcat_tool",
+  },
+  {
+    id: "id_skill_shellscript",
+    name: "GNU Bash",
+    description: "Unix Shell and Command Language by the Free Software Foundation",
+    infoUrl: "https://www.gnu.org/software/bash/",
     skillCategoryId: "id_skcat_tool",
   },
 ];

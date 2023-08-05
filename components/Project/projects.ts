@@ -11,6 +11,8 @@ const Projects: ProjectType[] = [
       id_skill_docker: "",
       id_skill_k8s: "",
       id_skill_helm: "",
+      id_skill_argocd: "",
+      id_skill_shellscript: ""
     },
   },
   {
@@ -101,6 +103,50 @@ const Projects: ProjectType[] = [
       id_skill_react: "",
       id_skill_blitzjs: "",
       id_skill_rnexpo: ""
+    },
+  },
+  {
+    id: "id_proj_assessment",
+    name: "Assessment System",
+    description:
+      "USDA EAS Contract - Frontend Developer\nInherited and completed an Angular project for an Assessment System that the USDA used to ensure compliance.\nFixed severe accessibility issues to ensure Section 508 Compliance",
+    companyId: "id_comp_synergy",
+    skills: {
+      id_skill_ts: "",
+      id_skill_js: "",
+      id_skill_angular: "",
+    },
+  },
+  {
+    id: "id_proj_assessment",
+    name: "Wildfire Decision Support System",
+    description:
+      "USDA EAS Contract - Fullstack Engineer\nImplemented several features including \n-PIV card based authentication\n-User profile management\n-Calculating a spatial inventory of various resources within a fire boundary drawn on a map",
+    companyId: "id_comp_synergy",
+    skills: {
+      id_skill_ts: "",
+      id_skill_js: "",
+      id_skill_angular: "",
+      id_skill_java: "",
+      id_skill_k8s: "",
+      id_skill_nginx: "",
+      id_skill_postgres: ""
+    },
+  },
+  {
+    id: "id_proj_assessment",
+    name: "FEMA NFIP",
+    description:
+      "USDA EAS Contract - Team Lead / Fullstack / Devops Engineer\nOnboarded to ensure that project delivery was a success. Improved project velocity by working with team and implementing features",
+    companyId: "id_comp_synergy",
+    skills: {
+      id_skill_ts: "",
+      id_skill_js: "",
+      id_skill_angular: "",
+      id_skill_java: "",
+      id_skill_k8s: "",
+      id_skill_postgres: "",
+      id_skill_keycloak: ""
     },
   },
 ];

@@ -23,6 +23,8 @@ const Roles: RoleType[] = [
       getSkillById("id_skill_git"),
       getSkillById("id_skill_gitops"),
       getSkillById("id_skill_jenkins"),
+      getSkillById("id_skill_nginx"),
+      getSkillById("id_skill_shellscript"),
     ],
   },
   {
@@ -37,9 +39,12 @@ const Roles: RoleType[] = [
       getSkillById("id_skill_js"),
       getSkillById("id_skill_ts"),
       getSkillById("id_skill_react"),
+      getSkillById("id_skill_git"),
       getSkillById("id_skill_nextjs"),
       getSkillById("id_skill_blitzjs"),
+      getSkillById("id_skill_angular"),
       getSkillById("id_skill_postgres"),
+      getSkillById("id_skill_shellscript"),
     ],
   },
   {
