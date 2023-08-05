@@ -149,6 +149,32 @@ const Projects: ProjectType[] = [
       id_skill_keycloak: ""
     },
   },
+  {
+    id: "id_proj_loanvis",
+    name: "Loan Visualizer",
+    description:
+      "Application to visualize a loan given the prinicpal, interest rate and payment plans\n Written in NextJS",
+    companyId: "",
+    linkToMoreInfo: "https://roshan.page/r/loanvis",
+    skills: {
+      id_skill_ts: "",
+      id_skill_js: "",
+      id_skill_nextjs: "",
+    },
+  },
+  {
+    id: "id_proj_nganalyser",
+    name: "Angular Analyzer",
+    description:
+      "Application to visualize the architecture of an Angular code base",
+    companyId: "",
+    linkToMoreInfo: "https://roshan.page/r/analyser",
+    skills: {
+      id_skill_ts: "",
+      id_skill_js: "",
+      id_skill_angular: "",
+    },
+  },
 ];
 
 export default Projects;

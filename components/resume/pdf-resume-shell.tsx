@@ -189,6 +189,9 @@ const PdfResumeShell = () => {
                   <View style={{ width: '50%' }}>
                     <Text style={{ ...styles.p, marginLeft: 'auto' }}>Email: roshan@goldwidow.io</Text>
                     <Link src={window.location.href} style={{ ...styles.p, marginLeft: 'auto' }}>Resume / Portfolio Website</Link>
+                    <Link src={"https://www.linkedin.com/feed/update/urn:li:activity:7093009210380070912?utm_source=share&utm_medium=member_desktop"} style={{ ...styles.p, marginLeft: 'auto', marginTop: 'auto' }}>
+                      Synergy Video Interview
+                    </Link>
                   </View>
                 </View>
 
@@ -209,6 +212,18 @@ const PdfResumeShell = () => {
                         }
                       </>
                       )}
+                      {relevantProjects.filter(project => project.companyId === "").map((project, index) => {
+                        return <>
+                          {(index === 0) && <Text style={{ ...styles.h3, marginTop: 50 }}>Personal Projects:</Text>}
+                          <View key={index} style={{ marginTop: 10 }}>
+                            <Text style={{ fontSize: '14px', textDecoration: 'underline' }}>{project.name}</Text>
+                            <Link src={project.linkToMoreInfo} style={{ ...styles.p }}>
+                              {`Link: ${project.linkToMoreInfo}`}
+                            </Link>
+                            <Text style={{...styles.p, marginTop: 10}}>{project.description}</Text>
+                          </View>
+                        </>
+                      })}
                     </View>
                   </View>
 
@@ -227,7 +242,7 @@ const PdfResumeShell = () => {
                           {relevantProjects.filter(project => project.companyId === company.id).map((project, index) =>
                             <View key={index} style={{ marginTop: 5 }}>
                               <Text style={{ ...styles.h4, textDecoration: "underline" }}>{project.name}</Text>
-                              <Text style={styles.p}>{project.description}</Text>
+                              <Text style={{ ...styles.p, marginLeft: 12 }}>{project.description}</Text>
                             </View>
                           )}
                         </>

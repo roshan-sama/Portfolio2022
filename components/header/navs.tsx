@@ -50,6 +50,7 @@ const Navs: React.FC<{
 
   useEffect(() => {
     if (!audioCtl) {
+      // Math.ceil(Math.random() * 3)
       setAudioCtl(new Audio(`${window.location.origin}/audio/Swing.mp3`));
     }
   }, []);

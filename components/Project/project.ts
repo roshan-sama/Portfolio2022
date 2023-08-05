@@ -5,6 +5,7 @@ interface ProjectType {
   companyId?: string;
   skills: { [key in string]: string };
   blogId?: string;
+  linkToMoreInfo?: string
 }
 
 export default ProjectType;
