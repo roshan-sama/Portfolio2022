@@ -56,8 +56,8 @@ const ProjectTable: React.FC<{
   }, [skillDisplayOverride, selectedSkillsIds]);
 
   const rows = filteredProjects.map((project) => {
-    const name = GetCompanyById(project.companyId).name;
-    const imgUrl = GetCompanyById(project.companyId).imgUrl;
+    const name = GetCompanyById(project.companyId)?.name ?? "Personal Project";
+    const imgUrl = GetCompanyById(project.companyId)?.imgUrl;
 
     return (
       <tr key={project.id} className={styles.tablerow}>
