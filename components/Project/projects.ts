@@ -4,7 +4,7 @@ const Projects: ProjectType[] = [
   {
     id: "id_proj_1clickdep",
     name: "1-Click pipeline script",
-    description: "Created one click devsecops script",
+    description: "Worked on 'one click' devsecops bash script that would construct a complete Software Factory (Nautilus) on AWS infrastructure via Terraform and Kubernetes.\n+ Bash script added and configured Keycloak, Jenkins and ArgoCD via Helm charts.\n+ AWS Route 53 was used to configure DNS via script variables\n+ Entire script ran in under 30 minutes, with Twilio SMS integration to alert on success or failure.",
     companyId: "id_comp_synergy",
     skills: {
       id_skill_gitops: "",
@@ -19,7 +19,7 @@ const Projects: ProjectType[] = [
     id: "id_proj_bcrt",
     name: "Celer Contract App",
     description:
-      "Migrated existing Java + React contract creation application to Kubernetes",
+      "Migrated existing Java + React contract creation application to Kubernetes. \nCreated Helm charts corresponding to the frontend, backend and authorization microservices",
     companyId: "id_comp_synergy",
     skills: {
       id_skill_gitops: "",
@@ -35,7 +35,7 @@ const Projects: ProjectType[] = [
     id: "id_proj_jenkins",
     name: "Jenkins integration",
     description:
-      "Created and maintained Jenkinsfiles to automate the build and deployment (CI/CD) of various Synergybis applications",
+      "Created and maintained Jenkinsfiles to automate the build and deployment (CI/CD) of various Synergybis applications\n+ Opened a pull request on the Jenkins Remote file plugin repository to enable monorepos\n+ Link: https://github.com/jenkinsci/remote-file-plugin/pull/65",
     companyId: "id_comp_synergy",
     skills: {
       id_skill_jenkins: "",
@@ -45,7 +45,7 @@ const Projects: ProjectType[] = [
     id: "id_proj_harborissue",
     name: "Harbor issue resolution",
     description:
-      "Resolved issue with version upgrade failures caused by data migration failure for Harbor",
+      "Resolved issue with version upgrade failures caused by data migration failure for Harbor.\n+ Specific issues included a drift in Postgres database schema, which was not automatically migrated via a Kubernetes job.\n+ Solved by performing a diff of production and new version database, and applying changes to the production database that were needed",
     companyId: "id_comp_synergy",
     skills: {
       id_skill_harbor: "",
@@ -121,7 +121,7 @@ const Projects: ProjectType[] = [
     id: "id_proj_assessment",
     name: "Wildfire Decision Support System",
     description:
-      "USDA EAS Contract - Fullstack Engineer\nImplemented several features including \n-PIV card based authentication\n-User profile management\n-Calculating a spatial inventory of various resources within a fire boundary drawn on a map",
+      "USDA EAS Contract - Fullstack Engineer\nImplemented several features including \n+ PIV card based authentication\n+ User profile management\n+ Process to calculate a spatial inventory of various resources within a fire boundary drawn on a map\n+ Form to calculate the 'Relative Risk' posed by a fire to various factors, including Natural and cultural resources, time of year, barriers to fire spread, etc.",
     companyId: "id_comp_synergy",
     skills: {
       id_skill_ts: "",

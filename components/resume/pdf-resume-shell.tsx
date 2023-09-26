@@ -154,7 +154,7 @@ const PdfResumeShell = () => {
     },
     left: {
 
-      width: '33%',//<- working alternative
+      width: '20%',//<- working alternative
       whitespace: "pre-wrap"
       // flexGrow: 0,
       // flexShrink: 1,
@@ -162,7 +162,7 @@ const PdfResumeShell = () => {
     },
 
     right: {
-      width: '66%', //<- working alternative
+      width: '100%', //<- working alternative
       // flexShrink: 1,
       // flexGrow: 5,
     },
@@ -196,8 +196,28 @@ const PdfResumeShell = () => {
                 </View>
 
                 <View style={{ ...styles.row, borderTop: '2', borderColor: 'black', marginTop: 10, paddingTop: 10 }}>
-                  <View style={{ ...styles.left, borderRight: '1', borderColor: 'black' }}>
+                <View style={{ ...styles.right }}>
                     <View>
+                      <Text style={styles.h3}>Professional Experience</Text>
+                      {companiesToList.map((company, index) =>
+                        <>
+                          <View style={{ display: "flex", flexDirection: 'row', borderBottom: '1', marginTop: 10, marginBottom: 5, alignItems: "center" }}>
+                            <Text style={{ ...styles.h4 }} key={index}>{company.name}</Text>
+                            <View style={{ ...styles.p, marginLeft: 'auto' }}>{
+                              CareerItems.filter(careerItem => careerItem.companyId === company.id && careerItem.roleId === roleToDisplay.id).map((item, index) =>
+                                <Text key={index}>{item.startDate.toLocaleDateString('en-US', { dateStyle: "medium" })} - {item.endDate ? item.endDate.toLocaleDateString('en-US', { dateStyle: "medium" }) : 'Present'}</Text>)
+                            }</View>
+                          </View>
+                          {relevantProjects.filter(project => project.companyId === company.id).map((project, index) =>
+                            <View key={index} style={{ marginTop: 10 }}>
+                              <Text style={{ ...styles.h4, textDecoration: "underline" }}>{project.name}</Text>
+                              <Text style={{ ...styles.p, marginLeft: 12 }}>{project.description}</Text>
+                            </View>
+                          )}
+                        </>
+                      )}
+                    </View>
+                    <View style={{marginTop: 10}}>
                       <Text style={styles.h3}>Skills:</Text>
                       {SkillCategories.map((category, index) => <>
                         {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).length > 0 &&
@@ -226,29 +246,38 @@ const PdfResumeShell = () => {
                       })}
                     </View>
                   </View>
-
-                  <View style={{ ...styles.right, paddingLeft: 10 }}>
+                  {/* <View style={{ ...styles.left, paddingLeft: 10 }}>
                     <View>
-                      <Text style={styles.h3}>Professional Experience</Text>
-                      {companiesToList.map((company, index) =>
-                        <>
-                          <View style={{ display: "flex", flexDirection: 'row', borderBottom: '1', marginTop: 10, marginBottom: 5, alignItems: "center" }}>
-                            <Text style={{ ...styles.h4 }} key={index}>{company.name}</Text>
-                            <View style={{ ...styles.p, marginLeft: 'auto' }}>{
-                              CareerItems.filter(careerItem => careerItem.companyId === company.id && careerItem.roleId === roleToDisplay.id).map((item, index) =>
-                                <Text key={index}>{item.startDate.toLocaleDateString('en-US', { dateStyle: "medium" })} - {item.endDate ? item.endDate.toLocaleDateString('en-US', { dateStyle: "medium" }) : 'Present'}</Text>)
-                            }</View>
+                      <Text style={styles.h3}>Skills:</Text>
+                      {SkillCategories.map((category, index) => <>
+                        {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).length > 0 &&
+                          <View style={{ marginTop: 10 }}>
+                            <Text key={index} style={{ fontSize: '14px', textDecoration: 'underline' }}>{category.name}</Text>
+                            <Text style={styles.p}>
+                              {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).map((skill, index) =>
+                                <>{index !== 0 && ' | '}{skill.name}</>
+                              )}
+                            </Text>
                           </View>
-                          {relevantProjects.filter(project => project.companyId === company.id).map((project, index) =>
-                            <View key={index} style={{ marginTop: 5 }}>
-                              <Text style={{ ...styles.h4, textDecoration: "underline" }}>{project.name}</Text>
-                              <Text style={{ ...styles.p, marginLeft: 12 }}>{project.description}</Text>
-                            </View>
-                          )}
-                        </>
+                        }
+                      </>
                       )}
+                      {relevantProjects.filter(project => project.companyId === "").map((project, index) => {
+                        return <>
+                          {(index === 0) && <Text style={{ ...styles.h3, marginTop: 50 }}>Personal Projects:</Text>}
+                          <View key={index} style={{ marginTop: 10 }}>
+                            <Text style={{ fontSize: '14px', textDecoration: 'underline' }}>{project.name}</Text>
+                            <Link src={project.linkToMoreInfo} style={{ ...styles.p }}>
+                              {`Link: ${project.linkToMoreInfo}`}
+                            </Link>
+                            <Text style={{...styles.p, marginTop: 10}}>{project.description}</Text>
+                          </View>
+                        </>
+                      })}
                     </View>
-                  </View>
+                  </View> */}
+
+                  
                 </View>
 
               </View>
