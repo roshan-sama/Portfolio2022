@@ -68,7 +68,7 @@ const PortfolioSkillHeader: React.FC<{
       selectedSkillsIds.forEach((id) => (tracked[id] = ""));
     }
     return tracked;
-  }, [selectedSkillsIds, skillDisplay]);
+  }, [selectedSkillsIds, skillDisplay, skillIds]);
 
   const getSkillsToDisplay = () => {
     if (skillDisplay === "none") {

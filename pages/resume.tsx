@@ -42,7 +42,7 @@ export default function Resume() {
   );
 }
 
-const BtnWrapper: React.FC<{}> = ({ children }) => {
+const BtnWrapper: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
   return (
     <Card style={{ padding: "0px 10px", marginBottom: "10px" }}>
       {children}

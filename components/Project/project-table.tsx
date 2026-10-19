@@ -53,7 +53,7 @@ const ProjectTable: React.FC<{
           }
           return projectUsesSkill;
         });
-  }, [skillDisplayOverride, selectedSkillsIds]);
+  }, [projectsFilteredByRole, skillDisplayOverride, selectedSkillsIds]);
 
   const rows = filteredProjects.map((project) => {
     const name = GetCompanyById(project.companyId)?.name ?? "Personal Project";

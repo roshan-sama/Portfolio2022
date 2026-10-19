@@ -2,11 +2,11 @@ import { Card, Group, Text, useMantineTheme } from "@mantine/core";
 
 type resumeColorVersion = "first" | "second";
 
-const ResumeBox: React.FC<{
+const ResumeBox: React.FC<React.PropsWithChildren<{
   boxHeading: string;
   boxText?: string;
   colorVersion: resumeColorVersion;
-}> = ({ boxHeading, boxText, colorVersion, children }) => {
+}>> = ({ boxHeading, boxText, colorVersion, children }) => {
   const { colors, colorScheme } = useMantineTheme();
   const boxColor = colorVersion === "first" ? colors.grape : colors.cyan;
   const titleBg = colorScheme === "dark" ? boxColor["8"] : boxColor["6"];

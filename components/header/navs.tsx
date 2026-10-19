@@ -23,7 +23,11 @@ import {
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 import preservedPush from "../../hooks/use-alt-push";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+// Mantine v3's generated Tab props type marks DOM event props as required under
+// newer @types/react; narrow it to the props actually used here.
+const NavTab = Tabs.Tab as React.FC<{ label: string; icon: React.ReactNode }>;
+
 const tabIndexToPathMap = {
   0: "/", // Career
   1: "/resume",
@@ -44,34 +48,34 @@ const Navs: React.FC<{
   const router = useRouter();
   const path = router.pathname;
   const activeTab = pathToTabIndexMap[path];
-  const [audioCtl, setAudioCtl] = useState(null);
+  const audioCtl = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
-    if (!audioCtl) {
+    if (!audioCtl.current) {
       // Math.ceil(Math.random() * 3)
-      setAudioCtl(new Audio(`${window.location.origin}/audio/Swing.mp3`));
+      audioCtl.current = new Audio(`${window.location.origin}/audio/Swing.mp3`);
     }
   }, []);
 
   useEffect(() => {
-    if (!audioCtl) {
+    if (!audioCtl.current) {
       return;
     }
-    audioCtl.volume = volume;
-  }, [volume, audioCtl]);
+    audioCtl.current.volume = volume;
+  }, [volume]);
 
   useEffect(() => {
-    if (!audioCtl) {
+    if (!audioCtl.current) {
       return;
     }
     if (playing) {
-      audioCtl.play();
+      audioCtl.current.play();
     } else {
-      audioCtl.pause();
+      audioCtl.current.pause();
     }
-  }, [playing, audioCtl]);
+  }, [playing]);
 
   return (
     //   NOTE WHEN UPDATING: Update the above nav name to number map above
@@ -83,10 +87,10 @@ const Navs: React.FC<{
           preservedPush(router, tabIndexToPathMap[tabIndex] ?? "/");
         }}
       >
-        <Tabs.Tab label="Career" icon={<BackpackIcon />}></Tabs.Tab>
-        <Tabs.Tab label="Resume" icon={<FileTextIcon />}></Tabs.Tab>
-        <Tabs.Tab label="Portfolio" icon={<RulerSquareIcon />}></Tabs.Tab>
-        <Tabs.Tab label="Blog" icon={<Pencil1Icon />}></Tabs.Tab>
+        <NavTab label="Career" icon={<BackpackIcon />} />
+        <NavTab label="Resume" icon={<FileTextIcon />} />
+        <NavTab label="Portfolio" icon={<RulerSquareIcon />} />
+        <NavTab label="Blog" icon={<Pencil1Icon />} />
       </Tabs>
       <Button
         onClick={() => {

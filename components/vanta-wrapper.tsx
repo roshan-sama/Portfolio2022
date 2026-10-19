@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Vanta.module.css";
@@ -6,26 +6,31 @@ import { useReducedMotion } from "@mantine/hooks";
 import bg from "../public/img/vantabg_static.png";
 import { ColorScheme, useMantineTheme } from "@mantine/core";
 
-const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
+const VantaWrapper: React.FC<React.PropsWithChildren<{ scheme: ColorScheme }>> = ({
   children,
   scheme: theme,
 }) => {
   const reduceMotion = useReducedMotion();
   const vantaWrapperId = "vanta-background-div";
-  const [vanta, updateVanta] = useState(null);
+  const vanta = useRef<any>(null);
 
-  const [prevTheme, setPrevTheme] = useState(undefined);
   const dark = theme === "dark";
-
   const themes = useMantineTheme();
   const grape = themes.colors.grape[9];
   const darkGrape = themes.colors.grape[9];
   const bglight = themes.colors.dark[6];
   const bgDark = themes.colors["alt-purple"][9];
+  const color = dark ? grape : darkGrape;
+  const backgroundColor = dark ? bgDark : bglight;
+
+  // The effect below only runs on mount, so it uses the options from first render.
+  // Later theme changes are applied by the theme effect further down.
+  const initialOptions = useRef({ color, backgroundColor });
+  const appliedTheme = useRef(theme);
 
   useEffect(() => {
     //@ts-ignore
-    const vantaEffect = VANTA.NET({
+    vanta.current = VANTA.NET({
       el: `#${vantaWrapperId}`,
       mouseControls: true,
       touchControls: true,
@@ -35,33 +40,30 @@ const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
       speed: 0,
       scale: 1.0,
       scaleMobile: 1.0,
-      color: dark ? grape : darkGrape,
-      backgroundColor: dark ? bgDark : bglight,
+      ...initialOptions.current,
       points: 8.0,
       spacing: 12.0,
     });
-    updateVanta(vantaEffect);
-    return () => vanta && vanta.destroy();
+    return () => {
+      vanta.current?.destroy();
+      vanta.current = null;
+    };
   }, []);
 
   useEffect(() => {
     if (reduceMotion) {
-      vanta && vanta.destroy();
+      vanta.current?.destroy();
+      vanta.current = null;
     }
-  }, [reduceMotion, vanta]);
+  }, [reduceMotion]);
 
   useEffect(() => {
-    if (!vanta) {
+    if (!vanta.current || appliedTheme.current === theme) {
       return;
     }
-    if (prevTheme !== theme) {
-      vanta.setOptions({
-        color: dark ? grape : darkGrape,
-        backgroundColor: dark ? bgDark : bglight,
-      });
-      setPrevTheme(theme)
-    }
-  }, [dark]);
+    vanta.current.setOptions({ color, backgroundColor });
+    appliedTheme.current = theme;
+  }, [theme, color, backgroundColor]);
 
   return (
     <>
@@ -77,7 +79,7 @@ const VantaWrapper: React.FC<{ scheme: ColorScheme }> = ({
             style={{ zIndex: -5 }}
             className={styles.backgroundfill}
           >
-            <Image alt="Vanta Net background" src={bg} layout="fixed" />
+            <Image alt="Vanta Net background" src={bg} />
           </div>
           <div key={"childrenelems"} style={{ zIndex: 0 }}>
             {children}

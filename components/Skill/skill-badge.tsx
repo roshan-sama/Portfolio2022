@@ -3,19 +3,19 @@ import { Badge, Tooltip } from "@mantine/core";
 import { CSSProperties } from "@mantine/styles/lib/tss/types/css-object";
 
 const SkillBadge: React.FC<{ skill: SkillType, margin?: string }> = ({ skill, margin }) => {
-  const InnerBadge: React.FC = skill.infoUrl
-    ? ({ children }) => (
-        <Badge
-          component="a"
-          rel="noopener noreferrer"
-          target="_blank"
-          href={skill.infoUrl}
-          style={{ cursor: "pointer", margin: margin }}
-        >
-          {children}
-        </Badge>
-      )
-    : ({ children }) => <Badge style={{ cursor: "pointer" }}>{children}</Badge>;
+  const badge = skill.infoUrl ? (
+    <Badge
+      component="a"
+      rel="noopener noreferrer"
+      target="_blank"
+      href={skill.infoUrl}
+      style={{ cursor: "pointer", margin: margin }}
+    >
+      {skill.name}
+    </Badge>
+  ) : (
+    <Badge style={{ cursor: "pointer" }}>{skill.name}</Badge>
+  );
 
   return (
     <Tooltip
@@ -26,7 +26,7 @@ const SkillBadge: React.FC<{ skill: SkillType, margin?: string }> = ({ skill, ma
       transitionDuration={200}
       label={skill.description}
     >
-      <InnerBadge>{skill.name}</InnerBadge>
+      {badge}
     </Tooltip>
   );
 };

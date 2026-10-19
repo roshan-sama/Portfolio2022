@@ -15,7 +15,7 @@ import { useLocalStorageValue, useMediaQuery } from "@mantine/hooks";
 import NavHeader from "./header/header";
 import VantaWrapper from "./vanta-wrapper";
 import { ColorScheme } from "../types";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   ArchiveIcon,
   ArrowTopRightIcon,
@@ -28,6 +28,8 @@ import {
   useNotifications,
 } from "@mantine/notifications";
 
+const subscribeNoop = () => () => {};
+
 export default function Layout({ children, hideName = false }) {
   // TODO: Affix "view page source button"
   // TODO: Change title spacing to pixels "view page source button"
@@ -35,15 +37,16 @@ export default function Layout({ children, hideName = false }) {
     key: "color-scheme",
     defaultValue: "dark",
   });
-  const [wrapperKey, setWrapperKey] = useState("pre");
   const [disableLoader, setDisableLoader] = useState(false);
 
   // Used to re-render content on the client.
   // This is because the Layout page cannot access cookie values, which
   // would have helped solve incorrect color-scheme on first load
-  useEffect(() => {
-    setWrapperKey("post");
-  }, []);
+  const wrapperKey = useSyncExternalStore(
+    subscribeNoop,
+    () => "post",
+    () => "pre"
+  );
 
   useEffect(() => {
     setTimeout(() => {

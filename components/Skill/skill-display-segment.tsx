@@ -1,6 +1,5 @@
 import { SegmentedControl } from "@mantine/core";
 import { NextRouter, useRouter } from "next/router";
-import { useEffect, useState } from "react";
 import { sdtypeKey } from "../../constants";
 import { multiSwap, singleSwap } from "../../hooks/use-update-push";
 import { skillDisplayChoices } from "../../types";
@@ -9,28 +8,14 @@ import isStringArray from "../../utils/is-string-array";
 const SkillDisplaySegment = () => {
   const router = useRouter();
   const rawSdType = router.query[sdtypeKey];
-  const [sdtype, setSdtype] = useState<skillDisplayChoices>("none");
-  const [data, setData] = useState(dataWithoutSome);
-
-  useEffect(() => {
-    if (!rawSdType || rawSdType === "all") {
-      setSdtype("all");
-    }
-    if (rawSdType === "none") {
-      setSdtype("none");
-    }
-    if (router.query["skillId"]) {
-      setData(dataWithSome);
-    } else {
-      setData(dataWithoutSome);
-    }
-  }, [rawSdType, router.query]);
-
-  useEffect(() => {
-    if (data.length === 3) {
-      setSdtype("some");
-    }
-  }, [data]);
+  const hasSelectedSkills = !!router.query["skillId"];
+  const data = hasSelectedSkills ? dataWithSome : dataWithoutSome;
+  let sdtype: skillDisplayChoices = "none";
+  if (hasSelectedSkills) {
+    sdtype = "some";
+  } else if (!rawSdType || rawSdType === "all") {
+    sdtype = "all";
+  }
 
   return (
     <SegmentedControl
