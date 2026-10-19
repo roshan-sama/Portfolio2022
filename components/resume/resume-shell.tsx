@@ -1,21 +1,11 @@
-import {
-  Button,
-  Card,
-  Center,
-  Container,
-  Grid,
-  Group,
-  Paper,
-  ScrollArea,
-  SimpleGrid,
-} from "@mantine/core";
+import { Card, Center, Grid, Paper, SimpleGrid } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import ResumeBox from "./resume-box";
 import ResumeHeader from "./resume-header";
 import { IResumeConfig } from "../../interfaces/resume-config.interface";
 
 const ResumeShell = (props: IResumeConfig) => {
-  const widerThan8_5inch = useMediaQuery("(min-width: 8.5in");
+  const widerThan8_5inch = useMediaQuery("(min-width: 8.5in)");
 
   const dimensions = widerThan8_5inch
     ? { height: "11in", width: "8.5in", margin: "auto" }
@@ -26,16 +16,15 @@ const ResumeShell = (props: IResumeConfig) => {
     : { height: "auto", width: "75vw", margin: "auto" };
 
   const colProps = {
-    span: 12,
+    span: { base: 12, sm: 6 },
     style: { paddingRight: "0px", paddingLeft: "0px" },
-    sm: 6,
   };
 
   return (
     <Card style={dimensions}>
       <Paper style={paperDimensions} shadow="xl">
         <ResumeHeader />
-        <Grid gutter="xs">
+        <Grid gap="xs">
           <Grid.Col {...colProps}>
             <ResumeBox
               boxHeading="Profile"
@@ -70,11 +59,8 @@ const ResumeShell = (props: IResumeConfig) => {
         <Grid.Col span={12} style={{ paddingRight: "0px", paddingLeft: "0px" }}>
           <ResumeBox boxHeading="Work" colorVersion="second">
             <SimpleGrid
-              cols={3}
-              breakpoints={[
-                { minWidth: 601, cols: 3, spacing: "sm" },
-                { maxWidth: 600, cols: 1, spacing: "sm" },
-              ]}
+              cols={{ base: 1, "37.5em": 3 }}
+              spacing="sm"
             >
               <div>
                 <b>FULLSTACK DEVELOPER</b>
@@ -106,11 +92,8 @@ const ResumeShell = (props: IResumeConfig) => {
         <Grid.Col span={12} style={{ paddingRight: "0px", paddingLeft: "0px" }}>
           <ResumeBox boxHeading="Projects" boxText="" colorVersion="first">
             <SimpleGrid
-              cols={3}
-              breakpoints={[
-                { minWidth: 601, cols: 3, spacing: "sm" },
-                { maxWidth: 600, cols: 1, spacing: "sm" },
-              ]}
+              cols={{ base: 1, "37.5em": 3 }}
+              spacing="sm"
             >
               <div>
                 <b>Angelic Shipping</b>
@@ -138,11 +121,8 @@ const ResumeShell = (props: IResumeConfig) => {
         <Grid.Col span={12} style={{ paddingRight: "0px", paddingLeft: "0px" }}>
           <ResumeBox boxHeading="Skills" boxText="" colorVersion="second">
             <SimpleGrid
-              cols={3}
-              breakpoints={[
-                { minWidth: 601, cols: 3, spacing: "sm" },
-                { maxWidth: 600, cols: 1, spacing: "sm" },
-              ]}
+              cols={{ base: 1, "37.5em": 3 }}
+              spacing="sm"
             >
               <div>
                 <Center>

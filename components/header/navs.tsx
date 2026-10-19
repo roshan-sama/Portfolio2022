@@ -1,53 +1,29 @@
-import {
-  ActionIcon,
-  Box,
-  Button,
-  Slider,
-  Text,
-  Tabs,
-  TabsProps,
-  Card,
-  Loader,
-  Center,
-} from "@mantine/core";
+import { Button, Slider, Text, Tabs, TabsProps, Card, Loader } from "@mantine/core";
 import {
   BackpackIcon,
-  ExternalLinkIcon,
   FileTextIcon,
-  GitHubLogoIcon,
   PauseIcon,
   Pencil1Icon,
   PlayIcon,
   RulerSquareIcon,
-  SpeakerLoudIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 import preservedPush from "../../hooks/use-alt-push";
 import { useEffect, useRef, useState } from "react";
-// Mantine v3's generated Tab props type marks DOM event props as required under
-// newer @types/react; narrow it to the props actually used here.
-const NavTab = Tabs.Tab as React.FC<{ label: string; icon: React.ReactNode }>;
-
-const tabIndexToPathMap = {
-  0: "/", // Career
-  1: "/resume",
-  2: "/portfolio",
-  3: "/blog",
-};
-
-const pathToTabIndexMap = {
-  "/": 0, // Career
-  "/resume": 1,
-  "/portfolio": 2,
-  "/blog": 3,
-};
+// NOTE WHEN UPDATING: tab values are the page paths they navigate to
+const navTabs = [
+  { path: "/", label: "Career", icon: <BackpackIcon /> },
+  { path: "/resume", label: "Resume", icon: <FileTextIcon /> },
+  { path: "/portfolio", label: "Portfolio", icon: <RulerSquareIcon /> },
+  { path: "/blog", label: "Blog", icon: <Pencil1Icon /> },
+];
 
 const Navs: React.FC<{
   orientation: TabsProps["orientation"];
 }> = ({ orientation }) => {
   const router = useRouter();
   const path = router.pathname;
-  const activeTab = pathToTabIndexMap[path];
+  const activeTab = navTabs.some((tab) => tab.path === path) ? path : null;
   const audioCtl = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
@@ -82,15 +58,18 @@ const Navs: React.FC<{
     <>
       <Tabs
         orientation={orientation}
-        active={activeTab}
-        onTabChange={(tabIndex) => {
-          preservedPush(router, tabIndexToPathMap[tabIndex] ?? "/");
+        value={activeTab}
+        onChange={(tabPath) => {
+          preservedPush(router, tabPath ?? "/");
         }}
       >
-        <NavTab label="Career" icon={<BackpackIcon />} />
-        <NavTab label="Resume" icon={<FileTextIcon />} />
-        <NavTab label="Portfolio" icon={<RulerSquareIcon />} />
-        <NavTab label="Blog" icon={<Pencil1Icon />} />
+        <Tabs.List>
+          {navTabs.map((tab) => (
+            <Tabs.Tab key={tab.path} value={tab.path} leftSection={tab.icon}>
+              {tab.label}
+            </Tabs.Tab>
+          ))}
+        </Tabs.List>
       </Tabs>
       <Button
         onClick={() => {
@@ -99,7 +78,7 @@ const Navs: React.FC<{
         variant="gradient"
         gradient={{ from: "violet", to: "grape", deg: 105 }}
         radius="xl"
-        leftIcon={
+        leftSection={
           playing ? (
             <PauseIcon width={18} height={18} />
           ) : (
@@ -113,7 +92,7 @@ const Navs: React.FC<{
       {playing && (
         <div style={{ width: "100px" }}>
           <Card style={{ marginTop: "0px", padding: "3px", width: "100%" }}>
-            <Text align="center" size="sm">
+            <Text ta="center" size="sm">
               <Loader variant="bars" />
               <br />
               Volume

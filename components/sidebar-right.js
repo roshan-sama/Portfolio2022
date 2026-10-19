@@ -11,7 +11,6 @@ export default function SidebarRight() {
       opened={opened}
       onClose={() => setOpened(false)}
       position="right"
-      padding="xl"
       size="xl"
     >
         {/* <Image className={styles.image} layout="responsive" src={DallasImg} /> */}

@@ -4,12 +4,10 @@ import {
   Grid,
   Text,
   Container,
-  useMantineTheme,
   Group,
   Switch,
   Paper,
   Divider,
-  SegmentedControl,
 } from "@mantine/core";
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
@@ -101,15 +99,15 @@ export default function Portfolio() {
       style={{ marginTop: largeScreen ? "0vh" : "300px", marginBottom: "20vh" }}
     >
       <Grid
-        gutter="xs"
+        gap="xs"
         justify="center"
         align="center"
         style={{ height: "inherit" }}
       >
-        <Grid.Col span={12} xl={8}>
+        <Grid.Col span={{ base: 12, xl: 8 }}>
           <Group style={{ marginBottom: "10px" }}>
             <Paper style={{ padding: "0px 10px" }}>
-              <Group direction="row">
+              <Group>
                 {isStringArray(roleId) || multipleRoles ? (
                   <ChangeRoleBtn />
                 ) : (
@@ -132,14 +130,14 @@ export default function Portfolio() {
               </Group>
             </Paper>
           </Group>
-          <Paper padding="xl">
-            <Group position="apart" style={{ marginBottom: "1rem" }}>
+          <Paper p="xl">
+            <Group justify="space-between" style={{ marginBottom: "1rem" }}>
               <Title order={1}>Roshan&apos;s {getPortfolioName(roleId)}</Title>
             </Group>
             <Card>
               <Container fluid>
-                <Grid gutter="xs">
-                  <ColWrapper key={"segment display"} span={12}>
+                <Grid gap="xs">
+                  <ColWrapper key={"filter instructions"} span={12}>
                     <Text>
                       Filter the portfolio items below by one or more of the
                       listed skills, or toggling Show all/none

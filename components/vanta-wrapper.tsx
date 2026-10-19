@@ -4,7 +4,8 @@ import Image from "next/image";
 import styles from "../styles/Vanta.module.css";
 import { useReducedMotion } from "@mantine/hooks";
 import bg from "../public/img/vantabg_static.png";
-import { ColorScheme, useMantineTheme } from "@mantine/core";
+import { useMantineTheme } from "@mantine/core";
+import { ColorScheme } from "../types";
 
 const VantaWrapper: React.FC<React.PropsWithChildren<{ scheme: ColorScheme }>> = ({
   children,

@@ -10,17 +10,17 @@ const CompaniesTable = () => {
   const companies: Company[] = Companies;
 
   const rows = companies.map((company) => (
-    <tr key={company.id} className={styles.tablerow}>
-      <td className={styles.iconcolumn}>
+    <Table.Tr key={company.id} className={styles.tablerow}>
+      <Table.Td className={styles.iconcolumn}>
         {company.imgUrl && (
           <Avatar size="lg" alt={company.name + " logo"} src={company.imgUrl} />
         )}
-      </td>
-      <td className={styles.namecolumn}>{company.name}</td>
-      <td colSpan={2} className={styles.roledurcolumn}>
+      </Table.Td>
+      <Table.Td className={styles.namecolumn}>{company.name}</Table.Td>
+      <Table.Td colSpan={2} className={styles.roledurcolumn}>
         <CareerItemsColumn companyId={company.id} />
-      </td>
-    </tr>
+      </Table.Td>
+    </Table.Tr>
   ));
 
   return (
@@ -28,15 +28,15 @@ const CompaniesTable = () => {
       <Title order={2}>My Career</Title>
       <br />
       <Table>
-        <thead>
-          <tr>
-            <th className={styles.iconcolumn}></th>
-            <th className={styles.namecolumn}>Company</th>
-            <th className={styles.rolecolumn}>Role</th>
-            <th className={styles.durationcolumn}>Duration</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th className={styles.iconcolumn}></Table.Th>
+            <Table.Th className={styles.namecolumn}>Company</Table.Th>
+            <Table.Th className={styles.rolecolumn}>Role</Table.Th>
+            <Table.Th className={styles.durationcolumn}>Duration</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
       </Table>
     </Card>
   );
@@ -50,16 +50,18 @@ const CareerItemsColumn: React.FC<{ companyId }> = ({ companyId }) => {
 
   return (
     <Table striped highlightOnHover>
-      <tbody>
+      <Table.Tbody>
         {careerItems.map((item) => (
-          <tr key={item.id}>
-            <td className={styles.rolecolumn}>{Roles.find(role => role.id === item.roleId)?.name}</td>
-            <td className={styles.durationcolumn}>
+          <Table.Tr key={item.id}>
+            <Table.Td className={styles.rolecolumn}>
+              {Roles.find((role) => role.id === item.roleId)?.name}
+            </Table.Td>
+            <Table.Td className={styles.durationcolumn}>
               <FromToColumn startDate={item.startDate} endDate={item.endDate} />
-            </td>
-          </tr>
+            </Table.Td>
+          </Table.Tr>
         ))}
-      </tbody>
+      </Table.Tbody>
     </Table>
   );
 };

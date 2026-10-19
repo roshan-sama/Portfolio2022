@@ -1,11 +1,12 @@
 import { useState } from "react";
 import {
-  MediaQuery,
+  Box,
   Burger,
   DEFAULT_THEME,
   Paper,
   Collapse,
   Group,
+  Stack,
   Button,
   Avatar,
   ActionIcon,
@@ -25,9 +26,7 @@ import Navs from "./navs";
 
 const Header: React.FC<{
   value: ColorScheme;
-  setValue: (
-    val: ColorScheme | ((prevState: ColorScheme) => ColorScheme)
-  ) => void;
+  setValue: (val: ColorScheme) => void;
 }> = ({ value, setValue }) => {
   const [burgerOpened, setBurgerOpened] = useState(false);
   const [animating, setAnimating] = useState(false);
@@ -40,7 +39,7 @@ const Header: React.FC<{
       size={32}
       radius="xl"
       style={{ marginRight: 5 }}
-      src="img/roshan_avatar.jpg"
+      src="/img/roshan_avatar.jpg"
     />
   );
 
@@ -52,23 +51,20 @@ const Header: React.FC<{
           alignItems: "center",
         }}
       >
-        <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-          <Burger
-            opened={burgerOpened}
-            onClick={() => setBurgerOpened((o) => !o)}
-            size="sm"
-            color={DEFAULT_THEME.colors.gray[6]}
-            mr="xl"
-            title={title}
-          />
-        </MediaQuery>
+        <Burger
+          hiddenFrom="sm"
+          opened={burgerOpened}
+          onClick={() => setBurgerOpened((o) => !o)}
+          size="sm"
+          color={DEFAULT_THEME.colors.gray[6]}
+          mr="xl"
+          title={title}
+        />
         <div style={{ marginRight: "20px" }}>{avatar}</div>
 
-        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-          <Group>
-            <Navs orientation="horizontal" />
-          </Group>
-        </MediaQuery>
+        <Group visibleFrom="sm">
+          <Navs orientation="horizontal" />
+        </Group>
         {/* <SidebarRight /> */}
         <Group style={{ marginLeft: "auto" }}>
           <Button
@@ -79,8 +75,8 @@ const Header: React.FC<{
             variant="gradient"
             gradient={{ from: "violet", to: "grape", deg: 105 }}
             radius="xl"
-            leftIcon={<GitHubLogoIcon width={18} height={18} />}
-            rightIcon={<ExternalLinkIcon width={15} height={15} />}
+            leftSection={<GitHubLogoIcon width={18} height={18} />}
+            rightSection={<ExternalLinkIcon width={15} height={15} />}
           >
             Github
           </Button>
@@ -92,8 +88,8 @@ const Header: React.FC<{
             variant="gradient"
             gradient={{ from: "violet", to: theme.primaryColor, deg: 105 }}
             radius="xl"
-            leftIcon={<LinkedInLogoIcon width={15} height={15} />}
-            rightIcon={<ExternalLinkIcon width={15} height={15} />}
+            leftSection={<LinkedInLogoIcon width={15} height={15} />}
+            rightSection={<ExternalLinkIcon width={15} height={15} />}
           >
             Linkedin
           </Button>
@@ -105,7 +101,7 @@ const Header: React.FC<{
               setAnimating(true);
               setTimeout(() => {
                 setAnimating(false);
-                setValue((prev) => getOppositeColorScheme(prev));
+                setValue(getOppositeColorScheme(value));
               }, 500);
             }}
           >
@@ -114,23 +110,28 @@ const Header: React.FC<{
               className={animating ? styles.spinForward : styles.rotateHalf}
             >
               <Tooltip label={value === "dark" ? "Light Theme": "Dark Theme"} withArrow>
+                {/*
+                  Colors and icon are picked by CSS (light-dark / lightHidden / darkHidden) instead of
+                  by the scheme value in JS, so the server HTML matches what the client renders
+                  for visitors whose saved scheme differs from the default.
+                */}
                 <ActionIcon
                   variant="transparent"
-                  sx={(theme) =>
-                    value === "dark"
-                      ? {
-                          color: theme.colors.dark[5],
-                          // backgroundColor: theme.colors.yellow[5],
-                          backgroundColor: theme.colors.grape[3],
-                        }
-                      : {
-                          color: theme.colors.blue[2],
-                          backgroundColor: theme.colors.dark[9],
-                        }
-                  }
+                  aria-label="Toggle color scheme"
+                  style={{
+                    color:
+                      "light-dark(var(--mantine-color-blue-2), var(--mantine-color-dark-5))",
+                    backgroundColor:
+                      "light-dark(var(--mantine-color-dark-9), var(--mantine-color-grape-3))",
+                  }}
                   size="lg"
                 >
-                  {value === "dark" ? <SunIcon /> : <MoonIcon />}
+                  <Box component="span" lightHidden>
+                    <SunIcon />
+                  </Box>
+                  <Box component="span" darkHidden>
+                    <MoonIcon />
+                  </Box>
                 </ActionIcon>
               </Tooltip>
             </div>
@@ -138,37 +139,34 @@ const Header: React.FC<{
         </Group>
       </div>
       {burgerOpened && (
-        <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-          <Collapse in={burgerOpened}>
-            <div
+        <Collapse expanded={burgerOpened} hiddenFrom="sm">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100%",
+              width: "120%",
+            }}
+          >
+            <Paper
+              p="md"
+              shadow="xs"
               style={{
-                display: "flex",
-                alignItems: "center",
-                height: "100%",
-                width: "120%",
+                width: "100%",
+                zIndex: 2,
+                marginLeft: "-20px",
+                marginTop: "10px",
               }}
             >
-              <Paper
-                padding="md"
-                shadow="xs"
-                style={{
-                  width: "100%",
-                  zIndex: 2,
-                  marginLeft: "-20px",
-                  marginTop: "10px",
-                }}
+              <Stack
+                key={"burgerGroup"}
+                style={{ marginLeft: "10px", zIndex: 100 }}
               >
-                <Group
-                  key={"burgerGroup"}
-                  direction="column"
-                  style={{ marginLeft: "10px", zIndex: 100 }}
-                >
-                  <Navs orientation="vertical" />
-                </Group>
-              </Paper>
-            </div>
-          </Collapse>
-        </MediaQuery>
+                <Navs orientation="vertical" />
+              </Stack>
+            </Paper>
+          </div>
+        </Collapse>
       )}
     </>
   );

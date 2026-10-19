@@ -1,13 +1,4 @@
-import {
-  Badge,
-  Card,
-  Chip,
-  Chips,
-  Divider,
-  Grid,
-  Group,
-  Tooltip,
-} from "@mantine/core";
+import { Badge, Chip, Grid, Group } from "@mantine/core";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { sdtypeKey } from "../../constants";
@@ -82,12 +73,9 @@ const PortfolioSkillHeader: React.FC<{
 
   return (
     <>
-      <Group direction="row">
+      <Group>
         <Badge>{skillCategory.name}</Badge>
-        <Chips
-          size="xs"
-          // {/* INFO: Hardcoded color */}
-          color="blue"
+        <Chip.Group
           multiple
           value={getSkillsToDisplay()}
           onChange={(values) => {
@@ -109,16 +97,24 @@ const PortfolioSkillHeader: React.FC<{
               }
             });
           }}
-          style={{ display: "flex" }}
         >
-          {skills.map((skill) => {
-            return (
-              <Chip key={skill.id} value={skill.id}>
-                {skill.name}
-              </Chip>
-            );
-          })}
-        </Chips>
+          <Group gap="xs">
+            {skills.map((skill) => {
+              return (
+                <Chip
+                  key={skill.id}
+                  value={skill.id}
+                  size="xs"
+                  variant="outline"
+                  // INFO: Hardcoded color
+                  color="blue"
+                >
+                  {skill.name}
+                </Chip>
+              );
+            })}
+          </Group>
+        </Chip.Group>
       </Group>
       {/* </Card> */}
     </>

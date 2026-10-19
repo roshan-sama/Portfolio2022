@@ -118,7 +118,7 @@ const Projects: ProjectType[] = [
     },
   },
   {
-    id: "id_proj_assessment",
+    id: "id_proj_wildfire",
     name: "Wildfire Decision Support System",
     description:
       "USDA EAS Contract - Fullstack Engineer\nImplemented several features including \n+ PIV card based authentication\n+ User profile management\n+ Process to calculate a spatial inventory of various resources within a fire boundary drawn on a map\n+ Form to calculate the 'Relative Risk' posed by a fire to various factors, including Natural and cultural resources, time of year, barriers to fire spread, etc.",
@@ -134,7 +134,7 @@ const Projects: ProjectType[] = [
     },
   },
   {
-    id: "id_proj_assessment",
+    id: "id_proj_femanfip",
     name: "FEMA NFIP",
     description:
       "USDA EAS Contract - Team Lead / Fullstack / Devops Engineer\nOnboarded to ensure that project delivery was a success. Improved project velocity by working with team and implementing features",

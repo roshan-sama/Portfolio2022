@@ -13,17 +13,17 @@ const CareerItem: React.FC<{ career: Career }> = ({ career }) => {
         </Group>
       </Grid.Col>
       <Grid.Col key={2} span={4}>
-        <Group position="center">
+        <Group justify="center">
           <>{Roles.find(role => role.id === career.roleId)?.name}</>          
         </Group>
       </Grid.Col>
       <Grid.Col key={3} span={4}>
-        <Group position="right">
+        <Group justify="flex-end">
           <i>
             From {career.startDate.getMonth()}, {career.startDate.getFullYear()}
           </i>
         </Group>
-        <Group position="right">
+        <Group justify="flex-end">
           <i>To {getEndDateStr(career.endDate)}</i>
         </Group>
       </Grid.Col>

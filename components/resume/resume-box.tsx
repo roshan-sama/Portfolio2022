@@ -1,4 +1,4 @@
-import { Card, Group, Text, useMantineTheme } from "@mantine/core";
+import { Card, Group, Text } from "@mantine/core";
 
 type resumeColorVersion = "first" | "second";
 
@@ -7,9 +7,9 @@ const ResumeBox: React.FC<React.PropsWithChildren<{
   boxText?: string;
   colorVersion: resumeColorVersion;
 }>> = ({ boxHeading, boxText, colorVersion, children }) => {
-  const { colors, colorScheme } = useMantineTheme();
-  const boxColor = colorVersion === "first" ? colors.grape : colors.cyan;
-  const titleBg = colorScheme === "dark" ? boxColor["8"] : boxColor["6"];
+  // Picked by CSS so the server HTML matches the client regardless of the saved color scheme
+  const color = colorVersion === "first" ? "grape" : "cyan";
+  const titleBg = `light-dark(var(--mantine-color-${color}-6), var(--mantine-color-${color}-8))`;
 
   return (
     <Card
@@ -23,7 +23,7 @@ const ResumeBox: React.FC<React.PropsWithChildren<{
       shadow="xl"
     >
       <div style={{ display: "flex", alignItems: "center", height: "100%" }}>
-        <Group direction="row" style={{ height: "100%", width: "100%" }}>
+        <Group style={{ height: "100%", width: "100%" }}>
           <div
             style={{
               width: "10%",
@@ -42,8 +42,8 @@ const ResumeBox: React.FC<React.PropsWithChildren<{
                 borderRadius: "5px",
                 backgroundColor: titleBg,
               }}
-              transform="uppercase"
-              weight={700}
+              tt="uppercase"
+              fw={700}
             >
               {boxHeading}
             </Text>
