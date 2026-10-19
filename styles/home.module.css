@@ -1,0 +1,10 @@
+/* Pushes the about-me card down on narrow screens so it clears the large name */
+.topSpacer {
+  height: 0;
+}
+
+@media (max-width: 965px) {
+  .topSpacer {
+    height: 6vw;
+  }
+}

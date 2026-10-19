@@ -1,136 +1,91 @@
 import Head from "next/head";
 import {
   Affix,
-  AppShell,
   Button,
   Grid,
-  Header,
-  MantineProvider,
+  Notification,
   ScrollArea,
   Tooltip,
-  Transition,
-  Notification,
+  useComputedColorScheme,
+  useMantineColorScheme,
 } from "@mantine/core";
-import { useLocalStorageValue, useMediaQuery } from "@mantine/hooks";
+import { useMediaQuery } from "@mantine/hooks";
 import NavHeader from "./header/header";
 import VantaWrapper from "./vanta-wrapper";
-import { ColorScheme } from "../types";
-import { useEffect, useState, useSyncExternalStore } from "react";
-import {
-  ArchiveIcon,
-  ArrowTopRightIcon,
-  CornerTopRightIcon,
-  ExternalLinkIcon,
-  GitHubLogoIcon,
-} from "@radix-ui/react-icons";
-import {
-  NotificationsProvider,
-  useNotifications,
-} from "@mantine/notifications";
+import { useEffect, useState } from "react";
+import { ArchiveIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
+import styles from "../styles/layout.module.css";
 
-const subscribeNoop = () => () => {};
+const HEADER_HEIGHT = 60;
 
 export default function Layout({ children, hideName = false }) {
   // TODO: Affix "view page source button"
   // TODO: Change title spacing to pixels "view page source button"
-  const [scheme, setScheme] = useLocalStorageValue<ColorScheme>({
-    key: "color-scheme",
-    defaultValue: "dark",
+  const { setColorScheme } = useMantineColorScheme();
+  const scheme = useComputedColorScheme("dark", {
+    getInitialValueInEffect: true,
   });
   const [disableLoader, setDisableLoader] = useState(false);
 
-  // Used to re-render content on the client.
-  // This is because the Layout page cannot access cookie values, which
-  // would have helped solve incorrect color-scheme on first load
-  const wrapperKey = useSyncExternalStore(
-    subscribeNoop,
-    () => "post",
-    () => "pre"
-  );
-
+  // Keep the loading overlay up until the page has hydrated on the client
   useEffect(() => {
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       setDisableLoader(true);
     });
-  }, [wrapperKey]);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <>
       <Head>
         <title>{process.env.NEXT_PUBLIC_NAME}&apos;s portfolio</title>
-        <script defer type="text/javascript" src="three.r119.min.js"></script>
-        <script defer type="text/javascript" src="vanta.net.min.js"></script>
       </Head>
       {!disableLoader && (
         <div className="fallback">
           <div className="loader"></div>
         </div>
       )}
-      <MantineProvider
-        theme={{
-          colorScheme: scheme,
-          primaryColor: "grape",
-          colors: {
-            "alt-purple": [
-              "#eee5ff",
-              "#ccb4fb",
-              "#ac82f9",
-              "#8b50f8",
-              "#6c22f7",
-              "#540dde",
-              "#4108ac",
-              "#2f047b",
-              "#1c024a",
-              "#09001a",
-            ],
-          },
-        }}
-        key={wrapperKey}
-      >
-        <VantaWrapper scheme={scheme}>
-          <NotificationsProvider limit={5}>
-            <AppShell
-              fixed
-              header={
-                <Header fixed height="auto" padding="xs">
-                  <NavHeader value={scheme} setValue={setScheme} />
-                </Header>
-              }
-            >
-              <ScrollArea style={{ height: "100vh", marginTop: 60 }}>
-                {!hideName && <FixedBg />}
-                {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
-                <div style={{ marginTop: "120px" }}>{children}</div>
-                <Affix position={{ bottom: 20, left: 20 }}>
-                  <Tooltip label="View the source code for this page on Github">
-                    <Button
-                      component="a"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href="https://github.com/Roesh/Portfolio2022"
-                      rightIcon={<ExternalLinkIcon />}
-                    >
-                      View source
-                    </Button>
-                  </Tooltip>
-                </Affix>
-                <Affix position={{ bottom: 20, right: 20 }}>
-                  <Notification                  
-                    style={{ width: "250px", borderRadius: "3px", borderStyle: "dashed", borderColor: "#000000" }}
-                    onClose={() => {}}
-                    title="Pardon our progress"
-                    color="blue"
-                    icon={<ArchiveIcon />}
-                    disallowClose
+      <VantaWrapper scheme={scheme}>
+        <header className={styles.header}>
+          <NavHeader value={scheme} setValue={setColorScheme} />
+        </header>
+        <main>
+          <ScrollArea h={`calc(100vh - ${HEADER_HEIGHT}px)`} mt={HEADER_HEIGHT}>
+              {!hideName && <FixedBg />}
+              {/* TODO: Could also adjust this div's margin top to not intersect with the name */}
+              <div style={{ marginTop: "120px" }}>{children}</div>
+              <Affix position={{ bottom: 20, left: 20 }}>
+                <Tooltip label="View the source code for this page on Github">
+                  <Button
+                    component="a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/Roesh/Portfolio2022"
+                    rightSection={<ExternalLinkIcon />}
                   >
-                    This website is still under construction.
-                  </Notification>
-                </Affix>
-              </ScrollArea>
-            </AppShell>
-          </NotificationsProvider>
-        </VantaWrapper>
-      </MantineProvider>
+                    View source
+                  </Button>
+                </Tooltip>
+              </Affix>
+              <Affix position={{ bottom: 20, right: 20 }}>
+                <Notification
+                  style={{
+                    width: "250px",
+                    borderRadius: "3px",
+                    borderStyle: "dashed",
+                    borderColor: "#000000",
+                  }}
+                  title="Pardon our progress"
+                  color="blue"
+                  icon={<ArchiveIcon />}
+                  withCloseButton={false}
+                >
+                  This website is still under construction.
+                </Notification>
+              </Affix>
+          </ScrollArea>
+        </main>
+      </VantaWrapper>
     </>
   );
 }
@@ -141,8 +96,15 @@ const FixedBg = () => {
   const smallScreen = useMediaQuery("(max-width: 300px)");
 
   return (
-    <Grid style={{ pointerEvents: "none", position: "fixed" }}>
-      <Grid.Col span={12} md={5}>
+    <Grid
+      style={{
+        pointerEvents: "none",
+        position: "fixed",
+        top: HEADER_HEIGHT,
+        left: 20,
+      }}
+    >
+      <Grid.Col span={{ base: 12, md: 5 }}>
         <div
           style={{
             fontSize: largeScreen ? "240px" : mediumScreen ? "180px" : "130px",

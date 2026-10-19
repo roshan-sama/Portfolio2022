@@ -60,8 +60,8 @@ const ProjectTable: React.FC<{
     const imgUrl = GetCompanyById(project.companyId)?.imgUrl;
 
     return (
-      <tr key={project.id} className={styles.tablerow}>
-        <td className={styles.iconColumn}>
+      <Table.Tr key={project.id} className={styles.tablerow}>
+        <Table.Td className={styles.iconColumn}>
           <Center>
             {
               <Avatar
@@ -73,9 +73,9 @@ const ProjectTable: React.FC<{
             }
             <Text size="xs">{name}</Text>
           </Center>
-        </td>
-        <td className={styles.rolecolumn}>{project.name}</td>
-        <td className={styles.namecolumn}>
+        </Table.Td>
+        <Table.Td className={styles.rolecolumn}>{project.name}</Table.Td>
+        <Table.Td className={styles.namecolumn}>
           {project.description}
           {project.blogId !== undefined && (
             <>
@@ -93,15 +93,15 @@ const ProjectTable: React.FC<{
               </Link>
             </>
           )}
-        </td>
-        <td className={styles.durationcolumn}>
+        </Table.Td>
+        <Table.Td className={styles.durationcolumn}>
           <Group>
             {Object.keys(project.skills).map((skillid) => {
               return <SkillBadge key={skillid} skill={getSkillById(skillid)} />;
             })}
           </Group>
-        </td>
-      </tr>
+        </Table.Td>
+      </Table.Tr>
     );
   });
 
@@ -109,15 +109,15 @@ const ProjectTable: React.FC<{
     <Card>
       <br />
       <Table>
-        <thead>
-          <tr>
-            <th className={styles.iconcolumn}>Company</th>
-            <th className={styles.rolecolumn}>Project</th>
-            <th className={styles.namecolumn}>Description</th>
-            <th className={styles.durationcolumn}>Skills used</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
+        <Table.Thead>
+          <Table.Tr>
+            <Table.Th className={styles.iconcolumn}>Company</Table.Th>
+            <Table.Th className={styles.rolecolumn}>Project</Table.Th>
+            <Table.Th className={styles.namecolumn}>Description</Table.Th>
+            <Table.Th className={styles.durationcolumn}>Skills used</Table.Th>
+          </Table.Tr>
+        </Table.Thead>
+        <Table.Tbody>{rows}</Table.Tbody>
       </Table>
     </Card>
   );

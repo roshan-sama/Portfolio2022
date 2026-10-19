@@ -1,9 +1,16 @@
 import SkillType from "./skill-type";
 import { Badge, Tooltip } from "@mantine/core";
-import { CSSProperties } from "@mantine/styles/lib/tss/types/css-object";
 
-const SkillBadge: React.FC<{ skill: SkillType, margin?: string }> = ({ skill, margin }) => {
-  const badge = skill.infoUrl ? (
+/**
+ * `linked={false}` renders the badge as plain text even when the skill has an info URL.
+ * Use it when the badge sits inside another link, since nested <a> elements are invalid HTML.
+ */
+const SkillBadge: React.FC<{
+  skill: SkillType;
+  margin?: string;
+  linked?: boolean;
+}> = ({ skill, margin, linked = true }) => {
+  const badge = skill.infoUrl && linked ? (
     <Badge
       component="a"
       rel="noopener noreferrer"
@@ -14,16 +21,15 @@ const SkillBadge: React.FC<{ skill: SkillType, margin?: string }> = ({ skill, ma
       {skill.name}
     </Badge>
   ) : (
-    <Badge style={{ cursor: "pointer" }}>{skill.name}</Badge>
+    <Badge style={{ cursor: "pointer", margin: margin }}>{skill.name}</Badge>
   );
 
   return (
     <Tooltip
-      wrapLines
-      width={220}
+      multiline
+      w={220}
       withArrow
-      transition="fade"
-      transitionDuration={200}
+      transitionProps={{ transition: "fade", duration: 200 }}
       label={skill.description}
     >
       {badge}

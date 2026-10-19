@@ -1,20 +1,6 @@
-import {
-  Grid,
-  Container,
-  Card,
-  Title,
-  Paper,
-  Button,
-  Center,
-} from "@mantine/core";
+import { Grid, Container, Card, Title, Paper } from "@mantine/core";
 import Layout from "../../components/layout";
-import Blog from "../../components/blog/blog";
-import { useRouter } from "next/router";
 import blogs from "../../components/blog/blogs";
-import { useEffect, useMemo, useState } from "react";
-import blogType from "../../components/blog/blog-type";
-import { useNotifications } from "@mantine/notifications";
-import { Cross1Icon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import Skills from "../../components/Skill/skills";
 import SkillBadge from "../../components/Skill/skill-badge";
@@ -22,7 +8,7 @@ import SkillBadge from "../../components/Skill/skill-badge";
 export default function BlogIndexPage() {
   return (
     <BlogPageWrapper>
-      <Paper padding="xs">
+      <Paper p="xs">
         <Title order={2}>My Blog Posts</Title>
         {blogs.map((blog) => (
           <Link key={blog.id} href={`/blog/view?postid=${blog.id}`}>
@@ -33,7 +19,13 @@ export default function BlogIndexPage() {
                 blog.skillIds.map((skillId) => {
                   const skill = Skills.find((skill) => skill.id === skillId);
                   return (
-                    <SkillBadge key={skillId} margin="0px 5px" skill={skill} />
+                    <SkillBadge
+                      key={skillId}
+                      margin="0px 5px"
+                      skill={skill}
+                      // The whole card is already a link to the post
+                      linked={false}
+                    />
                   );
                 })}
             </Card>
@@ -47,7 +39,7 @@ export default function BlogIndexPage() {
 export const BlogPageWrapper = ({ children }) => (
   <Container fluid={true} style={{ marginBottom: "20vh" }}>
     <Grid justify="center" align="start" style={{ height: "inherit" }}>
-      <Grid.Col span={12} sm={8} lg={6}>
+      <Grid.Col span={{ base: 12, sm: 8, lg: 6 }}>
         {children}
       </Grid.Col>
     </Grid>

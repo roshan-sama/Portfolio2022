@@ -61,7 +61,7 @@ const PdfResumeShell = () => {
 
   Font.registerHyphenationCallback((word) => [word]);
 
-  const widerThan8_5inch = useMediaQuery("(min-width: 8.5in");
+  const widerThan8_5inch = useMediaQuery("(min-width: 8.5in)");
 
   const dimensions = widerThan8_5inch
     ? {
@@ -200,7 +200,7 @@ const PdfResumeShell = () => {
                     <View>
                       <Text style={styles.h3}>Professional Experience</Text>
                       {companiesToList.map((company, index) =>
-                        <>
+                        <React.Fragment key={company.id}>
                           <View style={{ display: "flex", flexDirection: 'row', borderBottom: '1', marginTop: 10, marginBottom: 5, alignItems: "center" }}>
                             <Text style={{ ...styles.h4 }} key={index}>{company.name}</Text>
                             <View style={{ ...styles.p, marginLeft: 'auto' }}>{
@@ -214,26 +214,26 @@ const PdfResumeShell = () => {
                               <Text style={{ ...styles.p, marginLeft: 12 }}>{project.description}</Text>
                             </View>
                           )}
-                        </>
+                        </React.Fragment>
                       )}
                     </View>
                     <View style={{marginTop: 10}}>
                       <Text style={styles.h3}>Skills:</Text>
-                      {SkillCategories.map((category, index) => <>
+                      {SkillCategories.map((category, index) => <React.Fragment key={category.id}>
                         {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).length > 0 &&
                           <View style={{ marginTop: 10 }}>
                             <Text key={index} style={{ fontSize: '14px', textDecoration: 'underline' }}>{category.name}</Text>
                             <Text style={styles.p}>
                               {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).map((skill, index) =>
-                                <>{index !== 0 && ' | '}{skill.name}</>
+                                <React.Fragment key={skill.id}>{index !== 0 && ' | '}{skill.name}</React.Fragment>
                               )}
                             </Text>
                           </View>
                         }
-                      </>
+                      </React.Fragment>
                       )}
                       {relevantProjects.filter(project => project.companyId === "").map((project, index) => {
-                        return <>
+                        return <React.Fragment key={project.id}>
                           {(index === 0) && <Text style={{ ...styles.h3, marginTop: 50 }}>Personal Projects:</Text>}
                           <View key={index} style={{ marginTop: 10 }}>
                             <Text style={{ fontSize: '14px', textDecoration: 'underline' }}>{project.name}</Text>
@@ -242,28 +242,28 @@ const PdfResumeShell = () => {
                             </Link>
                             <Text style={{...styles.p, marginTop: 10}}>{project.description}</Text>
                           </View>
-                        </>
+                        </React.Fragment>
                       })}
                     </View>
                   </View>
                   {/* <View style={{ ...styles.left, paddingLeft: 10 }}>
                     <View>
                       <Text style={styles.h3}>Skills:</Text>
-                      {SkillCategories.map((category, index) => <>
+                      {SkillCategories.map((category, index) => <React.Fragment key={category.id}>
                         {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).length > 0 &&
                           <View style={{ marginTop: 10 }}>
                             <Text key={index} style={{ fontSize: '14px', textDecoration: 'underline' }}>{category.name}</Text>
                             <Text style={styles.p}>
                               {dedupSkillsFromRole.filter(skill => skill.skillCategoryId === category.id).map((skill, index) =>
-                                <>{index !== 0 && ' | '}{skill.name}</>
+                                <React.Fragment key={skill.id}>{index !== 0 && ' | '}{skill.name}</React.Fragment>
                               )}
                             </Text>
                           </View>
                         }
-                      </>
+                      </React.Fragment>
                       )}
                       {relevantProjects.filter(project => project.companyId === "").map((project, index) => {
-                        return <>
+                        return <React.Fragment key={project.id}>
                           {(index === 0) && <Text style={{ ...styles.h3, marginTop: 50 }}>Personal Projects:</Text>}
                           <View key={index} style={{ marginTop: 10 }}>
                             <Text style={{ fontSize: '14px', textDecoration: 'underline' }}>{project.name}</Text>
@@ -272,7 +272,7 @@ const PdfResumeShell = () => {
                             </Link>
                             <Text style={{...styles.p, marginTop: 10}}>{project.description}</Text>
                           </View>
-                        </>
+                        </React.Fragment>
                       })}
                     </View>
                   </View> */}

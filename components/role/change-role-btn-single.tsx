@@ -1,4 +1,4 @@
-import { MultiSelect, Select } from "@mantine/core";
+import { Select } from "@mantine/core";
 import { useRouter } from "next/router";
 import preservedPush from "../../hooks/use-alt-push";
 import { singleSwap } from "../../hooks/use-update-push";
@@ -23,10 +23,12 @@ const ChangeRoleBtnSingle: React.FC<{ currentRoleId }> = ({
       label="Change Role"
       placeholder="Pick one"
       data={data}
-      value={currentRoleId}
+      value={typeof currentRoleId === "string" ? currentRoleId : null}
       style={{ marginBottom: "1rem", minWidth: "15rem" }}
-      onChange={(ids) => {
-        singleSwap(router, "roleId", [ids]);
+      onChange={(id) => {
+        if (id !== null) {
+          singleSwap(router, "roleId", [id]);
+        }
       }}
     />
   );

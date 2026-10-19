@@ -1,0 +1,11 @@
+/* Fixed top bar. Height grows with its content (e.g. when buttons wrap on narrow screens). */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: var(--mantine-spacing-xs);
+  background-color: var(--mantine-color-body);
+  border-bottom: 1px solid var(--mantine-color-default-border);
+}

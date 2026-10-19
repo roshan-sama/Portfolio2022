@@ -6,31 +6,28 @@ import {
   Group,
   Text,
   Title,
-  useMantineTheme,
 } from "@mantine/core";
 import Link from "next/link";
 
 const AboutMe = () => {
-  const theme = useMantineTheme();
   const buttonGradient = {
     from: "grape",
-    to: theme.colorScheme === "dark" ? "violet" : "violet",
+    to: "violet",
     deg: 90,
   };
 
   return (
     <Card>
-      <Text component="span" align="center" role="img" size="xl" weight={700}>
+      <Text component="span" role="img" size="xl" fw={700}>
         👋
       </Text>
 
       <Text
         component="span"
-        align="center"
-        variant="gradient"
-        gradient={{ from: "grape", to: "grape", deg: 45 }}
+                variant="gradient"
+        gradient={{ from: "grape.6", to: "grape.6", deg: 45 }}
         size="xl"
-        weight={700}
+        fw={700}
         style={{ fontFamily: "Greycliff CF, sans-serif" }}
       >
         Hi!
@@ -38,30 +35,27 @@ const AboutMe = () => {
       </Text>
       <Text
         component="span"
-        align="center"
-        size="sm"
-        weight={700}
+                size="sm"
+        fw={700}
         style={{ fontFamily: "Greycliff CF, sans-serif" }}
       >
         My name is{" "}
       </Text>
       <Text
         component="span"
-        align="center"
-        size="xl"
-        weight={700}
+                size="xl"
+        fw={700}
         style={{ fontFamily: "Greycliff CF, sans-serif" }}
         variant="gradient"
-        gradient={{ from: "grape", to: "grape", deg: 45 }}
+        gradient={{ from: "grape.6", to: "grape.6", deg: 45 }}
       >
         {process.env.NEXT_PUBLIC_NAME}
         <br />
       </Text>
       <Text
         component="span"
-        align="center"
-        size="sm"
-        weight={700}
+                size="sm"
+        fw={700}
         style={{ fontFamily: "Greycliff CF, sans-serif" }}
       >
         Welcome to my little corner of the internet!
@@ -77,9 +71,9 @@ const AboutMe = () => {
       </Text>
       <Divider style={{ marginBlock: "5px" }} />
 
-      <Text color="dimmed">Check out my portfolios:</Text>
+      <Text c="dimmed">Check out my portfolios:</Text>
       <Group
-        position="center"
+        justify="center"
         style={{ marginTop: "10px", marginLeft: "auto" }}
       >
         <Link href="/portfolio?roleId=dops" prefetch={false}>
