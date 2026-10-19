@@ -53,7 +53,7 @@ export default function Portfolio() {
   const { dedupSkills: dedupSkillsFromRole, dedupCategories } = useMemo(() => {
     const skills = roles.flatMap((role) => role.relevantSkills);
     return getDeduplicatedSkills(skills);
-  }, [roles, getDeduplicatedSkills]);
+  }, [roles]);
 
   const processSingleSkillChange = (
     changedSkillId,

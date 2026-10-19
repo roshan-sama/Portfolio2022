@@ -45,7 +45,7 @@ const PdfResumeShell = () => {
   const { dedupSkills: dedupSkillsFromRole, dedupCategories } = useMemo(() => {
     const skills = roleToDisplay?.relevantSkills ?? [];
     return getDeduplicatedSkills(skills);
-  }, [roleToDisplay, getDeduplicatedSkills]);
+  }, [roleToDisplay]);
 
   // const skillDisplay = router.query[];
 
@@ -53,7 +53,7 @@ const PdfResumeShell = () => {
     return Projects.filter((project) => {
       return dedupSkillsFromRole.some(skill => project.skills[skill.id] !== undefined)
     })
-  }, [roleToDisplay])
+  }, [dedupSkillsFromRole])
 
   const companiesToList = useMemo(() => {
     return companies.filter((company) => relevantProjects.some((project) => project.companyId === company.id))

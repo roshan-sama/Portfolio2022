@@ -46,7 +46,7 @@ export default function ViewBlog() {
         icon: <Cross1Icon />,
       });
     }
-  }, [blog, postid]);
+  }, [blog, postid, showNotification]);
 
   return (
     <BlogPageWrapper>
